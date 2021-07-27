@@ -1,0 +1,81 @@
+/*------------FONTS-------------*/
+@font-face {
+  font-family: 'Title ExtraBold';
+  src: url('../assets/fonts/MPLUSRounded1c-ExtraBold.ttf');
+}
+@font-face {
+  font-family: 'Title Black';
+  src: url('../assets/fonts/MPLUSRounded1c-Black.ttf');
+}
+@font-face {
+  font-family: 'Title Bold';
+  src: url('../assets/fonts/MPLUSRounded1c-Bold.ttf');
+}
+@font-face {
+  font-family: 'Title Light';
+  src: url('../assets/fonts/MPLUSRounded1c-Light.ttf');
+}
+@font-face {
+  font-family: 'Title Medium';
+  src: url('../assets/fonts/MPLUSRounded1c-Medium.ttf');
+}
+@font-face {
+  font-family: 'Title';
+  src: url('../assets/fonts/MPLUSRounded1c-Regular.ttf');
+}
+@font-face {
+  font-family: 'Title Thin';
+  src: url('../assets/fonts/MPLUSRounded1c-Thin.ttf');
+}
+@font-face {
+  font-family: 'Main';
+  src: url('../assets/fonts/VarelaRound-Regular.ttf');
+}
+
+/*------------NORMALIZE-------------*/
+
+* {
+  box-sizing: border-box;
+}
+
+body,
+html {
+  height: 100%;
+  color: #ffffff;
+}
+
+body {
+  margin: 0;
+  background-color: #ffffff;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+a {
+  text-decoration: none;
+  outline: none;
+  color: #ffffff;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button,
+input,
+select,
+textarea {
+  outline: none;
+}
+
+img,
+svg {
+  vertical-align: top;
+}
+
+ul,
+li {
+  margin: 0;
+  padding: 0;
+}
