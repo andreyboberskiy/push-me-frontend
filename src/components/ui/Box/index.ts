@@ -1,9 +1,9 @@
 import styled from 'styled-components';
-import { color, space, SpaceProps } from 'styled-system';
+import { color, ColorProps, space, SpaceProps } from 'styled-system';
 
-interface Props extends SpaceProps {}
+interface Props extends SpaceProps, ColorProps {}
 
-export const Box = styled.div<Props>`
+export const Box = styled.div.attrs<Props>({})`
   ${space}
   ${color}
 `;
