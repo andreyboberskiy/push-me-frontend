@@ -48,6 +48,8 @@ html {
 
 body {
   background-color: #ffffff;
+  color: #151515;
+  font-family: 'Main', sans-serif;
 }
 
 #root {

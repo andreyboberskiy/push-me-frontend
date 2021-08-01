@@ -50,6 +50,8 @@ export const HowItWorksButton = styled(Button).attrs({
   fontSize: 6,
   mb: 4,
 })`
+  margin-left: auto;
+  margin-right: auto;
   font-weight: 300;
   text-transform: uppercase;
 `;

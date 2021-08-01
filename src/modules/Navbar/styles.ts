@@ -1,11 +1,19 @@
 import styled from 'styled-components';
 
 import { Box, Button, Image } from 'components/ui';
+
 import mainLogo from 'assets/images/common/mainLogo.png';
+
+// types
+import { IBoxProps } from '../../components/ui/Box';
+
+interface IContainer extends IBoxProps {
+  showShadow?: boolean;
+}
 
 export { ContentContainer } from 'components/ui';
 
-export const Container = styled(Box)<{ showShadow?: boolean }>`
+export const Container = styled(Box).attrs({})<IContainer>`
   position: fixed;
   top: 0;
   width: 100%;
@@ -37,3 +45,5 @@ export const AuthButton = styled<any>(Button).attrs({
   variant: 'default',
   fontSize: 5,
 })``;
+
+export const RightAuthMenu = styled(LeftMenu)``;

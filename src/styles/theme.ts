@@ -1,4 +1,4 @@
-export default {
+const theme = {
   space: [0, 4, 8, 16, 32, 64, 128],
   colors: {
     darkBlue: '#263FB9',
@@ -9,3 +9,4 @@ export default {
   },
   fontSizes: [8, 12, 14, 16, 20, 24, 32, 40, 48, 64],
 };
+export default theme;

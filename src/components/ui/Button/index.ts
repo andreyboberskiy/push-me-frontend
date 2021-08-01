@@ -12,23 +12,39 @@ import {
 // Interface
 interface IButtonProps extends SpaceProps, FontSizeProps, ColorProps {}
 
-export const Button = styled.button.attrs<IButtonProps>({
-  px: 3,
-  py: 2,
-})`
+export const Button = styled.button.attrs<IButtonProps>({})`
   ${variant({
     variants: {
+      primary: {
+        color: 'white',
+        bg: 'lightBlue',
+        borderRadius: 12,
+      },
       default: {
         color: 'white',
         bg: 'transparent',
-        fontFamily: 'T600',
+      },
+    },
+  })}
+
+  ${variant({
+    prop: 'size',
+    variants: {
+      xs: {
+        px: 3,
+        py: 2,
+      },
+      sm: {
+        fontSize: 4,
+        px: 4,
+        py: 3,
       },
     },
   })}
 
   text-align: center;
   cursor: pointer;
-  ${space}
-  ${fontSize}
-  ${color}
+  width: fit-content;
+  font-family: 'T600';
+  ${space} ${fontSize} ${color};
 `;

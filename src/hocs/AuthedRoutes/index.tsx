@@ -1,19 +1,27 @@
-import React, { ReactElement } from 'react';
+import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import routesByName from '../../configs/routesByName';
-
-const user = null;
+import routesByName from 'configs/routesByName';
+import { useSelector } from 'react-redux';
+import { IReducerStore } from 'store/reducers';
 
 // Interface
 interface IAuthedRoutesProps {
-  children: ReactElement;
+  children: any;
 }
 
 const AuthedRoutes: React.FC<IAuthedRoutesProps> = ({ children }) => {
   const history = useHistory();
-  if (!user) {
-    history.replace(routesByName.homePage);
-  }
+
+  const authed = useSelector<IReducerStore, boolean>(
+    (state) => state.auth.authed
+  );
+
+  useEffect(() => {
+    if (!authed) {
+      history.replace(routesByName.homePage);
+    }
+  }, [authed]);
+
   return children;
 };
 

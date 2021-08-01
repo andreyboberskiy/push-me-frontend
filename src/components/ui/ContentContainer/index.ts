@@ -1,8 +1,9 @@
 import styled from 'styled-components';
+import { Box } from 'components/ui/Box';
 
-export const ContentContainer = styled.div`
+export const ContentContainer = styled<any>(Box)`
   max-width: 1410px;
   width: 100%;
-  margin: 0 auto;
+  ${(props) => (props.withNavbar ? 'margin: 110px auto 0;' : 'margin: 0 auto;')}
   padding: 0px 15px;
 `;
