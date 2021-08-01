@@ -1,5 +1,6 @@
-import React from 'react';
-
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { getListAction } from 'modules/templates/store/actions';
 import map from 'lodash/map';
 
 import {
@@ -11,7 +12,12 @@ import {
 } from './styles';
 
 const TemplatesPage = () => {
+  const dispatch = useDispatch();
   const templateList = [];
+
+  useEffect(() => {
+    dispatch(getListAction());
+  }, []);
   return (
     <Container>
       <Content>

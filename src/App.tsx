@@ -8,7 +8,7 @@ import AuthedRoutes from 'hocs/AuthedRoutes';
 import HomePage from 'modules/HomePage';
 import UnAuthedNavbar from 'modules/Navbar';
 import SignPage from 'modules/auth/SignPage';
-import TemplatesPage from 'modules/TemplatesPage';
+import TemplatesPage from 'modules/templates/TemplatesPage';
 
 import { IReducerStore } from 'store/reducers';
 import { initialLoadAction } from 'modules/app/store/actions';

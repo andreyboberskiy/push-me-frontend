@@ -1,10 +1,14 @@
+import authService from 'modules/auth/service';
+import { setUserAction } from 'modules/auth/store/actions';
+import { setUpAuthInterceptorsAction } from 'libs/axios/instances';
+
 import { APP_INITIAL_LOADED } from './constants';
-import authService from '../../auth/service';
-import { setUserAction } from '../../auth/store/actions';
 
 export const initialLoadAction = () => async (dispatch) => {
   try {
     const accessToken = authService.getAccessToken();
+
+    dispatch(setUpAuthInterceptorsAction());
 
     const user = await authService.getUser(); // TODO: implement get user func on BE
 
