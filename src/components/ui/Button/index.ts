@@ -12,7 +12,7 @@ import {
 // Interface
 interface IButtonProps extends SpaceProps, FontSizeProps, ColorProps {}
 
-export const Button = styled.button.attrs<IButtonProps>({})`
+export const Button = styled('button').attrs<IButtonProps>({})`
   ${variant({
     variants: {
       primary: {
@@ -45,6 +45,9 @@ export const Button = styled.button.attrs<IButtonProps>({})`
   text-align: center;
   cursor: pointer;
   width: fit-content;
+  margin: 0 auto;
   font-family: 'T600';
+  display: block;
+  align-self: center;
   ${space} ${fontSize} ${color};
 `;

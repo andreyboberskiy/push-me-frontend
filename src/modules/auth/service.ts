@@ -21,7 +21,8 @@ const authService = {
     return BaseAxiosInstance.post(`${apiPrefix}/auth/sign-up`, payload);
   },
   getAccessToken() {
-    return localStorage.getItem(localStorageKeys.accessToken);
+    const token = localStorage.getItem(localStorageKeys.accessToken);
+    return JSON.parse(token);
   },
 
   setAccessToken(token) {

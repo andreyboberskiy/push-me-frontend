@@ -12,6 +12,7 @@ import TemplatesPage from 'modules/templates/TemplatesPage';
 
 import { IReducerStore } from 'store/reducers';
 import { initialLoadAction } from 'modules/app/store/actions';
+import CreateTemplatePage from 'modules/templates/CreateTemplatePage';
 
 function App() {
   const dispatch = useDispatch();
@@ -35,6 +36,10 @@ function App() {
         <AuthedRoutes>
           <Route path={routesByName.profilePage} component={ProfilePage} />
           <Route path={routesByName.templatesPage} component={TemplatesPage} />
+          <Route
+            path={routesByName.createTemplate}
+            component={CreateTemplatePage}
+          />
         </AuthedRoutes>
       </Switch>
     </>

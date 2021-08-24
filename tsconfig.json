@@ -4,7 +4,8 @@
     "lib": [
       "dom",
       "dom.iterable",
-      "esnext"
+      "esnext",
+      "es6"
     ],
     "baseUrl": "src",
     "allowJs": true,
@@ -22,6 +23,7 @@
     "jsx": "react-jsx",
     "sourceMap": true
   },
+  "compileOnSave": true,
   "include": [
     "src",
     "css.d.ts",

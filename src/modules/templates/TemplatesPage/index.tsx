@@ -1,7 +1,11 @@
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { getListAction } from 'modules/templates/store/actions';
+import { useDispatch, useSelector } from 'react-redux';
 import map from 'lodash/map';
+
+import { getListAction } from 'modules/templates/store/actions';
+
+import { IReducerStore } from 'store/reducers';
+import { ITemplate } from 'types/templates';
 
 import {
   Container,
@@ -13,7 +17,12 @@ import {
 
 const TemplatesPage = () => {
   const dispatch = useDispatch();
-  const templateList = [];
+  const templateList = useSelector<IReducerStore, ITemplate[]>(
+    (state) => state.templates.list
+  );
+
+  const renderList = () =>
+    map(templateList, (item) => <Template template={item} />);
 
   useEffect(() => {
     dispatch(getListAction());
@@ -23,9 +32,7 @@ const TemplatesPage = () => {
       <Content>
         <Title>My templates</Title>
         <TemplatesContainer>
-          {map(templateList, (item) => (
-            <Template template={item} />
-          ))}
+          {templateList?.length > 0 ? renderList() : 'Loading...'}
         </TemplatesContainer>
       </Content>
     </Container>

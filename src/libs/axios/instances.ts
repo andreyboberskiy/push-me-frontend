@@ -17,7 +17,6 @@ export const setUpAuthInterceptorsAction = () => (dispatch, getState) => {
       // const url = prepareUrl(config.url, currentUser);
       const headers: { Authorization: string } = { Authorization: null };
       const authToken = authService.getAccessToken();
-
       if (authToken) {
         headers.Authorization = authToken;
       }

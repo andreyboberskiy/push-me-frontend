@@ -33,6 +33,9 @@ const UnAuthedNavbar = () => {
   const handlePressTemplates = useCallback(() => {
     history.push(routesByName.templatesPage);
   }, [history]);
+  const handlePressCreateTemplate = useCallback(() => {
+    history.push(routesByName.createTemplate);
+  }, [history]);
 
   const renderUnAuthedPart = () => (
     <LeftMenu>
@@ -46,6 +49,9 @@ const UnAuthedNavbar = () => {
   const renderAuthedPart = () => (
     <RightAuthMenu>
       <AuthButton onClick={handlePressTemplates}>Templates</AuthButton>
+      <AuthButton onClick={handlePressCreateTemplate}>
+        Create Template
+      </AuthButton>
       <AuthButton onClick={() => {}}>Profile</AuthButton>
     </RightAuthMenu>
   );

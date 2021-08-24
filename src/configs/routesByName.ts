@@ -3,4 +3,5 @@ export default {
   sign: '/sign',
   profilePage: '/profile',
   templatesPage: '/templates',
+  createTemplate: '/create-template',
 };

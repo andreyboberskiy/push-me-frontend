@@ -12,10 +12,14 @@ export const Content = styled(ContentContainer).attrs({
   ${space}
 `;
 
-export const Container = styled(Box).attrs({ bg: 'lightBlue' })`
+export const Container = styled(Box).attrs({ bg: 'black' })`
   height: 100vh;
 `;
 
 export const Title = styled(Text).attrs({ fontSize: 5 })``;
 
-export const TemplatesContainer = styled(Box).attrs({ mt: 3 })``;
+export const TemplatesContainer = styled(Box).attrs({ mt: 3 })`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 30px;
+`;

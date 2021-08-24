@@ -13,7 +13,7 @@ interface IContainer extends IBoxProps {
 
 export { ContentContainer } from 'components/ui';
 
-export const Container = styled(Box).attrs({})<IContainer>`
+export const Container = styled(Box).attrs({ bg: 'darkBlue' })<IContainer>`
   position: fixed;
   top: 0;
   width: 100%;
