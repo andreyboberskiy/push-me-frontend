@@ -2,7 +2,7 @@ import React, { useCallback, useMemo, useState } from 'react';
 import { Field, FormRenderProps } from 'react-final-form';
 import map from 'lodash/map';
 
-import { FormWrapper, QueryField, UrlField, SubmitButton } from '../styles';
+import { FormWrapper, QueryField, TextField, SubmitButton } from '../styles';
 
 const FormByTextQuery = ({
   handleSubmit,
@@ -29,11 +29,15 @@ const FormByTextQuery = ({
     return queries;
   }, [values]);
 
-  console.log({ approvedQueries });
-
   return (
     <FormWrapper>
-      <Field name="url" placeholder="URL" component={UrlField} />
+      <Field
+        name="title"
+        label="Title"
+        placeholder="Enter your template title"
+        component={TextField}
+      />
+      <Field name="url" placeholder="URL" component={TextField} />
       {map(new Array(fieldCount), (item, index) => (
         <Field
           name={`query${index + 1}`}

@@ -8,6 +8,8 @@ export const initialLoadAction = () => async (dispatch) => {
   try {
     const accessToken = authService.getAccessToken();
 
+    console.log({ accessToken });
+
     dispatch(setUpAuthInterceptorsAction());
 
     const user = await authService.getUser(); // TODO: implement get user func on BE

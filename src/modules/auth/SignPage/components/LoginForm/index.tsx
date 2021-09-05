@@ -36,7 +36,7 @@ export const LoginForm = memo(() => {
           values
         );
         dispatch(setUserAction(user));
-        authService.setAccessToken(`Bearer ${accessToken}`);
+        authService.setAccessToken(accessToken);
         authService.setRefreshToken(refreshToken);
 
         history.push(routesByName.templatesPage);

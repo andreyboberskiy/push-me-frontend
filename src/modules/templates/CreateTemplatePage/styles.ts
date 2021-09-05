@@ -31,4 +31,4 @@ export const SubmitButton = styled<any>(Button).attrs({ size: 'sm' })`
 export const QueryField = styled<any>(ParseField).attrs({ mt: 3 })`
   ${space}
 `;
-export const UrlField = styled(TextInputField).attrs({})``;
+export const TextField = styled(TextInputField).attrs({})``;
