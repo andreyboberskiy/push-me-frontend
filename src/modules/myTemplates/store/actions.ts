@@ -1,5 +1,5 @@
-import templateService from 'modules/templates/service';
-import { TEMPLATES_SET_LIST } from 'modules/templates/store/constants';
+import templateService from 'modules/myTemplates/service';
+import { TEMPLATES_SET_LIST } from 'modules/myTemplates/store/constants';
 
 export const setListAction = (list) => ({
   type: TEMPLATES_SET_LIST,

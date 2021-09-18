@@ -1,7 +1,7 @@
 import React, { memo, useCallback, useEffect, useState } from 'react';
 import map from 'lodash/map';
 
-import templateService from 'modules/templates/service';
+import templateService from 'modules/createTemplate/service';
 import useFlagManager from 'hooks/useFlagManager';
 
 import {
@@ -19,7 +19,7 @@ import {
   ListWrapper,
   TitleInput,
   TitleContainer,
-} from './styles';
+} from 'modules/createTemplate/CreateTemplatePage/components/AddSelectorStepsModal/styles';
 
 // Interface
 interface IAddSelectorStepsModalProps {

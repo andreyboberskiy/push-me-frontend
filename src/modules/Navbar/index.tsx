@@ -31,7 +31,7 @@ const UnAuthedNavbar = () => {
     history.push(routesByName.sign, { activeTab: 'signUp' });
   }, [history]);
   const handlePressTemplates = useCallback(() => {
-    history.push(routesByName.templatesPage);
+    history.push(routesByName.myTemplatesPage);
   }, [history]);
   const handlePressCreateTemplate = useCallback(() => {
     history.push(routesByName.createTemplate);

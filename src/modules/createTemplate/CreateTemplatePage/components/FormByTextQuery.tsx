@@ -10,7 +10,7 @@ import {
   AddFieldButton,
   ParseTimePickerField,
   RowBetween,
-} from '../styles';
+} from 'modules/createTemplate/CreateTemplatePage/styles';
 
 const FormByTextQuery = ({
   handleSubmit,

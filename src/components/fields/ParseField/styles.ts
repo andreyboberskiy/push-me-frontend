@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import { Button, TextInput as TextInputUI } from 'components/ui';
 
-export { AddSelectorStepsModal } from 'modules/modals/AddSelectorStepsModal';
+export { AddSelectorStepsModal } from 'modules/createTemplate/CreateTemplatePage/components/AddSelectorStepsModal';
 
 export { RowBetween } from 'components/common';
 

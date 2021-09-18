@@ -1,9 +1,13 @@
 import React, { memo, useCallback } from 'react';
 import { Form } from 'react-final-form';
 
-import { FormByTextQuery } from './components/FormByTextQuery';
+import { FormByTextQuery } from 'modules/createTemplate/CreateTemplatePage/components/FormByTextQuery';
 
-import { Container, Content, Title } from './styles';
+import {
+  Container,
+  Content,
+  Title,
+} from 'modules/createTemplate/CreateTemplatePage/styles';
 
 const initialValues = {
   url: '',

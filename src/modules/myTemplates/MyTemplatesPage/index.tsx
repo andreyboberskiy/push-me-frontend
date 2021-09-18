@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import map from 'lodash/map';
 
-import { getListAction } from 'modules/templates/store/actions';
+import { getListAction } from 'modules/myTemplates/store/actions';
 
 import { IReducerStore } from 'store/reducers';
 import { ITemplate } from 'types/templates';
@@ -15,7 +15,7 @@ import {
   Template,
 } from './styles';
 
-const TemplatesPage = () => {
+const MyTemplatesPage = () => {
   const dispatch = useDispatch();
   const templateList = useSelector<IReducerStore, ITemplate[]>(
     (state) => state.templates.list
@@ -39,4 +39,4 @@ const TemplatesPage = () => {
   );
 };
 
-export default TemplatesPage;
+export default MyTemplatesPage;

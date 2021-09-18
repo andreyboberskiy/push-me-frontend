@@ -2,6 +2,6 @@ export default {
   homePage: '/home',
   sign: '/sign',
   profilePage: '/profile',
-  templatesPage: '/UIComponentsPage',
+  myTemplatesPage: '/my-myTemplates',
   createTemplate: '/create-template',
 };

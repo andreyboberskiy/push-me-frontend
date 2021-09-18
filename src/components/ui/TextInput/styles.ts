@@ -49,6 +49,9 @@ function getStyleByState(state) {
     case 'approved': {
       return getStringStyle({ color: theme.colors.green });
     }
+    case 'invalid': {
+      return getStringStyle({ color: theme.colors.red });
+    }
     default: {
       return getStringStyle({ color: theme.colors.lightBlue });
     }

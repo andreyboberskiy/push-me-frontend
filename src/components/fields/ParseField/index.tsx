@@ -76,6 +76,16 @@ export const ParseField: React.FC<IParseFieldProps> = ({
     // eslint-disable-next-line
   }, [fieldState]);
 
+  const inputState = useMemo(() => {
+    if (fieldState.approved) {
+      return 'approved';
+    }
+    if (fieldState.query?.length) {
+      return 'invalid';
+    }
+    return 'default';
+  }, [fieldState]);
+
   return (
     <>
       <RowBetween className={className} {...props}>
@@ -85,8 +95,7 @@ export const ParseField: React.FC<IParseFieldProps> = ({
           error={hasError}
           helperText={meta.error}
           label={placeholder}
-          state={fieldState.approved ? 'approved' : 'default'}
-          // state="approved"
+          state={inputState}
         />
         <ApproveBtn
           disabled={!url || !fieldState.query}

@@ -9,13 +9,6 @@ interface IParseByTextQueryResponse {
 }
 
 const templateService = {
-  getList(payload) {
-    return AuthedAxiosInstance.post(
-      `${apiPrefix}/parse-templates/list`,
-      payload
-    ).then(({ data }) => data.list);
-  },
-
   parseByTextQuery(payload: {
     url: string;
     selectorQuery: string;
