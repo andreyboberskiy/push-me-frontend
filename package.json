@@ -28,6 +28,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "startClear": "react-scripts start --reset-cache",
     "lint": "eslint --debug 'src/**/*.{js,jsx,ts,tsx}'"
   },
   "browserslist": {
