@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import map from 'lodash/map';
 
 import useFlagManager from 'hooks/useFlagManager';
@@ -14,7 +14,6 @@ import {
   Slider,
   ModalTitle,
   SliderContainer,
-  SliderText,
 } from './styles';
 
 // Interface
@@ -27,7 +26,8 @@ export interface IParseTimeValue {
   h: number;
   d: number;
 }
-interface IParseTimePickerProps extends ITextInputProps {
+interface IParseTimePickerProps extends Omit<ITextInputProps, 'onChange'> {
+  onChange: (value: IParseTimeValue) => void;
   value: IParseTimeValue;
 }
 
@@ -48,6 +48,21 @@ const parseTimeToText = (time: IParseTimeValue) => {
   }
 
   return text;
+};
+
+const getSliderMaxValue = (dateKey: string): number => {
+  switch (dateKey) {
+    case 's':
+      return 59;
+    case 'm':
+      return 59;
+    case 'h':
+      return 24;
+    case 'd':
+      return 30;
+    default:
+      return 59;
+  }
 };
 
 const getNameByDateKey = (dateKey: string): string => {
@@ -72,11 +87,26 @@ export const ParseTimePicker: React.FC<IParseTimePickerProps> = ({
 }) => {
   const modalController = useFlagManager(false);
 
+  const [localValues, setLocalValues] = useState(value);
+
   const [styleProps, otherProps] = useOtherStyleProperties(props);
 
   const textValue = useMemo(() => {
-    return parseTimeToText({ s: 15, m: 20, h: 0, d: 0 });
+    return parseTimeToText(value);
   }, [value]);
+
+  const handleChangeLocal = useCallback(
+    (sliderValue: number | number[], key: string) => {
+      setLocalValues({ ...value, [key]: sliderValue });
+    },
+    [value]
+  );
+  const handleChange = useCallback(
+    (sliderValue: number | number[], key: string) => {
+      onChange({ ...value, [key]: sliderValue });
+    },
+    [onChange, value]
+  );
 
   return (
     <>
@@ -90,8 +120,15 @@ export const ParseTimePicker: React.FC<IParseTimePickerProps> = ({
 
           {map(['s', 'm', 'h', 'd'], (dateKey) => (
             <SliderContainer>
-              <SliderText>Enter {getNameByDateKey(dateKey)}</SliderText>
-              <Slider value={value[dateKey]} />
+              <Slider
+                value={localValues[dateKey]}
+                min={0}
+                max={getSliderMaxValue(dateKey)}
+                valueLabelDisplay="on"
+                label={`Enter ${getNameByDateKey(dateKey)}`}
+                onChange={(_, val: number) => handleChangeLocal(val, dateKey)}
+                onChangeCommitted={(_, valCom) => handleChange(valCom, dateKey)}
+              />
             </SliderContainer>
           ))}
         </ModalContainer>

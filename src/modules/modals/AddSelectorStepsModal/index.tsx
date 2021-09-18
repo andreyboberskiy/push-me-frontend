@@ -146,19 +146,21 @@ export const AddSelectorStepsModal: React.FC<IAddSelectorStepsModalProps> = ({
   };
   return (
     <Modal size="md" isOpen={isOpen} {...props}>
-      <Title>
-        {step === 'approve'
-          ? 'Is this texts same to your?'
-          : 'Enter title for this info'}
-      </Title>
-      <StepContent>
-        {loading ? (
-          <ApproveTitle>Loading...</ApproveTitle>
-        ) : (
-          renderCurrentStep()
-        )}
-      </StepContent>
-      <SubmitButton onClick={handleSubmit}>Confirm</SubmitButton>
+      <>
+        <Title>
+          {step === 'approve'
+            ? 'Is this texts same to your?'
+            : 'Enter title for this info'}
+        </Title>
+        <StepContent>
+          {loading ? (
+            <ApproveTitle>Loading...</ApproveTitle>
+          ) : (
+            renderCurrentStep()
+          )}
+        </StepContent>
+        <SubmitButton onClick={handleSubmit}>Confirm</SubmitButton>
+      </>
     </Modal>
   );
 };

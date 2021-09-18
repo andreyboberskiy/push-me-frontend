@@ -1,26 +1,23 @@
 import React, { memo, ReactNode } from 'react';
 
-import { Backdrop, Content, CloseButton } from './styles';
+import { ModalUI, Content, CloseButton } from './styles';
 
-export interface IModalProps {
+import { ModalProps } from '@material-ui/core/Modal/Modal';
+
+export interface IModalProps extends Omit<ModalProps, 'open'> {
   size?: 'sm' | 'md' | 'lg';
-  onClose: () => void;
   isOpen: boolean;
-  children: ReactNode | ReactNode[] | Element | Element[];
 }
 
 const Modal = memo<IModalProps>(
   ({ isOpen, onClose, children, size = 'md', ...props }) => {
     return (
-      isOpen && (
-        <>
-          <Backdrop onClick={onClose} />
-          <Content size={size} {...props}>
-            <CloseButton onClick={onClose} />
-            {children}
-          </Content>
-        </>
-      )
+      <ModalUI open={isOpen} onClose={onClose}>
+        <Content size={size} {...props}>
+          <CloseButton onClick={onClose} />
+          {children}
+        </Content>
+      </ModalUI>
     );
   }
 );

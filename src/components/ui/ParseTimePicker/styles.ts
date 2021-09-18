@@ -12,7 +12,7 @@ export { Slider } from 'components/ui/Slider';
 export const Container = styled(Box)`
   position: relative;
 `;
-export const ModalContainer = styled(Box)``;
+export const ModalContainer = styled(Box).attrs({ pb: 5 })``;
 
 export const SliderContainer = styled(Box).attrs({ mt: 4 })``;
 
@@ -30,5 +30,4 @@ export const Modal = styled(ModalUI).attrs({ size: 'sm' })`
   min-height: 200px;
 `;
 
-export const ModalTitle = styled(Text)``;
-export const SliderText = styled(Text)``;
+export const ModalTitle = styled(Text).attrs({ pb: 8, fontSize: 4 })``;
