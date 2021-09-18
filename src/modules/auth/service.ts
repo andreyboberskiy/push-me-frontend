@@ -1,6 +1,6 @@
 import { BaseAxiosInstance } from 'libs/axios/instances';
 
-import localStorageKeys from 'configs/localStorageKeys';
+import localStorageKeys from 'constants/localStorageKeys';
 
 const apiPrefix = '/api';
 

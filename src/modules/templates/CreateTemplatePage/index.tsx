@@ -8,6 +8,7 @@ import { Container, Content, Title } from './styles';
 const initialValues = {
   url: '',
   title: '',
+  parseTime: { s: 0, m: 0, h: 0, d: 0 },
   parentSelector: null,
   query1: {
     title: '',

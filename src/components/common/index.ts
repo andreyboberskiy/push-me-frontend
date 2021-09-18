@@ -5,7 +5,7 @@ export const Row = styled(Box)`
   display: flex;
   align-items: center;
 `;
-export const RowBetween = styled(Row)`
+export const RowBetween = styled<any>(Row)`
   justify-content: space-between;
 `;
 export const RowAround = styled(Row)`

@@ -7,22 +7,12 @@ export { AddSelectorStepsModal } from 'modules/modals/AddSelectorStepsModal';
 export { RowBetween } from 'components/common';
 
 export const TextInput = styled<any>(TextInputUI)`
-  width: 80%;
-  .MuiInputBase-root:hover {
-    border-color: green;
-  }
-  .MuiOutlinedInput-notchedOutline {
-  }
-  .MuiOutlinedInput-root {
-    fieldset {
-      ${(props) => props.approved && 'border: 2px solid green;'}
-    }
-    &:hover fieldset {
-      border-color: darkGreen; 
-    }
-    
+  max-width: 80%;
 `;
 
-export const ApproveBtn = styled(Button).attrs({ size: 'xs' })`
+export const ApproveBtn = styled(Button).attrs({
+  size: 'sm',
+  variant: 'lightFilled',
+})`
   width: fit-content;
 `;

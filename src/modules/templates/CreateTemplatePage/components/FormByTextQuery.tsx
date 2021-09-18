@@ -2,7 +2,15 @@ import React, { useCallback, useMemo, useState } from 'react';
 import { Field, FormRenderProps } from 'react-final-form';
 import map from 'lodash/map';
 
-import { FormWrapper, QueryField, TextField, SubmitButton } from '../styles';
+import {
+  FormWrapper,
+  TextInputField,
+  ParseField,
+  SubmitButton,
+  AddFieldButton,
+  ParseTimePickerField,
+  RowBetween,
+} from '../styles';
 
 const FormByTextQuery = ({
   handleSubmit,
@@ -35,28 +43,43 @@ const FormByTextQuery = ({
         name="title"
         label="Title"
         placeholder="Enter your template title"
-        component={TextField}
+        component={TextInputField}
       />
-      <Field name="url" placeholder="URL" component={TextField} />
+      <Field
+        name="url"
+        placeholder="URL"
+        label="URL"
+        component={TextInputField}
+        mt={4}
+      />
+      <Field
+        name="parseTime"
+        label="Refresh time"
+        placeholder="Refresh time"
+        component={ParseTimePickerField}
+      />
       {map(new Array(fieldCount), (item, index) => (
         <Field
           name={`query${index + 1}`}
           placeholder="Enter text to parse same"
-          component={QueryField}
+          component={ParseField}
           url={values.url}
           approvedQueries={approvedQueries}
           changeParentSelector={changeParentSelector}
           by="text"
+          mt={4}
         />
       ))}
 
-      <SubmitButton onClick={increaseCount} mt={3}>
-        New Field
-      </SubmitButton>
+      <RowBetween mt={5}>
+        <AddFieldButton onClick={increaseCount} mt={3}>
+          Add Field
+        </AddFieldButton>
 
-      <SubmitButton onClick={handleSubmit} mt={3}>
-        Submit
-      </SubmitButton>
+        <SubmitButton onClick={handleSubmit} mt={3}>
+          Submit
+        </SubmitButton>
+      </RowBetween>
     </FormWrapper>
   );
 };

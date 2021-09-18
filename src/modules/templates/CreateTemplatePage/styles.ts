@@ -2,7 +2,10 @@ import styled from 'styled-components';
 import { space } from 'styled-system';
 
 import { Box, Text, ContentContainer, Button } from 'components/ui';
-import { TextInputField, ParseField } from 'components/fields';
+import { ParseTimePickerField as ParseTimePickerFieldUI } from 'components/fields';
+
+export { TextInputField, ParseField } from 'components/fields';
+export { RowBetween } from 'components/common';
 
 export { Template } from 'components/blocks';
 
@@ -25,10 +28,19 @@ export const FormWrapper = styled(Box)`
   margin: 50px auto 0;
 `;
 
-export const SubmitButton = styled<any>(Button).attrs({ size: 'sm' })`
-  justify-self: center;
+export const SubmitButton = styled<any>(Button).attrs({
+  variant: 'darkFilled',
+  size: 'sm',
+})`
+  width: 40%;
 `;
-export const QueryField = styled<any>(ParseField).attrs({ mt: 3 })`
-  ${space}
+export const AddFieldButton = styled<any>(Button).attrs({
+  variant: 'darkOutlined',
+  size: 'sm',
+})`
+  width: 40%;
 `;
-export const TextField = styled(TextInputField).attrs({})``;
+
+export const ParseTimePickerField = styled(ParseTimePickerFieldUI).attrs({
+  mt: 4,
+})``;

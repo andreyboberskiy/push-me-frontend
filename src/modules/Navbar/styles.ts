@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { Box, Button, Image } from 'components/ui';
+import { Box, Text, Image } from 'components/ui';
 
 import mainLogo from 'assets/images/common/mainLogo.png';
 
@@ -41,9 +41,15 @@ export const LeftMenu = styled(Box)`
   display: flex;
   justify-content: space-between;
 `;
-export const AuthButton = styled<any>(Button).attrs({
-  variant: 'default',
+export const AuthButton = styled<any>(Text).attrs({
   fontSize: 5,
-})``;
+  color: 'white',
+})`
+  cursor: pointer;
+
+  &:not(:first-child) {
+    margin-left: 16px;
+  }
+`;
 
 export const RightAuthMenu = styled(LeftMenu)``;

@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { FieldMetaState } from 'react-final-form';
+import { FieldRenderProps } from 'react-final-form';
 
 import useFlagManager from 'hooks/useFlagManager';
 
@@ -11,18 +11,15 @@ import {
 } from './styles';
 
 // interface
+
 interface IFieldState {
   approved: boolean;
   query: string;
   title: string;
   selector: string;
 }
-interface IParseFieldProps {
-  input: {
-    value: IFieldState;
-    onChange: (field: IFieldState) => void;
-  };
-  meta: FieldMetaState<IFieldState>;
+
+interface IParseFieldProps extends FieldRenderProps<IFieldState, HTMLElement> {
   placeholder?: string;
   className?: string;
   url: string;
@@ -38,6 +35,7 @@ export const ParseField: React.FC<IParseFieldProps> = ({
   url,
   approvedQueries,
   changeParentSelector,
+  ...props
 }) => {
   const [fieldState, setFieldState] = useState<IFieldState>(value);
 
@@ -80,14 +78,15 @@ export const ParseField: React.FC<IParseFieldProps> = ({
 
   return (
     <>
-      <RowBetween className={className}>
+      <RowBetween className={className} {...props}>
         <TextInput
           value={textValue}
           onChange={handleChangeQuery}
           error={hasError}
           helperText={meta.error}
           label={placeholder}
-          approved={fieldState.approved}
+          state={fieldState.approved ? 'approved' : 'default'}
+          // state="approved"
         />
         <ApproveBtn
           disabled={!url || !fieldState.query}

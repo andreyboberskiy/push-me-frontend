@@ -1,6 +1,6 @@
 import React, { memo, ReactNode } from 'react';
 
-import { Backdrop, Content } from './styles';
+import { Backdrop, Content, CloseButton } from './styles';
 
 export interface IModalProps {
   size?: 'sm' | 'md' | 'lg';
@@ -10,12 +10,13 @@ export interface IModalProps {
 }
 
 const Modal = memo<IModalProps>(
-  ({ isOpen, onClose, children, size, ...props }) => {
+  ({ isOpen, onClose, children, size = 'md', ...props }) => {
     return (
       isOpen && (
         <>
           <Backdrop onClick={onClose} />
           <Content size={size} {...props}>
+            <CloseButton onClick={onClose} />
             {children}
           </Content>
         </>

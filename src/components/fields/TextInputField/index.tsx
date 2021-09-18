@@ -3,14 +3,11 @@ import { FieldRenderProps } from 'react-final-form';
 
 import { TextInput } from 'components/ui';
 
-interface IProps extends FieldRenderProps<string, HTMLElement> {
-  placeholder?: string;
-}
+interface IProps extends FieldRenderProps<string, HTMLElement> {}
 
 export const TextInputField: React.FC<IProps> = ({
   input: { value, onChange },
   meta,
-  placeholder,
   ...props
 }) => {
   const hasError = useMemo(() => meta.visited && meta.error, [meta]);
@@ -20,7 +17,6 @@ export const TextInputField: React.FC<IProps> = ({
       onChange={onChange}
       error={hasError}
       helperText={meta.error}
-      label={placeholder}
       {...props}
     />
   );

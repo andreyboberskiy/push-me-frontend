@@ -34,24 +34,27 @@ export const SecondaryLogo = styled(Image).attrs({
 export const HeaderTitle = styled(Text).attrs({
   fontSize: 9,
   mt: 4,
+  fontFamily: 2,
+  color: 'white',
 })`
-  font-family: T600;
+  font-weight: 600;
 `;
 
 export const HeaderText = styled(Text).attrs({
   fontSize: 6,
   mt: 2,
   opacity: 0.8,
+  color: 'white',
 })``;
 
-export const HowItWorksButton = styled(Button).attrs({
-  variant: 'default',
-  fontFamily: 'Main',
+export const HowItWorksButton = styled(Text).attrs({
+  fontFamily: 1,
   fontSize: 6,
   mb: 4,
+  color: 'white',
 })`
+  cursor: pointer;
   margin-left: auto;
   margin-right: auto;
-  font-weight: 300;
   text-transform: uppercase;
 `;

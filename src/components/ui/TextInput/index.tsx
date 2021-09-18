@@ -1,20 +1,26 @@
 import React from 'react';
-import { TextFieldProps } from '@material-ui/core/TextField/TextField';
+import { OutlinedTextFieldProps } from '@material-ui/core/TextField/TextField';
+
+import useOtherStyleProperties from 'hooks/useOtherStyleProperties';
 
 import { Container, TextInputUI } from './styles';
 
 // Type
-type ITextInputProps = TextFieldProps & {
+export interface ITextInputProps
+  extends Omit<OutlinedTextFieldProps, 'variant'> {
   variant?: 'filled' | 'standard';
   className?: string;
-};
+}
 
 export const TextInput: React.FC<ITextInputProps> = ({
   className,
   variant,
   ...props
-}) => (
-  <Container className={className}>
-    <TextInputUI {...props} variant={variant || 'outlined'} />
-  </Container>
-);
+}) => {
+  const [stylesAttrs, otherProps] = useOtherStyleProperties(props);
+  return (
+    <Container className={className} {...stylesAttrs}>
+      <TextInputUI {...otherProps} variant={variant || 'outlined'} />
+    </Container>
+  );
+};

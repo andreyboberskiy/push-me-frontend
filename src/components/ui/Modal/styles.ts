@@ -26,6 +26,16 @@ export const Content = styled<any>(Box).attrs({
   height: 90vh;
   overflow: auto;
   z-index: 9999;
-
   ${modalSize}
+`;
+
+export const CloseButton = styled(Box).attrs({
+  bg: 'grey',
+})`
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
 `;

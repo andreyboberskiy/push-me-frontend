@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import appConfig from 'configs/appConfig';
+import appConfig from 'constants/appConfig';
 import authService from 'modules/auth/service';
 import { AUTH_LOGOUT } from 'modules/auth/store/constants';
 

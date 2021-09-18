@@ -2,7 +2,7 @@ import React, { memo, useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import routesByName from 'configs/routesByName';
+import routesByName from 'constants/routesByName';
 import { IReducerStore } from 'store/reducers';
 
 import {
@@ -48,7 +48,7 @@ const UnAuthedNavbar = () => {
 
   const renderAuthedPart = () => (
     <RightAuthMenu>
-      <AuthButton onClick={handlePressTemplates}>Templates</AuthButton>
+      <AuthButton onClick={handlePressTemplates}>My Templates</AuthButton>
       <AuthButton onClick={handlePressCreateTemplate}>
         Create Template
       </AuthButton>
