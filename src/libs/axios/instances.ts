@@ -1,7 +1,8 @@
 import axios from 'axios';
 
-import appConfig from 'configs/appConfig';
+import appConfig from 'constants/appConfig';
 import authService from 'modules/auth/service';
+import { AUTH_LOGOUT } from 'modules/auth/store/constants';
 
 export const BaseAxiosInstance = axios.create({
   baseURL: appConfig.apiUrl,
@@ -17,7 +18,6 @@ export const setUpAuthInterceptorsAction = () => (dispatch, getState) => {
       // const url = prepareUrl(config.url, currentUser);
       const headers: { Authorization: string } = { Authorization: null };
       const authToken = authService.getAccessToken();
-
       if (authToken) {
         headers.Authorization = authToken;
       }
@@ -35,30 +35,30 @@ export const setUpAuthInterceptorsAction = () => (dispatch, getState) => {
     (error) => Promise.reject(error)
   );
 
-  // AuthedAxiosInstance.interceptors.response.use(
-  //   (response) => response,
-  //   async (error) => {
-  //     if (error.response && error.response.status === 401) {
-  //       try {
-  //         // await authService.refreshToken();
-  //         return AuthedAxiosInstance.request({
-  //           ...error.config,
-  //           headers: {
-  //             ...(error.config.headers || {}),
-  //             Authorization: authService.getAccessToken(),
-  //           },
-  //         });
-  //       } catch (e) {
-  //         /*
-  //          * In this case upper scope will receive message from first request eg. `Unauthenticated.`
-  //          */
-  //       }
-  //
-  //       dispatch({ type: AUTH_LOGOUT });
-  //       authService.clearAuthTokens();
-  //     }
-  //
-  //     throw error;
-  //   }
-  // );
+  AuthedAxiosInstance.interceptors.response.use(
+    (response) => response,
+    async (error) => {
+      if (error.response?.status === 401 && !error.response?.logout) {
+        try {
+          await authService.refreshToken();
+          return AuthedAxiosInstance.request({
+            ...error.config,
+            headers: {
+              ...(error.config.headers || {}),
+              Authorization: authService.getAccessToken(),
+            },
+          });
+        } catch (e) {
+          /*
+           * In this case upper scope will receive message from first request eg. `Unauthenticated.`
+           */
+        }
+
+        dispatch({ type: AUTH_LOGOUT });
+        authService.clearAuthTokens();
+      }
+
+      throw error;
+    }
+  );
 };

@@ -1,10 +1,10 @@
 import styled from 'styled-components';
-import { color, fontSize, space } from 'styled-system';
+import { color, fontFamily, fontSize, space } from 'styled-system';
 
-export const Text = styled.p.attrs({ color: 'white' })`
+export const Text = styled<any>('p').attrs({ color: 'black' })`
   text-align: center;
-  font-family: Main, sans-serif;
   ${space}
   ${color}
   ${fontSize}
+  ${fontFamily}
 `;

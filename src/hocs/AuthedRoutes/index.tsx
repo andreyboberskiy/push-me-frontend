@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import routesByName from 'configs/routesByName';
+import routesByName from 'constants/routesByName';
 import { useSelector } from 'react-redux';
 import { IReducerStore } from 'store/reducers';
 

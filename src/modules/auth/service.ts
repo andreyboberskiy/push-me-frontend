@@ -1,6 +1,6 @@
 import { BaseAxiosInstance } from 'libs/axios/instances';
 
-import localStorageKeys from 'configs/localStorageKeys';
+import localStorageKeys from 'constants/localStorageKeys';
 
 const apiPrefix = '/api';
 
@@ -9,6 +9,10 @@ type TLogInResponse = {
   accessToken: string;
   refreshToken: string;
   user: any;
+};
+type TRefreshTokenResponse = {
+  accessToken: string;
+  refreshToken: string;
 };
 
 const authService = {
@@ -21,15 +25,39 @@ const authService = {
     return BaseAxiosInstance.post(`${apiPrefix}/auth/sign-up`, payload);
   },
   getAccessToken() {
-    return localStorage.getItem(localStorageKeys.accessToken);
+    const token = localStorage.getItem(localStorageKeys.accessToken);
+    return JSON.parse(token);
   },
 
   setAccessToken(token) {
-    localStorage.setItem(localStorageKeys.accessToken, JSON.stringify(token));
+    localStorage.setItem(
+      localStorageKeys.accessToken,
+      JSON.stringify(`Bearer ${token}`)
+    );
+  },
+
+  clearAuthTokens() {
+    localStorage.removeItem(localStorageKeys.accessToken);
+    localStorage.removeItem(localStorageKeys.refreshToken);
+  },
+
+  async refreshToken() {
+    const refreshTokenKey = this.getRefreshToken();
+
+    const res = await BaseAxiosInstance.post<TRefreshTokenResponse>(
+      `${apiPrefix}/auth/refresh-token`,
+      {
+        refreshToken: refreshTokenKey,
+      }
+    );
+
+    this.setRefreshToken(res.data.refreshToken);
+    this.setAccessToken(res.data.accessToken);
   },
 
   getRefreshToken() {
-    return localStorage.getItem(localStorageKeys.refreshToken);
+    const token = localStorage.getItem(localStorageKeys.refreshToken);
+    return JSON.parse(token);
   },
 
   setRefreshToken(token) {

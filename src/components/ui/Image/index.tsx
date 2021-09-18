@@ -11,10 +11,8 @@ interface IImageProps {
   onClick?: () => void;
 }
 
-export const Image = memo<IImageProps>(
-  ({ src, imgStyles, ...props }): JSX.Element => (
-    <Wrapper {...props}>
-      <Img src={src} style={imgStyles} />
-    </Wrapper>
-  )
-);
+export const Image = memo<IImageProps>(({ src, imgStyles, ...props }) => (
+  <Wrapper {...props}>
+    <Img src={src} style={imgStyles} />
+  </Wrapper>
+));

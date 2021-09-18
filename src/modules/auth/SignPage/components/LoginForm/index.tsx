@@ -7,7 +7,7 @@ import authService from 'modules/auth/service';
 
 import { setUserAction } from 'modules/auth/store/actions';
 
-import routesByName from 'configs/routesByName';
+import routesByName from 'constants/routesByName';
 
 import { FormWrapper, Container, SubmitButton, TextInputField } from './styles';
 
@@ -36,7 +36,7 @@ export const LoginForm = memo(() => {
           values
         );
         dispatch(setUserAction(user));
-        authService.setAccessToken(`Bearer ${accessToken}`);
+        authService.setAccessToken(accessToken);
         authService.setRefreshToken(refreshToken);
 
         history.push(routesByName.templatesPage);
