@@ -20,7 +20,10 @@ import {
   ListWrapper,
   TitleInput,
   TitleContainer,
+  Container,
+  ExcludeText,
 } from 'modules/createTemplate/CreateTemplatePage/components/AddSelectorStepsModal/styles';
+import { filter, find } from 'lodash';
 
 // Interface
 
@@ -29,7 +32,8 @@ interface IAddSelectorStepsModalProps {
   onSubmit: (
     title: string,
     selector: string | null,
-    parent: string | null
+    parent: string | null,
+    excludedSelectors: string[]
   ) => void;
   isOpen: boolean;
   onClose: () => void;
@@ -50,6 +54,8 @@ export const AddSelectorStepsModal: React.FC<IAddSelectorStepsModalProps> = ({
   const [title, setTitle] = useState('');
   const loading = useFlagManager(true);
 
+  const [excludedSelectorsId, setExcludedSelectorsId] = useState<number[]>([]);
+
   const [response, setResponse] = useState<IParseByTextQueryResponse | null>(
     null
   );
@@ -66,8 +72,18 @@ export const AddSelectorStepsModal: React.FC<IAddSelectorStepsModalProps> = ({
       setStep('enterTitle');
       return;
     }
-    onSubmit(title, response.selector, response.parent);
-  }, [step, onSubmit, response, title]);
+
+    const excludedSelectors = [
+      ...new Set(
+        map(
+          excludedSelectorsId,
+          (selectorId) =>
+            find(response.sameInfo, ({ id }) => id === selectorId)?.selector
+        )
+      ),
+    ];
+    onSubmit(title, response.selector, response.parent, excludedSelectors);
+  }, [excludedSelectorsId, step, onSubmit, response, title]);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -89,8 +105,16 @@ export const AddSelectorStepsModal: React.FC<IAddSelectorStepsModalProps> = ({
     })();
   }, [isOpen]);
 
+  const handleToggleExclude = useCallback((id: number, excluded: boolean) => {
+    if (excluded) {
+      setExcludedSelectorsId((prev) => filter(prev, (item) => item !== id));
+    } else {
+      setExcludedSelectorsId((prev) => [...prev, id]);
+    }
+  }, []);
+
   const renderApproveStep = () => {
-    return response?.sameTexts?.length ? (
+    return response?.sameInfo?.length ? (
       <>
         <RowCenter>
           <SmallTitle>You entered:</SmallTitle>
@@ -104,9 +128,18 @@ export const AddSelectorStepsModal: React.FC<IAddSelectorStepsModalProps> = ({
             We have found:
           </SmallTitle>
           <ListWrapper>
-            {map(response.sameTexts, (text) => (
-              <SameText same={text === textForParse}>{text}</SameText>
-            ))}
+            {map(response.sameInfo, ({ text, id }) => {
+              const excluded = excludedSelectorsId.includes(id);
+              return (
+                <ExcludeText
+                  key={id}
+                  same={text === textForParse}
+                  text={text}
+                  excluded={excluded}
+                  toggleValue={() => handleToggleExclude(id, excluded)}
+                />
+              );
+            })}
           </ListWrapper>
         </Column>
       </>
@@ -148,7 +181,7 @@ export const AddSelectorStepsModal: React.FC<IAddSelectorStepsModalProps> = ({
       onClose={onClose}
       {...props}
     >
-      <>
+      <Container>
         <Title>
           {step === 'approve'
             ? 'Is this texts same to your?'
@@ -161,12 +194,12 @@ export const AddSelectorStepsModal: React.FC<IAddSelectorStepsModalProps> = ({
             renderCurrentStep()
           )}
         </StepContent>
-        {response?.sameTexts ? (
+        {response?.sameInfo.length ? (
           <SubmitButton onClick={handleSubmit}>Confirm</SubmitButton>
         ) : (
           <SubmitButton onClick={onClose}>Close</SubmitButton>
         )}
-      </>
+      </Container>
     </Modal>
   );
 };

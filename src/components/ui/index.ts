@@ -7,3 +7,4 @@ export { TextInput } from './TextInput';
 export { Modal } from './Modal';
 export { ParseTimePicker } from './ParseTimePicker';
 export { Slider } from './Slider';
+export { ExcludeText } from './ExcludeText';

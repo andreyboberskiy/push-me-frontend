@@ -4,7 +4,7 @@ import { IParseTimeValue } from 'components/ui/ParseTimePicker';
 const apiPrefix = '/api';
 
 export interface IParseByTextQueryResponse {
-  sameTexts: string[];
+  sameInfo: { text: string; selector: string; id: number }[];
   selector: string;
   parent: string | null;
 }
@@ -14,7 +14,11 @@ export interface ICreatePayload {
   parseTime: IParseTimeValue;
   selectorsData: {
     parent: string;
-    selectors: { title: string; value: string }[];
+    selectors: {
+      title: string;
+      selector: string;
+      excludedSelectors: string[];
+    }[];
   };
 }
 

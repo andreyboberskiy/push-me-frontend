@@ -27,7 +27,8 @@ const initialValues = {
 function mapParseFieldsToSelectors(parseFields: IParseFieldState[]) {
   return map(parseFields, (item) => ({
     title: item.title,
-    value: item.selector,
+    selector: item.selector,
+    excludedSelectors: item.excludedSelectors,
   }));
 }
 

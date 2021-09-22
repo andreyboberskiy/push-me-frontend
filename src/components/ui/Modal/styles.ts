@@ -5,12 +5,11 @@ import Close from '@material-ui/icons/CloseRounded';
 import { modalSize } from 'styles/variants';
 
 import { Box } from 'components/ui/Box';
-import { color } from 'styled-system';
 import theme from 'styles/theme';
 
 export const ModalUI = styled(Modal)``;
 
-export const Content = styled<any>(Box).attrs({
+export const ContentContainer = styled<any>(Box).attrs({
   bg: 'white',
 })`
   position: fixed;
@@ -19,12 +18,15 @@ export const Content = styled<any>(Box).attrs({
   width: 100%;
   transform: translate(-50%, -50%);
 
-  overflow: auto;
   z-index: 9999;
 
   outline: none;
 
   ${modalSize}
+`;
+export const Content = styled<any>(Box)`
+  overflow: auto;
+  height: 100%;
 `;
 
 export const CloseButton = styled<any>(Box).attrs({

@@ -17,6 +17,7 @@ export interface IParseFieldState {
   query: string;
   title: string;
   selector: string;
+  excludedSelectors: string[];
 }
 
 interface IParseFieldProps
@@ -72,12 +73,18 @@ export const ParseField: React.FC<IParseFieldProps> = ({
   );
 
   const onSubmitModal = useCallback(
-    (title: string, selector: string, parent: string | null) => {
+    (
+      title: string,
+      selector: string,
+      parent: string | null,
+      excludedSelectors: string[]
+    ) => {
       setFieldState((prev) => ({
         ...prev,
         title,
         approved: true,
         selector,
+        excludedSelectors,
       }));
       if (parent) {
         changeParentSelector(parent);

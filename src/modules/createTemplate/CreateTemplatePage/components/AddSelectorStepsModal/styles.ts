@@ -1,12 +1,21 @@
 import styled from 'styled-components';
 
 import { Box, Button, Text, TextInput } from 'components/ui';
+import { Column as ColumnUI } from 'components/common';
 
-export { RowCenter, RowAround, Column, ColumnHalf } from 'components/common';
-export { Modal } from 'components/ui';
+export { RowCenter, RowAround, ColumnHalf } from 'components/common';
+export { Modal, ExcludeText } from 'components/ui';
+
+export const Column = styled(ColumnUI)`
+  max-height: 100%;
+`;
+
+export const Container = styled(Box)`
+  max-height: 100%;
+`;
 
 export const StepContent = styled(Box).attrs({ mt: 3 })`
-  min-height: 80%;
+  max-height: 100%;
 `;
 export const SubmitButton = styled(Button).attrs({ mt: 4, size: 'sm', px: 13 })`
   margin: 32px auto 0;
@@ -16,15 +25,6 @@ export const ApproveTitle = styled(Text).attrs({
   fontFamily: 0,
 })``;
 
-export const SameText = styled(Text).attrs<any>((props) => ({
-  color: props.same ? 'green' : 'black',
-  fontFamily: 0,
-  mt: props.mt ?? 3,
-  fontSize: 3,
-}))`
-  ${(props) => props.same && 'font-weight: 700;'}
-  text-align: left;
-`;
 export const Title = styled(Text).attrs({
   fontSize: 6,
   fontFamily: 1,
@@ -36,9 +36,18 @@ export const SmallTitle = styled(Text).attrs({
   fontSize: 4,
   fontFamily: 0,
 })``;
-
+export const SameText = styled(Text).attrs<any>((props) => ({
+  color: props.same ? 'green' : 'black',
+  fontFamily: 0,
+  mt: props.mt ?? 3,
+  fontSize: 3,
+}))`
+  ${(props) => props.same && 'font-weight: 700;'}
+  text-align: left;
+`;
 export const ListWrapper = styled(Box)`
-  max-height: 38vh;
+  max-height: 32vh;
+  height: 100%;
   overflow-y: auto;
   overflow-x: hidden;
 `;
