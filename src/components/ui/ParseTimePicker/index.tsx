@@ -3,7 +3,7 @@ import map from 'lodash/map';
 
 import useFlagManager from 'hooks/useFlagManager';
 
-import useOtherStyleProperties from 'hooks/useOtherStyleProperties';
+import useStyleProperties from 'hooks/useStyleProperties';
 
 import {
   Container,
@@ -89,7 +89,7 @@ export const ParseTimePicker: React.FC<IParseTimePickerProps> = ({
 
   const [localValues, setLocalValues] = useState(value);
 
-  const [styleProps, otherProps] = useOtherStyleProperties(props);
+  const [styleProps, otherProps] = useStyleProperties(props);
 
   const textValue = useMemo(() => {
     return parseTimeToText(value);
@@ -111,7 +111,11 @@ export const ParseTimePicker: React.FC<IParseTimePickerProps> = ({
   return (
     <>
       <Container {...styleProps}>
-        <TextInput {...otherProps} value={textValue} onClick={() => {}} />
+        <TextInput
+          {...otherProps}
+          value={textValue}
+          onClick={modalController.turnIn}
+        />
         <EditIcon onClick={modalController.turnIn} />
       </Container>
       <Modal isOpen={modalController.state} onClose={modalController.turnOff}>

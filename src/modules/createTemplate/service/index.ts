@@ -1,14 +1,31 @@
 import { AuthedAxiosInstance } from 'libs/axios/instances';
+import { IParseTimeValue } from 'components/ui/ParseTimePicker';
 
 const apiPrefix = '/api';
 
-interface IParseByTextQueryResponse {
+export interface IParseByTextQueryResponse {
   sameTexts: string[];
   selector: string;
   parent: string | null;
 }
+export interface ICreatePayload {
+  title: string;
+  url: string;
+  parseTime: IParseTimeValue;
+  selectorsData: {
+    parent: string;
+    selectors: { title: string; value: string }[];
+  };
+}
 
-const templateService = {
+const createTemplateService = {
+  create(payload: ICreatePayload) {
+    return AuthedAxiosInstance.post(
+      `${apiPrefix}/parse-templates/create`,
+      payload
+    );
+  },
+
   parseByTextQuery(payload: {
     url: string;
     selectorQuery: string;
@@ -17,8 +34,8 @@ const templateService = {
     return AuthedAxiosInstance.post(
       `${apiPrefix}/parse/by-text-query`,
       payload
-    ).then(({ data }) => data);
+    );
   },
 };
 
-export default templateService;
+export default createTemplateService;

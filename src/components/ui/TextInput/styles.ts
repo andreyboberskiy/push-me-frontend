@@ -46,7 +46,7 @@ function getStringStyle({ color }) {
 
 function getStyleByState(state) {
   switch (state) {
-    case 'approved': {
+    case 'valid': {
       return getStringStyle({ color: theme.colors.green });
     }
     case 'invalid': {

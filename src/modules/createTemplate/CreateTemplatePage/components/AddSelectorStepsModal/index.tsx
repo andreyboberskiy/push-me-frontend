@@ -1,12 +1,14 @@
 import React, { memo, useCallback, useEffect, useState } from 'react';
 import map from 'lodash/map';
 
-import templateService from 'modules/createTemplate/service';
+import templateService, {
+  IParseByTextQueryResponse,
+} from 'modules/createTemplate/service';
+
 import useFlagManager from 'hooks/useFlagManager';
 
 import {
   SubmitButton,
-  RowBetween,
   Column,
   ApproveTitle,
   Title,
@@ -14,14 +16,14 @@ import {
   SameText,
   Modal,
   SmallTitle,
-  RowAround,
-  ColumnHalf,
+  RowCenter,
   ListWrapper,
   TitleInput,
   TitleContainer,
 } from 'modules/createTemplate/CreateTemplatePage/components/AddSelectorStepsModal/styles';
 
 // Interface
+
 interface IAddSelectorStepsModalProps {
   textForParse: string;
   onSubmit: (
@@ -41,17 +43,16 @@ export const AddSelectorStepsModal: React.FC<IAddSelectorStepsModalProps> = ({
   url,
   isOpen,
   approvedQueries,
+  onClose,
   ...props
 }) => {
   const [step, setStep] = useState('approve');
   const [title, setTitle] = useState('');
-  const {
-    state: loading,
-    turnOff: handleSetLoaded,
-    turnIn: handleStartLoading,
-  } = useFlagManager(true);
+  const loading = useFlagManager(true);
 
-  const [parseResponse, setParseResponse] = useState(null);
+  const [response, setResponse] = useState<IParseByTextQueryResponse | null>(
+    null
+  );
 
   const handleTitleChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -65,58 +66,54 @@ export const AddSelectorStepsModal: React.FC<IAddSelectorStepsModalProps> = ({
       setStep('enterTitle');
       return;
     }
-    onSubmit(title, parseResponse.selector, parseResponse.parent);
-  }, [step, onSubmit, parseResponse, title]);
+    onSubmit(title, response.selector, response.parent);
+  }, [step, onSubmit, response, title]);
 
   useEffect(() => {
     if (!isOpen) return;
-    try {
-      (async () => {
-        handleStartLoading();
-        console.log(1, approvedQueries);
-        const response = await templateService.parseByTextQuery({
+    loading.turnIn();
+    (async () => {
+      try {
+        const result = await templateService.parseByTextQuery({
           url,
           selectorQuery: textForParse,
           approvedQueries,
         });
 
-        setParseResponse(response);
-        handleSetLoaded();
-      })();
-    } catch (e) {
-      console.log(e);
-    }
-  }, [
-    handleStartLoading,
-    approvedQueries,
-    url,
-    textForParse,
-    handleSetLoaded,
-    isOpen,
-  ]);
+        setResponse(result);
+        loading.turnOff();
+      } catch (e) {
+        console.log(e);
+        loading.turnOff();
+      }
+    })();
+  }, [isOpen]);
 
   const renderApproveStep = () => {
-    return (
+    return response?.sameTexts?.length ? (
       <>
+        <RowCenter>
+          <SmallTitle>You entered:</SmallTitle>
+          <SameText same mt={0} ml={4}>
+            {textForParse}
+          </SameText>
+        </RowCenter>
+
         <Column>
-          <RowAround>
-            <SmallTitle>You enter:</SmallTitle>
-            <SmallTitle>We find:</SmallTitle>
-          </RowAround>
+          <SmallTitle mt={7} mb={5}>
+            We have found:
+          </SmallTitle>
+          <ListWrapper>
+            {map(response.sameTexts, (text) => (
+              <SameText same={text === textForParse}>{text}</SameText>
+            ))}
+          </ListWrapper>
         </Column>
-        <RowBetween>
-          <ColumnHalf pr={4}>
-            <SameText same>{textForParse}</SameText>
-          </ColumnHalf>
-          <ColumnHalf>
-            <ListWrapper>
-              {map(parseResponse.sameTexts, (text) => (
-                <SameText same={text === textForParse}>{text}</SameText>
-              ))}
-            </ListWrapper>
-          </ColumnHalf>
-        </RowBetween>
       </>
+    ) : (
+      <SmallTitle>
+        We have not found this text on page, please, try another
+      </SmallTitle>
     );
   };
   const renderTitleStep = () => {
@@ -145,7 +142,12 @@ export const AddSelectorStepsModal: React.FC<IAddSelectorStepsModalProps> = ({
     }
   };
   return (
-    <Modal size="md" isOpen={isOpen} {...props}>
+    <Modal
+      size={step === 'enterTitle' ? 'sm' : 'md'}
+      isOpen={isOpen}
+      onClose={onClose}
+      {...props}
+    >
       <>
         <Title>
           {step === 'approve'
@@ -153,13 +155,17 @@ export const AddSelectorStepsModal: React.FC<IAddSelectorStepsModalProps> = ({
             : 'Enter title for this info'}
         </Title>
         <StepContent>
-          {loading ? (
+          {loading.state ? (
             <ApproveTitle>Loading...</ApproveTitle>
           ) : (
             renderCurrentStep()
           )}
         </StepContent>
-        <SubmitButton onClick={handleSubmit}>Confirm</SubmitButton>
+        {response?.sameTexts ? (
+          <SubmitButton onClick={handleSubmit}>Confirm</SubmitButton>
+        ) : (
+          <SubmitButton onClick={onClose}>Close</SubmitButton>
+        )}
       </>
     </Modal>
   );

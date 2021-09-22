@@ -12,19 +12,35 @@ import {
 
 // interface
 
-interface IFieldState {
+export interface IParseFieldState {
   approved: boolean;
   query: string;
   title: string;
   selector: string;
 }
 
-interface IParseFieldProps extends FieldRenderProps<IFieldState, HTMLElement> {
+interface IParseFieldProps
+  extends FieldRenderProps<IParseFieldState, HTMLElement> {
   placeholder?: string;
   className?: string;
   url: string;
   approvedQueries: string[];
   changeParentSelector: (selector: string) => void;
+}
+
+function stateToVariant(
+  state: string
+): 'green' | 'errorFilled' | 'lightOutlined' {
+  switch (state) {
+    case 'valid': {
+      return 'green';
+    }
+    case 'invalid': {
+      return 'errorFilled';
+    }
+    default:
+      return 'lightOutlined';
+  }
 }
 
 export const ParseField: React.FC<IParseFieldProps> = ({
@@ -37,7 +53,7 @@ export const ParseField: React.FC<IParseFieldProps> = ({
   changeParentSelector,
   ...props
 }) => {
-  const [fieldState, setFieldState] = useState<IFieldState>(value);
+  const [fieldState, setFieldState] = useState<IParseFieldState>(value);
 
   const {
     state: modalOpen,
@@ -78,7 +94,7 @@ export const ParseField: React.FC<IParseFieldProps> = ({
 
   const inputState = useMemo(() => {
     if (fieldState.approved) {
-      return 'approved';
+      return 'valid';
     }
     if (fieldState.query?.length) {
       return 'invalid';
@@ -98,10 +114,11 @@ export const ParseField: React.FC<IParseFieldProps> = ({
           state={inputState}
         />
         <ApproveBtn
+          variant={stateToVariant(inputState)}
           disabled={!url || !fieldState.query}
           onClick={handleOpenModal}
         >
-          Approve
+          {fieldState.approved ? 'Approved' : 'Approve'}
         </ApproveBtn>
       </RowBetween>
       <AddSelectorStepsModal

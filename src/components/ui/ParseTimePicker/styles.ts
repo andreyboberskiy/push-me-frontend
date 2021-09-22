@@ -5,10 +5,11 @@ import { color } from 'styled-system';
 import { Box } from 'components/ui/Box';
 import { Modal as ModalUI } from 'components/ui/Modal';
 import { Text } from 'components/ui/Text';
+import { TextInput as TextInputUI } from 'components/ui/TextInput';
 
-export { TextInput } from 'components/ui/TextInput';
 export { Slider } from 'components/ui/Slider';
 
+export const TextInput = styled(TextInputUI)``;
 export const Container = styled(Box)`
   position: relative;
 `;

@@ -62,24 +62,24 @@ const UIComponentsPage = () => {
             </Button>
           </Row>
           <Row>
-            <Button size="lg" variant="redFilled">
+            <Button size="lg" variant="errorFilled">
               Red Filled LG
             </Button>
-            <Button size="sm" variant="redFilled">
+            <Button size="sm" variant="errorFilled">
               Red Filled SM
             </Button>
-            <Button size="xs" variant="redFilled">
+            <Button size="xs" variant="errorFilled">
               Red Filled XS
             </Button>
           </Row>
           <Row>
-            <Button size="lg" variant="redOutlined">
+            <Button size="lg" variant="errorOutlined">
               Red Outlined LG
             </Button>
-            <Button size="sm" variant="redOutlined">
+            <Button size="sm" variant="errorOutlined">
               Red Outlined SM
             </Button>
-            <Button size="xs" variant="redOutlined">
+            <Button size="xs" variant="errorOutlined">
               Red Outlined XS
             </Button>
           </Row>

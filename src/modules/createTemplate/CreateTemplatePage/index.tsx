@@ -8,9 +8,12 @@ import {
   Content,
   Title,
 } from 'modules/createTemplate/CreateTemplatePage/styles';
+import { IParseFieldState } from 'components/fields/ParseField';
+import map from 'lodash/map';
+import createTemplateService from 'modules/createTemplate/service';
 
 const initialValues = {
-  url: '',
+  url: 'https://www.olx.ua/dnepr/q-iphone-11-pro/',
   title: '',
   parseTime: { s: 0, m: 0, h: 0, d: 0 },
   parentSelector: null,
@@ -18,14 +21,38 @@ const initialValues = {
     title: '',
     query: '',
     approved: false,
-    selectorInfo: { parent: null, classList: null },
   },
 };
 
+function mapParseFieldsToSelectors(parseFields: IParseFieldState[]) {
+  return map(parseFields, (item) => ({
+    title: item.title,
+    value: item.selector,
+  }));
+}
+
 const CreateTemplatePage = () => {
-  const handleSubmit = useCallback(async (values) => {
-    console.log({ values });
-  }, []);
+  const handleSubmit = useCallback(
+    async ({ title, url, parseTime, parentSelector, ...rest }) => {
+      try {
+        const selectors = mapParseFieldsToSelectors(rest);
+        const payload = {
+          title,
+          url,
+          parseTime,
+          selectorsData: {
+            parent: parentSelector,
+            selectors,
+          },
+        };
+
+        await createTemplateService.create(payload);
+      } catch (e) {
+        console.log(e);
+      }
+    },
+    []
+  );
 
   return (
     <Container>

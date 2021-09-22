@@ -2,6 +2,6 @@ export default {
   homePage: '/home',
   sign: '/sign',
   profilePage: '/profile',
-  myTemplatesPage: '/my-myTemplates',
+  myTemplatesPage: '/my-templates',
   createTemplate: '/create-template',
 };

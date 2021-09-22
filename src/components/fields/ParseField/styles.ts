@@ -12,7 +12,6 @@ export const TextInput = styled<any>(TextInputUI)`
 
 export const ApproveBtn = styled(Button).attrs({
   size: 'sm',
-  variant: 'lightFilled',
 })`
   width: fit-content;
 `;

@@ -31,7 +31,11 @@ const FormRender: React.FC<FormRenderProps> = ({ handleSubmit }) => {
 
 export const SignUpForm = memo(() => {
   const handleSubmit = useCallback(async (values) => {
-    await authService.signUp(values);
+    try {
+      await authService.signUp(values);
+    } catch (e) {
+      console.log(e);
+    }
   }, []);
 
   return (

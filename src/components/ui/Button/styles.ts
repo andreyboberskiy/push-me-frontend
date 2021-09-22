@@ -1,30 +1,9 @@
 import styled from 'styled-components';
+import { color, fontSize, space, variant } from 'styled-system';
 
-import {
-  color,
-  ColorProps,
-  fontSize,
-  FontSizeProps,
-  space,
-  SpaceProps,
-  variant,
-} from 'styled-system';
-
-// Interface
-interface IButtonProps extends SpaceProps, FontSizeProps, ColorProps {
-  variant?:
-    | 'lightFilled'
-    | 'lightOutlined'
-    | 'darkFilled'
-    | 'darkOutlined'
-    | 'redFilled'
-    | 'redOutlined';
-  size?: 'xs' | 'sm' | 'lg';
-}
-
-export const Button = styled('button').attrs<IButtonProps>({
+export const ButtonUI = styled('button').attrs<any>({
   fontFamily: 'Ubuntu',
-})<IButtonProps>`
+})<any>`
   ${variant({
     variants: {
       lightFilled: {
@@ -45,14 +24,24 @@ export const Button = styled('button').attrs<IButtonProps>({
         borderColor: 'lightBlue',
         color: 'lightBlue',
       },
-      redFilled: {
+      errorFilled: {
         bg: 'red',
         color: 'white',
       },
-      redOutlined: {
+      errorOutlined: {
         bg: 'transparent',
         borderColor: 'red',
         color: 'red',
+      },
+      green: {
+        bg: 'green',
+        borderColor: 'darkGreen',
+        color: 'white',
+      },
+      disabled: {
+        bg: 'white',
+        borderColor: 'darkGrey',
+        color: 'darkGrey',
       },
     },
   })}

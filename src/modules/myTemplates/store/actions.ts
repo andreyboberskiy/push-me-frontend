@@ -8,8 +8,11 @@ export const setListAction = (list) => ({
 
 export const getListAction = () => async (dispatch) => {
   try {
-    const list = await templateService.getList({ sort: 'newest', offset: 0 });
-
+    const { list } = await templateService.getList({
+      sort: 'newest',
+      offset: 0,
+    });
+    console.log(list);
     dispatch(setListAction(list));
   } catch (e) {
     console.log(e);

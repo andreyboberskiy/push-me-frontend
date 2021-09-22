@@ -2,34 +2,43 @@ import styled from 'styled-components';
 
 import { Box, Button, Text, TextInput } from 'components/ui';
 
-export { RowBetween, RowAround, Column, ColumnHalf } from 'components/common';
+export { RowCenter, RowAround, Column, ColumnHalf } from 'components/common';
 export { Modal } from 'components/ui';
 
 export const StepContent = styled(Box).attrs({ mt: 3 })`
   min-height: 80%;
 `;
-export const SubmitButton = styled(Button).attrs({ mt: 4, size: 'sm' })``;
-export const ApproveTitle = styled(Text).attrs({ color: 'black' })``;
-export const SameText = styled(ApproveTitle).attrs<any>((props) => ({
+export const SubmitButton = styled(Button).attrs({ mt: 4, size: 'sm', px: 13 })`
+  margin: 32px auto 0;
+`;
+export const ApproveTitle = styled(Text).attrs({
+  color: 'black',
+  fontFamily: 0,
+})``;
+
+export const SameText = styled(Text).attrs<any>((props) => ({
   color: props.same ? 'green' : 'black',
+  fontFamily: 0,
+  mt: props.mt ?? 3,
+  fontSize: 3,
 }))`
-  ${(props) => props.same && 'font-family: T600;'}
+  ${(props) => props.same && 'font-weight: 700;'}
   text-align: left;
 `;
-export const Title = styled(ApproveTitle).attrs({
-  fontSize: 5,
+export const Title = styled(Text).attrs({
+  fontSize: 6,
+  fontFamily: 1,
+  mb: 8,
 })`
-  font-family: Main;
+  font-weight: 700;
 `;
-export const SmallTitle = styled(ApproveTitle).attrs({
+export const SmallTitle = styled(Text).attrs({
   fontSize: 4,
-  mb: 3,
-})`
-  font-family: Main;
-`;
+  fontFamily: 0,
+})``;
 
 export const ListWrapper = styled(Box)`
-  max-height: 60vh;
+  max-height: 38vh;
   overflow-y: auto;
   overflow-x: hidden;
 `;

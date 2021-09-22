@@ -24,6 +24,6 @@ export const Tabs = styled(Box)`
 `;
 
 export const TabBtn = styled<any>(Button).attrs({
-  variant: 'primary',
+  variant: 'lightFilled',
   size: 'sm',
 })``;

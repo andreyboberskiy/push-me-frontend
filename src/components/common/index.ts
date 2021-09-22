@@ -5,6 +5,11 @@ export const Row = styled(Box)`
   display: flex;
   align-items: center;
 `;
+export const RowCenter = styled(Box)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 export const RowBetween = styled<any>(Row)`
   justify-content: space-between;
 `;

@@ -1,21 +1,32 @@
 import axios from 'axios';
 
-import appConfig from 'constants/appConfig';
 import authService from 'modules/auth/service';
 import { AUTH_LOGOUT } from 'modules/auth/store/constants';
+
+import extendAxiosInstance from 'libs/axios/extendAxiosInstance';
+
+import appConfig from 'constants/appConfig';
+import RequestError from 'errors/RequestError';
 
 export const BaseAxiosInstance = axios.create({
   baseURL: appConfig.apiUrl,
 });
 
-export const AuthedAxiosInstance = axios.create({ baseURL: appConfig.apiUrl });
+BaseAxiosInstance.interceptors.response.use(
+  (response) => {
+    return response.data;
+  },
+  (error) => {
+    throw new RequestError(error);
+  }
+);
+
+export const AuthedAxiosInstance = extendAxiosInstance(BaseAxiosInstance);
 
 // eslint-disable-next-line no-unused-vars
-export const setUpAuthInterceptorsAction = () => (dispatch, getState) => {
+export const setUpAuthInterceptorsAction = () => (dispatch) => {
   AuthedAxiosInstance.interceptors.request.use(
     async (config) => {
-      // const { currentUser } = getState();
-      // const url = prepareUrl(config.url, currentUser);
       const headers: { Authorization: string } = { Authorization: null };
       const authToken = authService.getAccessToken();
       if (authToken) {
@@ -43,6 +54,7 @@ export const setUpAuthInterceptorsAction = () => (dispatch, getState) => {
           await authService.refreshToken();
           return AuthedAxiosInstance.request({
             ...error.config,
+            data: JSON.parse(error.config.data),
             headers: {
               ...(error.config.headers || {}),
               Authorization: authService.getAccessToken(),

@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import SliderUI from '@material-ui/core/Slider';
 
-import useOtherStyleProperties from 'hooks/useOtherStyleProperties';
+import useStyleProperties from 'hooks/useStyleProperties';
 
 import {
   Container,
@@ -26,7 +26,7 @@ export const Slider: FC<ISliderProps> = ({
   label,
   ...props
 }) => {
-  const [styleProps, restProps] = useOtherStyleProperties(props);
+  const [styleProps, restProps] = useStyleProperties(props);
   return (
     <Container {...styleProps}>
       {label && <SliderText>{label}</SliderText>}

@@ -1,7 +1,7 @@
 export { Box } from './Box';
 export { ContentContainer } from './ContentContainer';
 export { Image } from './Image';
-export { Button } from './Button';
+export { Button } from 'components/ui/Button';
 export { Text } from './Text';
 export { TextInput } from './TextInput';
 export { Modal } from './Modal';

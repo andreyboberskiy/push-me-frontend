@@ -17,7 +17,7 @@ const stylePropsKeys: string[] = [
   'm',
 ];
 
-const useOtherStyleProperties = (props) => {
+const useStyleProperties = (props: any): any[2] => {
   const [styleProps, otherProps] = useMemo(() => {
     const style = {};
     const other = {};
@@ -36,4 +36,4 @@ const useOtherStyleProperties = (props) => {
   return [styleProps, otherProps];
 };
 
-export default useOtherStyleProperties;
+export default useStyleProperties;

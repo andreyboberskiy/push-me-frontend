@@ -20,7 +20,7 @@ export const FormWrapper = styled(Box)`
 `;
 
 export const SubmitButton = styled(Button).attrs({
-  variant: 'primary',
+  variant: 'lightFilled',
   size: 'sm',
 })`
   margin: 32px auto 0;
