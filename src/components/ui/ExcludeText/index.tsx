@@ -19,7 +19,9 @@ export const ExcludeText: React.FC<IExcludeTextProps> = ({
   return (
     <Container>
       <Status excluded={excluded} />
-      <TextValue same={same}>{text}</TextValue>
+      <TextValue same={same} excluded={excluded}>
+        {text}
+      </TextValue>
       <ExcludeButton onClick={toggleValue}>
         {excluded ? 'Include' : 'Exclude'}
       </ExcludeButton>

@@ -22,6 +22,7 @@ export const TextValue = styled(Text).attrs<any>((props) => ({
   fontSize: 3,
 }))`
   ${(props) => props.same && 'font-weight: 700;'}
+  ${(props) => props.excluded && 'text-decoration: line-through;'}
   text-align: left;
   max-width: 80%;
   width: 100%;

@@ -134,6 +134,7 @@ export const ParseField: React.FC<IParseFieldProps> = ({
         url={url}
         approvedQueries={approvedQueries}
         textForParse={fieldState.query}
+        approved={fieldState.approved}
         onSubmit={onSubmitModal}
       />
     </>

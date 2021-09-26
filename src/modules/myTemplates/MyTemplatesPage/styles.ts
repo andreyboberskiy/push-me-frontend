@@ -12,13 +12,13 @@ export const Content = styled(ContentContainer).attrs({
   ${space}
 `;
 
-export const Container = styled(Box).attrs({ bg: 'black' })`
-  height: 100vh;
+export const Container = styled(Box).attrs({ bg: 'grey' })`
+  min-height: 100vh;
 `;
 
-export const Title = styled(Text).attrs({ fontSize: 5 })``;
+export const Title = styled(Text).attrs({ mt: 3, fontSize: 6 })``;
 
-export const TemplatesContainer = styled(Box).attrs({ mt: 3 })`
+export const TemplatesContainer = styled(Box).attrs({ mt: 100 })`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 30px;

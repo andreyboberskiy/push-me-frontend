@@ -1,5 +1,7 @@
-import React, { memo, useCallback, useEffect, useState } from 'react';
+import React, { memo, useCallback, useEffect, useMemo, useState } from 'react';
 import map from 'lodash/map';
+import filter from 'lodash/filter';
+import uniq from 'lodash/uniq';
 
 import templateService, {
   IParseByTextQueryResponse,
@@ -23,7 +25,7 @@ import {
   Container,
   ExcludeText,
 } from 'modules/createTemplate/CreateTemplatePage/components/AddSelectorStepsModal/styles';
-import { filter, find } from 'lodash';
+import { forEach } from 'lodash';
 
 // Interface
 
@@ -39,6 +41,7 @@ interface IAddSelectorStepsModalProps {
   onClose: () => void;
   url: string;
   approvedQueries: string[];
+  approved: boolean;
 }
 
 export const AddSelectorStepsModal: React.FC<IAddSelectorStepsModalProps> = ({
@@ -48,13 +51,15 @@ export const AddSelectorStepsModal: React.FC<IAddSelectorStepsModalProps> = ({
   isOpen,
   approvedQueries,
   onClose,
+  approved,
   ...props
 }) => {
-  const [step, setStep] = useState('approve');
+  const [step, setStep] = useState<'exclude' | 'title'>('exclude');
   const [title, setTitle] = useState('');
   const loading = useFlagManager(true);
 
-  const [excludedSelectorsId, setExcludedSelectorsId] = useState<number[]>([]);
+  // const [excludedSelectorsId, setExcludedSelectorsId] = useState<number[]>([]);
+  const [excludedSelectors, setExcludedSelectors] = useState<string[]>([]);
 
   const [response, setResponse] = useState<IParseByTextQueryResponse | null>(
     null
@@ -68,50 +73,65 @@ export const AddSelectorStepsModal: React.FC<IAddSelectorStepsModalProps> = ({
   );
 
   const handleSubmit = useCallback(() => {
-    if (step === 'approve') {
-      setStep('enterTitle');
+    if (step === 'exclude') {
+      setStep('title');
       return;
     }
 
-    const excludedSelectors = [
-      ...new Set(
-        map(
-          excludedSelectorsId,
-          (selectorId) =>
-            find(response.sameInfo, ({ id }) => id === selectorId)?.selector
-        )
-      ),
-    ];
-    onSubmit(title, response.selector, response.parent, excludedSelectors);
-  }, [excludedSelectorsId, step, onSubmit, response, title]);
+    onSubmit(
+      title,
+      response.selector,
+      response.parent,
+      uniq(excludedSelectors)
+    );
+  }, [excludedSelectors, step, onSubmit, response, title]);
 
   useEffect(() => {
     if (!isOpen) return;
-    loading.turnIn();
-    (async () => {
-      try {
-        const result = await templateService.parseByTextQuery({
-          url,
-          selectorQuery: textForParse,
-          approvedQueries,
-        });
 
-        setResponse(result);
-        loading.turnOff();
-      } catch (e) {
-        console.log(e);
-        loading.turnOff();
-      }
-    })();
+    if (!approved) {
+      setResponse(null);
+      setStep('exclude');
+      loading.turnIn();
+      (async () => {
+        try {
+          const result = await templateService.parseByTextQuery({
+            url,
+            selectorQuery: textForParse,
+            approvedQueries,
+          });
+
+          setResponse(result);
+          loading.turnOff();
+        } catch (e) {
+          console.log(e);
+          loading.turnOff();
+        }
+      })();
+    }
   }, [isOpen]);
 
-  const handleToggleExclude = useCallback((id: number, excluded: boolean) => {
-    if (excluded) {
-      setExcludedSelectorsId((prev) => filter(prev, (item) => item !== id));
-    } else {
-      setExcludedSelectorsId((prev) => [...prev, id]);
+  const handleToggleExclude = useCallback(
+    (selector: string, excluded: boolean) => {
+      if (excluded) {
+        setExcludedSelectors((prev) =>
+          filter(prev, (item) => item !== selector)
+        );
+      } else {
+        setExcludedSelectors((prev) => [...prev, selector]);
+      }
+    },
+    []
+  );
+
+  const allTextsExcluded = useMemo(() => {
+    if (response?.sameInfo?.length && excludedSelectors.length) {
+      return !response.sameInfo.some(
+        (item) => !excludedSelectors.includes(item.selector)
+      );
     }
-  }, []);
+    return false;
+  }, [response, excludedSelectors]);
 
   const renderApproveStep = () => {
     return response?.sameInfo?.length ? (
@@ -128,15 +148,16 @@ export const AddSelectorStepsModal: React.FC<IAddSelectorStepsModalProps> = ({
             We have found:
           </SmallTitle>
           <ListWrapper>
-            {map(response.sameInfo, ({ text, id }) => {
-              const excluded = excludedSelectorsId.includes(id);
+            {map(response.sameInfo, ({ text, id, selector }) => {
+              const excluded = excludedSelectors.includes(selector);
+
               return (
                 <ExcludeText
                   key={id}
-                  same={text === textForParse}
+                  same={text.includes(textForParse)}
                   text={text}
                   excluded={excluded}
-                  toggleValue={() => handleToggleExclude(id, excluded)}
+                  toggleValue={() => handleToggleExclude(selector, excluded)}
                 />
               );
             })}
@@ -164,10 +185,10 @@ export const AddSelectorStepsModal: React.FC<IAddSelectorStepsModalProps> = ({
 
   const renderCurrentStep = () => {
     switch (step) {
-      case 'approve': {
+      case 'exclude': {
         return renderApproveStep();
       }
-      case 'enterTitle': {
+      case 'title': {
         return renderTitleStep();
       }
       default:
@@ -176,14 +197,14 @@ export const AddSelectorStepsModal: React.FC<IAddSelectorStepsModalProps> = ({
   };
   return (
     <Modal
-      size={step === 'enterTitle' ? 'sm' : 'md'}
+      size={step === 'title' ? 'sm' : 'md'}
       isOpen={isOpen}
       onClose={onClose}
       {...props}
     >
       <Container>
         <Title>
-          {step === 'approve'
+          {step === 'exclude'
             ? 'Is this texts same to your?'
             : 'Enter title for this info'}
         </Title>
@@ -194,8 +215,10 @@ export const AddSelectorStepsModal: React.FC<IAddSelectorStepsModalProps> = ({
             renderCurrentStep()
           )}
         </StepContent>
-        {response?.sameInfo.length ? (
-          <SubmitButton onClick={handleSubmit}>Confirm</SubmitButton>
+        {response?.sameInfo?.length ? (
+          <SubmitButton disabled={allTextsExcluded} onClick={handleSubmit}>
+            Confirm
+          </SubmitButton>
         ) : (
           <SubmitButton onClick={onClose}>Close</SubmitButton>
         )}
