@@ -5,6 +5,8 @@ import { Box, Text } from 'components/ui';
 export const Container = styled(Box).attrs({ p: 5, bg: 'white' })`
   border-radius: 16px;
   box-shadow: 4px 4px 18px 1px rgba(34, 60, 80, 0.2);
+  max-width: 100%;
+  width: 100%;
 `;
 
 export const Title = styled(Text).attrs({
@@ -15,6 +17,10 @@ export const Title = styled(Text).attrs({
 })``;
 export const Url = styled(Text).attrs({ fontSize: 3, color: 'lightBlue' })`
   text-align: left;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 100%;
 `;
 export const InfoText = styled(Text).attrs({
   fontSize: 3,

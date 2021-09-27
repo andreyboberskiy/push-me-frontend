@@ -1,19 +1,13 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import map from 'lodash/map';
 
 import { getListAction } from 'modules/myTemplates/store/actions';
 
+import { Container, Content, Title, TemplatesTable } from './styles';
+
+// Interface
 import { IReducerStore } from 'store/reducers';
 import { ITemplate } from 'types/templates';
-
-import {
-  Container,
-  Content,
-  Title,
-  TemplatesContainer,
-  Template,
-} from './styles';
 
 const MyTemplatesPage = () => {
   const dispatch = useDispatch();
@@ -21,19 +15,25 @@ const MyTemplatesPage = () => {
     (state) => state.templates.list
   );
 
-  const renderList = () =>
-    map(templateList, (item) => <Template template={item} />);
+  const totalTemplatesLength = 999; // TODO: ADD TOTAL
 
   useEffect(() => {
-    dispatch(getListAction());
+    if (!templateList?.length) {
+      dispatch(getListAction());
+    }
   }, []);
   return (
     <Container>
       <Content>
         <Title>My templates</Title>
-        <TemplatesContainer>
-          {templateList?.length > 0 ? renderList() : 'Loading...'}
-        </TemplatesContainer>
+        {templateList?.length > 0 ? (
+          <TemplatesTable
+            templates={templateList}
+            totalTemplatesLength={totalTemplatesLength}
+          />
+        ) : (
+          'You have not any templates'
+        )}
       </Content>
     </Container>
   );
