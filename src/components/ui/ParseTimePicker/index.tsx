@@ -2,8 +2,9 @@ import React, { useCallback, useMemo, useState } from 'react';
 import map from 'lodash/map';
 
 import useFlagManager from 'hooks/useFlagManager';
-
 import useStyleProperties from 'hooks/useStyleProperties';
+
+import { parseTimeToText } from 'utils/parseTime';
 
 import {
   Container,
@@ -30,25 +31,6 @@ interface IParseTimePickerProps extends Omit<ITextInputProps, 'onChange'> {
   onChange: (value: IParseTimeValue) => void;
   value: IParseTimeValue;
 }
-
-const parseTimeToText = (time: IParseTimeValue) => {
-  let text = '';
-
-  if (time.s) {
-    text += `Seconds: ${time.s}; `;
-  }
-  if (time.m) {
-    text += `Minutes: ${time.m}; `;
-  }
-  if (time.h) {
-    text += `Hours: ${time.h}; `;
-  }
-  if (time.d) {
-    text += `Days: ${time.d}; `;
-  }
-
-  return text;
-};
 
 const getSliderMaxValue = (dateKey: string): number => {
   switch (dateKey) {

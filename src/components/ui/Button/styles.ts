@@ -1,8 +1,9 @@
 import styled from 'styled-components';
-import { color, fontSize, space, variant } from 'styled-system';
+import { color, fontSize, shadow, space, variant } from 'styled-system';
 
 export const ButtonUI = styled('button').attrs<any>({
   fontFamily: 'Ubuntu',
+  boxShadow: 'button1',
 })<any>`
   ${variant({
     variants: {
@@ -17,6 +18,7 @@ export const ButtonUI = styled('button').attrs<any>({
       },
       darkFilled: {
         bg: 'darkBlue',
+        borderColor: 'transparent',
         color: 'white',
       },
       darkOutlined: {
@@ -80,4 +82,5 @@ export const ButtonUI = styled('button').attrs<any>({
   ${space};
   ${fontSize};
   ${color};
+  ${shadow}
 `;

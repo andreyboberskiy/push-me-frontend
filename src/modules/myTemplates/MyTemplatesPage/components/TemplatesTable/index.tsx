@@ -1,7 +1,15 @@
 import React, { useMemo, useState } from 'react';
 import map from 'lodash/map';
 
-import { TitleLabel, Header, Filter, Container } from './styles';
+import {
+  TitleLabel,
+  Header,
+  Filter,
+  Container,
+  MainContainer,
+  ItemsContainer,
+  TemplateListItem,
+} from './styles';
 
 // Interfaces
 import { ITemplate } from 'types/templates';
@@ -22,42 +30,71 @@ const TemplatesTable: React.FC<ITemplatesTableProps> = ({
   const [sortedTemplates, updateSortedTemplates] =
     useState<ITemplate[]>(templates);
 
-  const filtersConfig = useMemo(
+  const tableConfig = useMemo(
     () => [
+      {
+        name: 'Id',
+        field: 'id',
+        width: 5,
+      },
+      {
+        name: 'Active',
+        field: 'enabled',
+        width: 10,
+      },
       {
         name: 'Title',
         field: 'title',
+        width: 20,
+      },
+      {
+        name: 'Search values',
+        field: 'values',
+        width: 20,
+      },
+      {
+        name: 'Refresh Time',
+        field: 'parseTime',
+        width: 20,
+      },
+      {
+        name: 'Date Created',
+        field: 'dateCreated',
+        width: 20,
       },
     ],
     []
   );
+
   return (
-    <>
+    <MainContainer>
       {!hideTitle && (
         <TitleLabel>
-          Showing {templatesLength} most recent results of{' '}
-          {totalTemplatesLength} matches
+          Showing <b>{templatesLength}</b> most recent results of{' '}
+          <b>{totalTemplatesLength}</b> matches
         </TitleLabel>
       )}
       <Container>
         <Header>
-          {map(filtersConfig, (filter) => (
+          {map(tableConfig, (filter) => (
             <Filter
               name={filter.name}
               field={filter.field}
+              width={filter.width}
               setList={updateSortedTemplates}
+              list={sortedTemplates}
             />
           ))}
         </Header>
+        <ItemsContainer>
+          {map(sortedTemplates, (template) => (
+            <TemplateListItem template={template} tableConfig={tableConfig} />
+          ))}
+        </ItemsContainer>
       </Container>
-    </>
+    </MainContainer>
   );
 };
 
 export { TemplatesTable };
 //
-// <ItemsContainer>
-//   {map(sortedTemplates, (template) => (
-//       <TemplateListItem template={template} />
-//   ))}
-// </ItemsContainer>

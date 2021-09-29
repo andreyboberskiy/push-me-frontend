@@ -8,3 +8,5 @@ export { Modal } from './Modal';
 export { ParseTimePicker } from './ParseTimePicker';
 export { Slider } from './Slider';
 export { ExcludeText } from './ExcludeText';
+export { SortFilter } from './SortFilter';
+export { StatusCircle } from './StatusCircle';

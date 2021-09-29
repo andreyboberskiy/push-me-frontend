@@ -6,11 +6,11 @@ const theme = {
     red: '#E04D4D',
     white: '#ffffff',
     black: '#151515',
-    grey: '#f9f9f9',
+    grey: '#f6f6f6',
     darkGrey: '#dedede',
     green: '#1BA078',
     gray0: '#fff',
-    gray1: '#f6f6f6',
+    gray1: '#dedede',
     gray2: '#e9e9e9',
     gray3: '#8f8f91',
     gray4: '#626266',
@@ -55,6 +55,10 @@ const theme = {
       height: '90vh',
       'border-radius': '28px',
     },
+  },
+  shadows: {
+    1: `4px 4px 18px 1px rgba(34, 60, 80, 0.2)`,
+    button1: `4px 6px 20px 1px rgba(34, 60, 80, 0.2)`,
   },
 };
 export default theme;
