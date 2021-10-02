@@ -34,6 +34,7 @@ export const SignUpForm = memo(() => {
     try {
       await authService.signUp(values);
     } catch (e) {
+      // eslint-disable-next-line
       console.log(e);
     }
   }, []);

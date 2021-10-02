@@ -33,7 +33,6 @@ const createTemplateService = {
   parseByTextQuery(payload: {
     url: string;
     selectorQuery: string;
-    approvedQueries: string[];
   }): Promise<IParseByTextQueryResponse> {
     return AuthedAxiosInstance.post(
       `${apiPrefix}/parse/by-text-query`,

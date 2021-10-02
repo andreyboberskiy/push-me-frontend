@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react';
 import map from 'lodash/map';
 import { format } from 'date-fns';
+import { get } from 'lodash';
 
 import { parseTimeToText } from 'utils/parseTime';
 
@@ -20,7 +21,6 @@ const TemplateListItem: React.FC<ITemplateListItemProps> = ({
 }) => {
   const { id, title, enabled, parseTime, url, dateCreated, selectorsData } =
     template;
-
   const transformedTemplateToStrings = useMemo(
     () => ({
       enabled,
@@ -29,7 +29,9 @@ const TemplateListItem: React.FC<ITemplateListItemProps> = ({
       url,
       dateCreated: format(new Date(dateCreated), 'dd.MM.yyyy'),
       parseTime: parseTimeToText(parseTime),
-      values: selectorsData.selectors.map((item) => item.title).join(', '),
+      selectorsData: {
+        selectors: selectorsData.selectors.map((item) => item.title).join(', '),
+      },
     }),
     [dateCreated, selectorsData, id, enabled, title, url, parseTime]
   );
@@ -37,9 +39,10 @@ const TemplateListItem: React.FC<ITemplateListItemProps> = ({
   return (
     <Container>
       {map(tableConfig, (item) => {
-        const value = transformedTemplateToStrings[item.field];
+        const value = get(transformedTemplateToStrings, item.field, '');
+
         return (
-          <ValueContainer width={item.width}>
+          <ValueContainer key={item.field} width={item.width}>
             {typeof value === 'boolean' ? (
               <StatusCircle active={value} size={16} />
             ) : (

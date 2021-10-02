@@ -61,6 +61,8 @@ export const setUpAuthInterceptorsAction = () => (dispatch) => {
             },
           });
         } catch (e) {
+          // eslint-disable-next-line
+          console.log(e);
           /*
            * In this case upper scope will receive message from first request eg. `Unauthenticated.`
            */

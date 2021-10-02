@@ -25,7 +25,6 @@ interface IParseFieldProps
   placeholder?: string;
   className?: string;
   url: string;
-  approvedQueries: string[];
   changeParentSelector: (selector: string) => void;
 }
 
@@ -50,7 +49,6 @@ export const ParseField: React.FC<IParseFieldProps> = ({
   placeholder,
   className,
   url,
-  approvedQueries,
   changeParentSelector,
   ...props
 }) => {
@@ -132,7 +130,6 @@ export const ParseField: React.FC<IParseFieldProps> = ({
         isOpen={modalOpen}
         onClose={handleCloseModal}
         url={url}
-        approvedQueries={approvedQueries}
         textForParse={fieldState.query}
         approved={fieldState.approved}
         onSubmit={onSubmitModal}

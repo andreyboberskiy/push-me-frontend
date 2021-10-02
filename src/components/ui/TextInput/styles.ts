@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { styled as styledMU, TextField } from '@material-ui/core';
-import { fontFamily, fontSize, space, variant } from 'styled-system';
+import { TextField } from '@material-ui/core';
+import { space } from 'styled-system';
 
 import { Box } from 'components/ui';
 import theme from 'styles/theme';

@@ -105,7 +105,7 @@ export const ParseTimePicker: React.FC<IParseTimePickerProps> = ({
           <ModalTitle>Choose how often wa should check updates</ModalTitle>
 
           {map(['s', 'm', 'h', 'd'], (dateKey) => (
-            <SliderContainer>
+            <SliderContainer key={dateKey}>
               <Slider
                 value={localValues[dateKey]}
                 min={0}

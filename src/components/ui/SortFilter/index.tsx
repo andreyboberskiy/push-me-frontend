@@ -10,17 +10,28 @@ import {
 } from './styles';
 
 // Interface
+type TSortType = 'date';
+
 interface ISortFilterProps {
   name: string;
   field: string;
   width: number;
-  setList: (newList: any[]) => void;
+  onFilter: (field: string, newList: any[]) => void;
   list: any[];
+  active: boolean;
+  sortType?: TSortType;
 }
 
-const toggleSort = ({ a, b, field }, sortTo) => {
+const toggleSort = ({ a, b, field, sortType }, sortTo) => {
   const aValue = a[field];
   const bValue = b[field];
+
+  if (sortType === 'date') {
+    if (sortTo === 'up') {
+      return new Date(aValue) < new Date(bValue) ? -1 : 1;
+    }
+    return new Date(aValue) > new Date(bValue) ? -1 : 1;
+  }
 
   if (typeof aValue === 'number') {
     if (sortTo === 'up') {
@@ -40,8 +51,10 @@ const toggleSort = ({ a, b, field }, sortTo) => {
 export const SortFilter: React.FC<ISortFilterProps> = ({
   name,
   field,
-  setList,
+  onFilter,
   list,
+  active,
+  sortType,
   ...props
 }) => {
   const [sorted, setSorted] = useState<'up' | 'down' | false>(false);
@@ -50,23 +63,23 @@ export const SortFilter: React.FC<ISortFilterProps> = ({
     const copyList = [...list];
 
     if (sorted === 'up' || !sorted) {
-      copyList.sort((a, b) => toggleSort({ a, b, field }, 'down'));
+      copyList.sort((a, b) => toggleSort({ a, b, field, sortType }, 'down'));
       setSorted('down');
     } else {
-      copyList.sort((a, b) => toggleSort({ a, b, field }, 'up'));
+      copyList.sort((a, b) => toggleSort({ a, b, field, sortType }, 'up'));
       setSorted('up');
     }
 
-    setList(copyList);
-  }, [field, setList, sorted, list]);
+    onFilter(field, copyList);
+  }, [sortType, field, onFilter, sorted, list]);
 
   return (
     <Container onClick={handleSort} {...props}>
       <InnerContainer>
         <Name>{name}</Name>
         <ArrowContainer>
-          <ArrowUp active={sorted === 'up'} />
-          <ArrowDown active={sorted === 'down'} />
+          <ArrowUp $active={active && sorted === 'up'} />
+          <ArrowDown $active={active && sorted === 'down'} />
         </ArrowContainer>
       </InnerContainer>
     </Container>

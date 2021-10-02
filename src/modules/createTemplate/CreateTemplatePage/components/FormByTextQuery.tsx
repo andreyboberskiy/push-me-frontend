@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { Field, FormRenderProps } from 'react-final-form';
 import map from 'lodash/map';
 
@@ -30,13 +30,6 @@ const FormByTextQuery = ({
     [changeForm]
   );
 
-  const approvedQueries = useMemo(() => {
-    const queries = [];
-    map(values, (item) => (item?.approved ? queries.push(item.query) : null));
-
-    return queries;
-  }, [values]);
-
   return (
     <FormWrapper>
       <Field
@@ -60,11 +53,11 @@ const FormByTextQuery = ({
       />
       {map(new Array(fieldCount), (item, index) => (
         <Field
+          key={index}
           name={`query${index + 1}`}
           placeholder="Enter text to parse same"
           component={ParseField}
           url={values.url}
-          approvedQueries={approvedQueries}
           changeParentSelector={changeParentSelector}
           by="text"
           mt={4}

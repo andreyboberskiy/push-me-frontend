@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { Box, Image, Button, Text, ContentContainer } from 'components/ui';
+import { Box, Image, Text, ContentContainer } from 'components/ui';
 
 // @ts-ignore
 import secondaryLogo from 'assets/images/common/secondaryLogo.png';

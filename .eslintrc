@@ -3,7 +3,10 @@
   "parserOptions": {
     "sourceType": "module",
     "allowImportExportEverywhere": false,
-    "codeFrame": true
+    "codeFrame": true,
+    "ecmaFeatures": {
+      "jsx": true
+    }
   },
   "root": true,
   "extends": [
@@ -34,9 +37,10 @@
   },
   "rules": {
     // note you must disable the base rule as it can report incorrect errors
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": "warn",
     "no-use-before-define": "off",
     "@typescript-eslint/no-use-before-define": ["error"],
-    "no-unused-vars": "warn",
     "react/require-default-props": "off",
     "import/order": "off",
     "react/jsx-filename-extension": [1, { "extensions": [".tsx"] }],

@@ -5,21 +5,15 @@ import { setUpAuthInterceptorsAction } from 'libs/axios/instances';
 import { APP_INITIAL_LOADED } from './constants';
 
 export const initialLoadAction = () => async (dispatch) => {
-  try {
-    const accessToken = authService.getAccessToken();
+  const accessToken = authService.getAccessToken();
 
-    console.log({ accessToken });
+  dispatch(setUpAuthInterceptorsAction());
 
-    dispatch(setUpAuthInterceptorsAction());
+  const user = await authService.getUser(); // TODO: implement get user func on BE
 
-    const user = await authService.getUser(); // TODO: implement get user func on BE
-
-    if (accessToken) {
-      dispatch(setUserAction(user));
-    }
-
-    dispatch({ type: APP_INITIAL_LOADED });
-  } catch (e) {
-    console.log(e);
+  if (accessToken) {
+    dispatch(setUserAction(user));
   }
+
+  dispatch({ type: APP_INITIAL_LOADED });
 };

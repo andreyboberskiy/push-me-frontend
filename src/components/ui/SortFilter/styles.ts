@@ -1,4 +1,3 @@
-//  ArrowUp, ArrowDown
 import ArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import styled from 'styled-components';
 
@@ -42,9 +41,9 @@ export const Name = styled(Text).attrs({
 })``;
 
 export const ArrowDown = styled<any>(ArrowDownIcon).attrs<{
-  active: boolean;
+  $active: boolean;
 }>((props) => ({
-  htmlColor: props.active ? theme.colors.black : theme.colors.gray3,
+  htmlColor: props.$active ? theme.colors.black : theme.colors.gray3,
   fontSize: 'inherit',
 }))``;
 

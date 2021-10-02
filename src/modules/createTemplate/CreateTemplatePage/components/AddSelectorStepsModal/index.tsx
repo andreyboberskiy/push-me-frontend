@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useEffect, useMemo, useState } from 'react';
+import React, { memo, useCallback, useMemo, useState } from 'react';
 import map from 'lodash/map';
 import filter from 'lodash/filter';
 import uniq from 'lodash/uniq';
@@ -24,8 +24,8 @@ import {
   TitleContainer,
   Container,
   ExcludeText,
-} from 'modules/createTemplate/CreateTemplatePage/components/AddSelectorStepsModal/styles';
-import { forEach } from 'lodash';
+} from './styles';
+import _useEffect from 'hooks/_useEffect';
 
 // Interface
 
@@ -40,7 +40,6 @@ interface IAddSelectorStepsModalProps {
   isOpen: boolean;
   onClose: () => void;
   url: string;
-  approvedQueries: string[];
   approved: boolean;
 }
 
@@ -49,7 +48,6 @@ export const AddSelectorStepsModal: React.FC<IAddSelectorStepsModalProps> = ({
   onSubmit,
   url,
   isOpen,
-  approvedQueries,
   onClose,
   approved,
   ...props
@@ -86,7 +84,7 @@ export const AddSelectorStepsModal: React.FC<IAddSelectorStepsModalProps> = ({
     );
   }, [excludedSelectors, step, onSubmit, response, title]);
 
-  useEffect(() => {
+  _useEffect(() => {
     if (!isOpen) return;
 
     if (!approved) {
@@ -98,13 +96,11 @@ export const AddSelectorStepsModal: React.FC<IAddSelectorStepsModalProps> = ({
           const result = await templateService.parseByTextQuery({
             url,
             selectorQuery: textForParse,
-            approvedQueries,
           });
 
           setResponse(result);
           loading.turnOff();
         } catch (e) {
-          console.log(e);
           loading.turnOff();
         }
       })();

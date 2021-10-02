@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 import {
   Container,
@@ -9,6 +9,7 @@ import {
   Tabs,
   TabBtn,
 } from './styles';
+import _useEffect from 'hooks/_useEffect';
 
 // Interfaces
 interface ISignPageProps {
@@ -27,7 +28,7 @@ const SignPage: React.FC<ISignPageProps> = ({
 }) => {
   const [activeTab, setActiveTab] = useState(activeTabFromProps || 'login');
 
-  useEffect(() => {
+  _useEffect(() => {
     if (activeTab !== activeTabFromProps) {
       setActiveTab(activeTabFromProps);
     }

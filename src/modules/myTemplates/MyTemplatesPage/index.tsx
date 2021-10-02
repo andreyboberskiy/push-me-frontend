@@ -1,7 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { getListAction } from 'modules/myTemplates/store/actions';
+
+import _useEffect from 'hooks/_useEffect';
 
 import { Container, Content, Title, TemplatesTable } from './styles';
 
@@ -17,11 +19,12 @@ const MyTemplatesPage = () => {
 
   const totalTemplatesLength = 999; // TODO: ADD TOTAL
 
-  useEffect(() => {
+  _useEffect(() => {
     if (!templateList?.length) {
       dispatch(getListAction());
     }
   }, []);
+
   return (
     <Container>
       <Content>

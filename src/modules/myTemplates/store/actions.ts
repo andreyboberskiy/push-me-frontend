@@ -12,9 +12,9 @@ export const getListAction = () => async (dispatch) => {
       sort: 'newest',
       offset: 0,
     });
-    console.log(list);
     dispatch(setListAction(list));
   } catch (e) {
+    // eslint-disable-next-line
     console.log(e);
   }
 };

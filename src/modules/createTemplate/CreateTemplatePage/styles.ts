@@ -7,8 +7,6 @@ import { ParseTimePickerField as ParseTimePickerFieldUI } from 'components/field
 export { TextInputField, ParseField } from 'components/fields';
 export { RowBetween } from 'components/common';
 
-export { Template } from 'components/blocks';
-
 export const Content = styled(ContentContainer).attrs({
   withNavbar: true,
   pt: 4,

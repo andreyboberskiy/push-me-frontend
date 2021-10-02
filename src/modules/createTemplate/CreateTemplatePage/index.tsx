@@ -49,6 +49,7 @@ const CreateTemplatePage = () => {
 
         await createTemplateService.create(payload);
       } catch (e) {
+        // eslint-disable-next-line
         console.log(e);
       }
     },
