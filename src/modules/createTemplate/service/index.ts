@@ -2,6 +2,7 @@ import { AuthedAxiosInstance } from 'libs/axios/instances';
 import { IParseTimeValue } from 'components/ui/ParseTimePicker';
 
 const apiPrefix = '/api';
+const templatesPrefix = '/templates';
 
 export interface IParseByTextQueryResponse {
   sameInfo: { text: string; selector: string; id: number }[];
@@ -25,7 +26,7 @@ export interface ICreatePayload {
 const createTemplateService = {
   create(payload: ICreatePayload) {
     return AuthedAxiosInstance.post(
-      `${apiPrefix}/parse-templates/create`,
+      `${apiPrefix}${templatesPrefix}/create`,
       payload
     );
   },

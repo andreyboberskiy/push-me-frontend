@@ -10,8 +10,11 @@ import { Modal as ModalUI } from 'components/ui/Modal';
 
 export { Slider } from 'components/ui/Slider';
 
-export const TextInput = styled(TextInputUI)``;
+export const TextInput = styled(TextInputUI)`
+  pointer-events: none;
+`;
 export const Container = styled(Box)`
+  cursor: pointer;
   position: relative;
 `;
 export const ModalContainer = styled(Box).attrs({ pb: 5 })``;

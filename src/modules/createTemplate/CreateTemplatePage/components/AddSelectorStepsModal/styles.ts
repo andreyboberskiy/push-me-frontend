@@ -17,7 +17,12 @@ export const Container = styled(Box)`
 export const StepContent = styled(Box).attrs({ mt: 3 })`
   max-height: 100%;
 `;
-export const SubmitButton = styled(Button).attrs({ mt: 4, size: 'sm', px: 13 })`
+export const SubmitButton = styled(Button).attrs({
+  mt: 4,
+  size: 'sm',
+  variant: 'lightFilled',
+  px: 13,
+})`
   margin: 32px auto 0;
 `;
 export const ApproveTitle = styled(Text).attrs({

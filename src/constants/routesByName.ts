@@ -3,5 +3,6 @@ export default {
   sign: '/sign',
   profilePage: '/profile',
   myTemplatesPage: '/my-templates',
-  createTemplate: '/create-template',
+  createTemplate: '/create-templates',
+  template: (id: number | string = ':id') => `/template/${id}`,
 };

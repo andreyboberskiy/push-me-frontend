@@ -13,7 +13,7 @@ import map from 'lodash/map';
 import createTemplateService from 'modules/createTemplate/service';
 
 const initialValues = {
-  url: 'https://www.olx.ua/dnepr/q-iphone-11-pro/',
+  url: '',
   title: '',
   parseTime: { s: 0, m: 0, h: 0, d: 0 },
   parentSelector: null,

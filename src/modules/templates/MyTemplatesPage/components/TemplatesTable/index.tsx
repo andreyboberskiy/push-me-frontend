@@ -1,6 +1,9 @@
 import React, { useMemo } from 'react';
 
-import { Table, TemplateListItem } from './styles';
+import {
+  Table,
+  TemplateListItem,
+} from 'modules/templates/MyTemplatesPage/components/TemplatesTable/styles';
 
 // Interfaces
 import { ITemplate } from 'types/templates';

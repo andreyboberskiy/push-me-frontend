@@ -5,17 +5,19 @@ import { useDispatch, useSelector } from 'react-redux';
 import routesByName from 'constants/routesByName';
 
 import AuthedRoutes from 'hocs/AuthedRoutes';
-import { IReducerStore } from 'store/reducers';
 import { initialLoadAction } from 'modules/app/store/actions';
 
 import ProfilePage from 'modules/ProfilePage';
 import HomePage from 'modules/HomePage';
 import UnAuthedNavbar from 'modules/Navbar';
 import SignPage from 'modules/auth/SignPage';
-import MyTemplatesPage from 'modules/myTemplates/MyTemplatesPage';
+import MyTemplatesPage from 'modules/templates/MyTemplatesPage';
 import CreateTemplatePage from 'modules/createTemplate/CreateTemplatePage';
+import TemplatePage from 'modules/templates/TemplatePage';
 
 import UIComponentsPage from 'components/UIComponentsPage';
+
+import { IReducerStore } from 'store/reducers';
 
 function App() {
   const dispatch = useDispatch();
@@ -48,6 +50,7 @@ function App() {
             path={routesByName.createTemplate}
             component={CreateTemplatePage}
           />
+          <Route path={routesByName.template()} component={TemplatePage} />
         </AuthedRoutes>
       </Switch>
     </>

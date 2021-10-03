@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Box, Text, ContentContainer } from 'components/ui';
 import { space } from 'styled-system';
 
-export { TemplatesTable } from './components/TemplatesTable';
+export { TemplatesTable } from 'modules/templates/MyTemplatesPage/components/TemplatesTable';
 
 export const Content = styled(ContentContainer).attrs({
   withNavbar: true,

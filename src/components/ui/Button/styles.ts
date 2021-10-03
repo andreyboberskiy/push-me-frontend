@@ -9,6 +9,7 @@ export const ButtonUI = styled('button').attrs<any>({
     variants: {
       lightFilled: {
         bg: 'lightBlue',
+        borderColor: 'transparent',
         color: 'white',
       },
       lightOutlined: {
@@ -28,6 +29,7 @@ export const ButtonUI = styled('button').attrs<any>({
       },
       errorFilled: {
         bg: 'red',
+        borderColor: 'transparent',
         color: 'white',
       },
       errorOutlined: {
@@ -41,15 +43,15 @@ export const ButtonUI = styled('button').attrs<any>({
         color: 'white',
       },
       disabled: {
-        bg: 'white',
-        borderColor: 'darkGrey',
-        color: 'darkGrey',
+        bg: 'gray',
+        borderColor: 'gray4',
+        color: 'white',
+        opacity: '0.3',
       },
     },
   })}
   border-size: 3px;
   border-style: solid;
-
   ${variant({
     prop: 'size',
     variants: {

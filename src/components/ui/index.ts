@@ -11,3 +11,4 @@ export { ExcludeText } from './ExcludeText';
 export { SortFilter } from './SortFilter';
 export { StatusCircle } from './StatusCircle';
 export { Table } from './Table';
+export { PageTitle } from './PageTitle';

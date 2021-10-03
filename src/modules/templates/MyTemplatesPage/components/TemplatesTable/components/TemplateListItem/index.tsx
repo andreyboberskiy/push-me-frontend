@@ -1,11 +1,19 @@
-import React, { useMemo } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import map from 'lodash/map';
 import { format } from 'date-fns';
 import { get } from 'lodash';
+import { useHistory } from 'react-router-dom';
 
-import { parseTimeToText } from 'utils/parseTime';
+import { parseTimeToText } from 'utils/parseTimeToText';
 
-import { Container, ValueContainer, ValueText, StatusCircle } from './styles';
+import routesByName from 'constants/routesByName';
+
+import {
+  Container,
+  ValueContainer,
+  ValueText,
+  StatusCircle,
+} from 'modules/templates/MyTemplatesPage/components/TemplatesTable/components/TemplateListItem/styles';
 
 // Interfaces
 import { ITemplate } from 'types/templates';
@@ -19,6 +27,7 @@ const TemplateListItem: React.FC<ITemplateListItemProps> = ({
   template,
   tableConfig,
 }) => {
+  const history = useHistory();
   const { id, title, enabled, parseTime, url, dateCreated, selectorsData } =
     template;
   const transformedTemplateToStrings = useMemo(
@@ -36,8 +45,12 @@ const TemplateListItem: React.FC<ITemplateListItemProps> = ({
     [dateCreated, selectorsData, id, enabled, title, url, parseTime]
   );
 
+  const pushToTemplatePage = useCallback(() => {
+    history.push(routesByName.template(id));
+  }, [id, history]);
+
   return (
-    <Container>
+    <Container onClick={pushToTemplatePage}>
       {map(tableConfig, (item) => {
         const value = get(transformedTemplateToStrings, item.field, '');
 

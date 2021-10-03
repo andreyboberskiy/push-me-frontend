@@ -2,7 +2,7 @@ import authReducer, { IAuthReducerState } from 'modules/auth/store/reducer';
 import appReducer, { IAppReducerState } from 'modules/app/store/reducer';
 import templatesReducer, {
   ITemplatesReducerState,
-} from 'modules/myTemplates/store/reducer';
+} from 'modules/templates/store/reducer';
 
 export interface IReducerStore {
   auth: IAuthReducerState;
