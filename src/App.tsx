@@ -7,7 +7,7 @@ import routesByName from 'constants/routesByName';
 import AuthedRoutes from 'hocs/AuthedRoutes';
 import { initialLoadAction } from 'modules/app/store/actions';
 
-import ProfilePage from 'modules/ProfilePage';
+import ProfilePage from 'modules/profile/ProfilePage';
 import HomePage from 'modules/HomePage';
 import UnAuthedNavbar from 'modules/Navbar';
 import SignPage from 'modules/auth/SignPage';

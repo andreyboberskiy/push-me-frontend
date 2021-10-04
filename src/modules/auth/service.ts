@@ -1,8 +1,10 @@
-import { BaseAxiosInstance } from 'libs/axios/instances';
+import { AuthedAxiosInstance, BaseAxiosInstance } from 'libs/axios/instances';
 
 import localStorageKeys from 'constants/localStorageKeys';
+import { IUser } from 'types/common';
 
 const apiPrefix = '/api';
+const userPrefix = '/user';
 
 // types
 type TLogInResponse = {
@@ -59,12 +61,8 @@ const authService = {
     return token;
   },
 
-  getUser() {
-    return new Promise((res) => {
-      setTimeout(() => {
-        res({ email: 'kek@gmail.com', id: '23232' });
-      }, 200);
-    });
+  getUser(): Promise<{ user: IUser }> {
+    return AuthedAxiosInstance.get(`${apiPrefix}/${userPrefix}`);
   },
 
   setAccessToken,

@@ -13,3 +13,4 @@ export { StatusCircle } from './StatusCircle';
 export { Table } from './Table';
 export { PageTitle } from './PageTitle';
 export { Switcher } from './Switcher';
+export { UserAvatar } from './UserAvatar';

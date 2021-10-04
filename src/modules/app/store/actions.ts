@@ -9,9 +9,9 @@ export const initialLoadAction = () => async (dispatch) => {
 
   dispatch(setUpAuthInterceptorsAction());
 
-  const user = await authService.getUser(); // TODO: implement get user func on BE
-
   if (accessToken) {
+    const { user } = await authService.getUser();
+
     dispatch(setUserAction(user));
   }
 
