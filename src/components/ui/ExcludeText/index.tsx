@@ -17,7 +17,7 @@ export const ExcludeText: React.FC<IExcludeTextProps> = ({
   same,
 }) => {
   return (
-    <Container>
+    <Container mt={3}>
       <Status excluded={excluded} />
       <TextValue same={same} excluded={excluded}>
         {text}

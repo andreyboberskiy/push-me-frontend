@@ -15,6 +15,14 @@ type IRefreshTokenResponse = {
   refreshToken: string;
 };
 
+export const setRefreshToken = (token) => {
+  localStorage.setItem(localStorageKeys.refreshToken, token);
+};
+
+export const setAccessToken = (token) => {
+  localStorage.setItem(localStorageKeys.accessToken, `Bearer ${token}`);
+};
+
 const authService = {
   logIn(payload): Promise<TLogInResponse> {
     return BaseAxiosInstance.post(`${apiPrefix}/auth/sign-in`, payload);
@@ -25,10 +33,6 @@ const authService = {
   getAccessToken() {
     const token = localStorage.getItem(localStorageKeys.accessToken);
     return token;
-  },
-
-  setAccessToken(token) {
-    localStorage.setItem(localStorageKeys.accessToken, `Bearer ${token}`);
   },
 
   clearAuthTokens() {
@@ -46,17 +50,13 @@ const authService = {
       }
     );
 
-    this.setRefreshToken(res.refreshToken);
-    this.setAccessToken(res.accessToken);
+    setRefreshToken(res.refreshToken);
+    setAccessToken(res.accessToken);
   },
 
   getRefreshToken() {
     const token = localStorage.getItem(localStorageKeys.refreshToken);
     return token;
-  },
-
-  setRefreshToken(token) {
-    localStorage.setItem(localStorageKeys.refreshToken, token);
   },
 
   getUser() {
@@ -66,6 +66,9 @@ const authService = {
       }, 200);
     });
   },
+
+  setAccessToken,
+  setRefreshToken,
 };
 
 export default authService;

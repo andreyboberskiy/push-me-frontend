@@ -27,8 +27,12 @@ export const addTemplateAction = (template: ITemplate) => ({
 });
 
 export const loadTemplateAction = (id: number) => async (dispatch) => {
-  const { template } = await templateServices.getTemplate(id);
-  dispatch(addTemplateAction(template));
+  try {
+    const { template } = await templateServices.getTemplate(id);
+    dispatch(addTemplateAction(template));
+  } catch (e) {
+    console.log(e);
+  }
 };
 
 export const setUserTemplatesIdsAction = (idList: number[] = []) => ({

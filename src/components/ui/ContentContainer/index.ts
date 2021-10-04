@@ -7,6 +7,6 @@ export const ContentContainer = styled<any>(Box)`
   min-width: 1150px;
   width: 100%;
 
-  ${(props) => (props.withNavbar ? 'margin: 110px auto 0;' : 'margin: 0 auto;')}
+  ${(props) => (props.withNavbar ? 'margin: 150px auto 0;' : 'margin: 0 auto;')}
   padding: 0px 40px;
 `;

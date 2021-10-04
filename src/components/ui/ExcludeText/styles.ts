@@ -5,7 +5,7 @@ import { Text } from 'components/ui/Text';
 import { Row } from 'components/common';
 import { Button } from 'components/ui/Button';
 
-export const Container = styled(Row)``;
+export const Container = styled<any>(Row)``;
 
 export const Status = styled<any>(Box).attrs<any>((props) => ({
   bg: props.excluded ? 'red' : 'green',

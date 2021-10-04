@@ -17,4 +17,6 @@ export interface ITemplate {
   url: string;
   dateCreated: string;
   selectorsData: ISelectorsData;
+  image?: string;
+  subscribers: number[];
 }

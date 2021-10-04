@@ -1,5 +1,5 @@
 import { AUTH_LOGOUT, AUTH_SET_USER } from './constants';
-import { IAction } from '../../../types/common';
+import { IAction } from 'types/common';
 
 const initialState = {
   authed: false,
@@ -31,10 +31,10 @@ const authReducer: TAuthReducer = (
 ) => {
   switch (type) {
     case AUTH_SET_USER: {
-      return { ...state, authed: true, ...payload };
+      return { ...state, authed: true, user: payload.user };
     }
     case AUTH_LOGOUT: {
-      return { authed: false };
+      return { ...state, authed: false };
     }
     default:
       return state;

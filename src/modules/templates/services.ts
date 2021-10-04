@@ -19,4 +19,12 @@ export const templateServices = {
       payload
     );
   },
+  subscribe: (id: number) => {
+    return AuthedAxiosInstance.post(
+      `${apiPrefix}${templatesPrefix}/subscribe`,
+      {
+        id,
+      }
+    );
+  },
 };

@@ -52,9 +52,10 @@ export const setUpAuthInterceptorsAction = () => (dispatch) => {
       if (error.response?.status === 401 && !error.response?.logout) {
         try {
           await authService.refreshToken();
+
           return AuthedAxiosInstance.request({
             ...error.config,
-            data: JSON.parse(error.config.data),
+            data: error.config.data ? JSON.parse(error.config.data) : undefined,
             headers: {
               ...(error.config.headers || {}),
               Authorization: authService.getAccessToken(),
@@ -62,7 +63,7 @@ export const setUpAuthInterceptorsAction = () => (dispatch) => {
           });
         } catch (e) {
           // eslint-disable-next-line
-          console.log(e);
+          console.log('auth', e);
           /*
            * In this case upper scope will receive message from first request eg. `Unauthenticated.`
            */

@@ -28,6 +28,8 @@ export const NavBar = styled(Box).attrs({
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  height: 110px;
 `;
 
 export const Logo = styled(Image).attrs({
