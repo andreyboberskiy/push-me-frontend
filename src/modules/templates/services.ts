@@ -27,4 +27,12 @@ export const templateServices = {
       }
     );
   },
+  unsubscribe: (id: number) => {
+    return AuthedAxiosInstance.post(
+      `${apiPrefix}${templatesPrefix}/unsubscribe`,
+      {
+        id,
+      }
+    );
+  },
 };

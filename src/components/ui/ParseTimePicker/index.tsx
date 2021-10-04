@@ -62,6 +62,8 @@ const getNameByDateKey = (dateKey: string): string => {
   }
 };
 
+const dateKeys = ['s', 'm', 'h', 'd'];
+
 export const ParseTimePicker: React.FC<IParseTimePickerProps> = ({
   onChange,
   value,
@@ -100,9 +102,12 @@ export const ParseTimePicker: React.FC<IParseTimePickerProps> = ({
         <ModalContainer>
           <ModalTitle>Choose how often wa should check updates</ModalTitle>
 
-          {map(['s', 'm', 'h', 'd'], (dateKey) => (
+          {map(dateKeys, (dateKey) => (
             <SliderContainer key={dateKey}>
               <Slider
+                disabled={dateKeys.some(
+                  (key) => localValues[key] > 0 && key !== dateKey
+                )}
                 value={localValues[dateKey]}
                 min={0}
                 max={getSliderMaxValue(dateKey)}

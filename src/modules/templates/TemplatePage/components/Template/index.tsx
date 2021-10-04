@@ -30,6 +30,8 @@ const Template = ({
       try {
         if (checked) {
           await templateServices.subscribe(template.id);
+        } else {
+          await templateServices.unsubscribe(template.id);
         }
         await loadTemplate();
       } catch (e) {
