@@ -15,8 +15,8 @@ class RequestError extends Error {
       if (response.data.validation) {
         this.validation = response.data.validation;
       }
-      if (response.data.error) {
-        this.message = response.data.error.message;
+      if (response.data.message) {
+        this.message = response.data.message;
       }
     }
   }

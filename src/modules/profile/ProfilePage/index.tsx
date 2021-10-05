@@ -24,6 +24,7 @@ import { useDispatch } from 'react-redux';
 import { logOutAction, setUserAction } from 'modules/auth/store/actions';
 import routesByName from 'constants/routesByName';
 import { useHistory } from 'react-router-dom';
+import { safely } from 'libs/toast/functions';
 
 const ProfilePage = () => {
   const dispatch = useDispatch();
@@ -32,13 +33,10 @@ const ProfilePage = () => {
 
   const handleChangeTelegram = useCallback(
     async (telId) => {
-      try {
+      await safely(async () => {
         const { user: updatedUser } = await authService.addTelegramId(telId);
-
         dispatch(setUserAction(updatedUser));
-      } catch (e) {
-        console.log(e);
-      }
+      });
     },
     [dispatch]
   );

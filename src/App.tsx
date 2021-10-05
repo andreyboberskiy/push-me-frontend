@@ -7,6 +7,8 @@ import routesByName from 'constants/routesByName';
 import AuthedRoutes from 'hocs/AuthedRoutes';
 import { initialLoadAction } from 'modules/app/store/actions';
 
+import Toast from 'libs/toast';
+
 import ProfilePage from 'modules/profile/ProfilePage';
 import HomePage from 'modules/HomePage';
 import UnAuthedNavbar from 'modules/Navbar';
@@ -53,6 +55,7 @@ function App() {
           <Route path={routesByName.template()} component={TemplatePage} />
         </AuthedRoutes>
       </Switch>
+      <Toast />
     </>
   ) : (
     <div>Loading...</div>
