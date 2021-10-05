@@ -1,16 +1,13 @@
 import React, { memo, useCallback } from 'react';
 import { Form } from 'react-final-form';
+import map from 'lodash/map';
 
 import { FormByTextQuery } from 'modules/createTemplate/CreateTemplatePage/components/FormByTextQuery';
 
-import {
-  Container,
-  Content,
-  Title,
-} from 'modules/createTemplate/CreateTemplatePage/styles';
 import { IParseFieldState } from 'components/fields/ParseField';
-import map from 'lodash/map';
 import createTemplateService from 'modules/createTemplate/service';
+
+import { Content, Title } from './styles';
 
 const initialValues = {
   url: '',
@@ -57,16 +54,14 @@ const CreateTemplatePage = () => {
   );
 
   return (
-    <Container>
-      <Content>
-        <Title>Create new template</Title>
-      </Content>
+    <Content>
+      <Title>Create new template</Title>
       <Form
         onSubmit={handleSubmit}
         initialValues={initialValues}
         render={FormByTextQuery}
       />
-    </Container>
+    </Content>
   );
 };
 

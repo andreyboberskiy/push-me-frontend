@@ -48,7 +48,7 @@ export const AuthButton = styled<any>(Text).attrs({
   cursor: pointer;
 
   &:not(:first-child) {
-    margin-left: 16px;
+    margin-left: 24px;
   }
 `;
 

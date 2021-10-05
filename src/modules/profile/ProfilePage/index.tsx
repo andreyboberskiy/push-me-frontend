@@ -11,14 +11,43 @@ import {
   SettingsContainer,
   Container,
   InfoRow,
+  ChangeField,
+  LogoutBtn,
 } from './styles';
 
 // ts
 import { IUser } from 'types/common';
 import { format } from 'date-fns';
+import { useCallback } from 'react';
+import authService from 'modules/auth/service';
+import { useDispatch } from 'react-redux';
+import { logOutAction, setUserAction } from 'modules/auth/store/actions';
+import routesByName from 'constants/routesByName';
+import { useHistory } from 'react-router-dom';
 
 const ProfilePage = () => {
+  const dispatch = useDispatch();
+  const history = useHistory();
   const user: IUser = useTypedSelector(getUserSelector);
+
+  const handleChangeTelegram = useCallback(
+    async (telId) => {
+      try {
+        const { user: updatedUser } = await authService.addTelegramId(telId);
+
+        dispatch(setUserAction(updatedUser));
+      } catch (e) {
+        console.log(e);
+      }
+    },
+    [dispatch]
+  );
+
+  const handleLogout = useCallback(() => {
+    dispatch(logOutAction());
+
+    history.replace(routesByName.homePage);
+  }, [dispatch, history]);
 
   return user ? (
     <ContentContainer withNavbar>
@@ -26,6 +55,10 @@ const ProfilePage = () => {
         <RowBetween>
           <UserAvatar user={user} />
           <UserInfo>
+            <InfoRow>
+              <UserInfoLabel>Id</UserInfoLabel>
+              <UserInfoValue>{user.id}</UserInfoValue>
+            </InfoRow>
             <InfoRow>
               <UserInfoLabel>Name</UserInfoLabel>
               <UserInfoValue>{user.name}</UserInfoValue>
@@ -38,10 +71,7 @@ const ProfilePage = () => {
               <UserInfoLabel>Email</UserInfoLabel>
               <UserInfoValue>{user.email}</UserInfoValue>
             </InfoRow>
-            <InfoRow>
-              <UserInfoLabel>Id</UserInfoLabel>
-              <UserInfoValue>{user.id}</UserInfoValue>
-            </InfoRow>
+
             <InfoRow>
               <UserInfoLabel>Created</UserInfoLabel>
               <UserInfoValue>
@@ -50,10 +80,17 @@ const ProfilePage = () => {
             </InfoRow>
             <InfoRow>
               <UserInfoLabel>Telegram Chat Id</UserInfoLabel>
-              <UserInfoValue>
-                {user.telegramChatId ? user.telegramChatId : 'Not connected'}
-              </UserInfoValue>
+
+              <ChangeField
+                name="telegramId"
+                value={
+                  user.telegramChatId ? user.telegramChatId : 'Not connected'
+                }
+                onChange={handleChangeTelegram}
+              />
             </InfoRow>
+
+            <LogoutBtn onClick={handleLogout}>Log out</LogoutBtn>
           </UserInfo>
           <SettingsContainer />
         </RowBetween>

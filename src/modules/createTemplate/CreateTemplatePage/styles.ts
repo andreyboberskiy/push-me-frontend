@@ -9,14 +9,11 @@ export { RowBetween } from 'components/common';
 
 export const Content = styled(ContentContainer).attrs({
   withNavbar: true,
-  pt: 4,
-})`
-  ${space}
-`;
+})``;
 
-export const Container = styled(Box).attrs({ bg: 'grey' })`
-  height: 100vh;
-`;
+// export const Container = styled(Box).attrs({ bg: 'grey' })`
+//   height: 100vh;
+// `;
 
 export const Title = styled(Text).attrs({ fontSize: 5, color: 'darkBlue' })``;
 

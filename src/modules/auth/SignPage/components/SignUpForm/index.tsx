@@ -8,23 +8,19 @@ import { FormWrapper, Container, SubmitButton, TextInputField } from './styles';
 const FormRender: React.FC<FormRenderProps> = ({ handleSubmit }) => {
   return (
     <FormWrapper>
-      <Field name="name" component={TextInputField} placeholder="Name" />
-      <Field name="surname" component={TextInputField} placeholder="Surname" />
-      <Field name="email" component={TextInputField} placeholder="Email" />
-      <Field
-        name="password"
-        component={TextInputField}
-        placeholder="Password"
-      />
+      <form onSubmit={handleSubmit}>
+        <Field name="name" component={TextInputField} label="Name" />
+        <Field name="surname" component={TextInputField} label="Surname" />
+        <Field name="email" component={TextInputField} label="Email" />
+        <Field name="password" component={TextInputField} label="Password" />
+        <Field
+          name="confirmPassword"
+          component={TextInputField}
+          label="Confirm password"
+        />
+      </form>
 
-      <Field
-        mt={5}
-        name="confirmPassword"
-        component={TextInputField}
-        placeholder="Confirm password"
-      />
-
-      <SubmitButton onClick={handleSubmit}>Confirm</SubmitButton>
+      <SubmitButton>Confirm</SubmitButton>
     </FormWrapper>
   );
 };

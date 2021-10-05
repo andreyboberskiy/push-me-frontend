@@ -6,11 +6,11 @@ import { TextInputField as TextInputFieldUI } from 'components/fields';
 
 export const TextInputField = styled(TextInputFieldUI)`
   & + & {
-    margin-top: 33px;
+    margin-top: 24px;
   }
 `;
 
-export const Container = styled(Box).attrs({ bg: 'white', p: 5 })``;
+export const Container = styled(Box).attrs({ p: 5 })``;
 
 export const FormWrapper = styled(Box)`
   display: flex;

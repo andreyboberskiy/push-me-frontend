@@ -26,7 +26,7 @@ const authReducer: TAuthReducer = (
       return { ...state, authed: true, user: payload.user };
     }
     case AUTH_LOGOUT: {
-      return { ...state, authed: false };
+      return { ...state, authed: false, user: null };
     }
     default:
       return state;

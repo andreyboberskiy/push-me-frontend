@@ -25,6 +25,11 @@ export const setAccessToken = (token) => {
   localStorage.setItem(localStorageKeys.accessToken, `Bearer ${token}`);
 };
 
+export const clearAuthTokens = () => {
+  localStorage.removeItem(localStorageKeys.accessToken);
+  localStorage.removeItem(localStorageKeys.refreshToken);
+};
+
 const authService = {
   logIn(payload): Promise<TLogInResponse> {
     return BaseAxiosInstance.post(`${apiPrefix}/auth/sign-in`, payload);
@@ -35,11 +40,6 @@ const authService = {
   getAccessToken() {
     const token = localStorage.getItem(localStorageKeys.accessToken);
     return token;
-  },
-
-  clearAuthTokens() {
-    localStorage.removeItem(localStorageKeys.accessToken);
-    localStorage.removeItem(localStorageKeys.refreshToken);
   },
 
   async refreshToken() {
@@ -65,6 +65,19 @@ const authService = {
     return AuthedAxiosInstance.get(`${apiPrefix}/${userPrefix}`);
   },
 
+  addTelegramId(id): Promise<{ user: IUser }> {
+    return AuthedAxiosInstance.put(
+      `${apiPrefix}/${userPrefix}/add-telegram-id`,
+      {
+        id,
+      }
+    );
+  },
+
+  logout() {
+    clearAuthTokens();
+  },
+  clearAuthTokens,
   setAccessToken,
   setRefreshToken,
 };

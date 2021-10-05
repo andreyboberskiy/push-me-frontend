@@ -6,6 +6,7 @@ import {
   ColorProps,
   space,
   SpaceProps,
+  fontSize,
 } from 'styled-system';
 
 export interface IBoxProps extends SpaceProps, ColorProps, ShadowProps {}
@@ -14,4 +15,5 @@ export const Box = styled('div')`
   ${space}
   ${color}
   ${shadow}
+  ${fontSize}
 `;

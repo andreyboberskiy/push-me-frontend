@@ -11,7 +11,8 @@ import {
   Content,
   Title,
   TemplatesTable,
-} from 'modules/templates/MyTemplatesPage/styles';
+  EmptyContainer,
+} from './styles';
 
 // Interface
 import { IReducerStore } from 'store/reducers';
@@ -54,7 +55,7 @@ const MyTemplatesPage = () => {
             totalTemplatesLength={totalTemplatesLength}
           />
         ) : (
-          'You have not any templates'
+          <EmptyContainer>You have not any templates yet</EmptyContainer>
         )}
       </Content>
     </Container>

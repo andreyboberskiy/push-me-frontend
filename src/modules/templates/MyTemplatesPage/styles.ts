@@ -12,3 +12,8 @@ export const Content = styled(ContentContainer).attrs({
 export const Container = styled(Box).attrs({ bg: 'grey' })`
   min-height: 100vh;
 `;
+
+export const EmptyContainer = styled(Box).attrs({ mt: 100, fontSize: 6 })`
+  justify-content: center;
+  display: flex;
+`;

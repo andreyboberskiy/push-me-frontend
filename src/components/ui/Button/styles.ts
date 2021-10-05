@@ -43,9 +43,9 @@ export const ButtonUI = styled('button').attrs<any>({
         color: 'white',
       },
       disabled: {
-        bg: 'gray',
-        borderColor: 'gray4',
-        color: 'white',
+        bg: 'grey',
+        borderColor: 'grey4',
+        color: 'grey5',
         opacity: '0.3',
       },
     },

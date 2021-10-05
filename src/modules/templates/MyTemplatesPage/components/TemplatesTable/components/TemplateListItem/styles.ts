@@ -15,13 +15,13 @@ export const Container = styled(Box).attrs({ bg: 'grey', py: 4 })`
   flex-direction: row;
   justify-content: space-between;
 
-  border: 1px solid ${theme.colors.gray1};
+  border: 1px solid ${theme.colors.grey1};
   border-top: none;
 
   cursor: pointer;
   transition: background-color 0.3s linear;
   &:hover {
-    background-color: ${theme.colors.gray2};
+    background-color: ${theme.colors.grey2};
   }
 `;
 

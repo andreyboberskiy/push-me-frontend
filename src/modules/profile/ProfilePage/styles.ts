@@ -1,6 +1,12 @@
 import styled from 'styled-components';
 
-import { Box, Text, UserAvatar as UserAvatarUI } from 'components/ui';
+import {
+  Box,
+  Text,
+  UserAvatar as UserAvatarUI,
+  ChangeField as ChangeFieldUI,
+  Button as ButtonUI,
+} from 'components/ui';
 import { Row } from 'components/common';
 
 export { ContentContainer } from 'components/ui';
@@ -18,7 +24,7 @@ export const UserInfo = styled(Box).attrs({
   py: 12,
   px: 10,
   ml: 100,
-  bg: 'gray2',
+  bg: 'grey2',
 })`
   border-radius: 30px;
   width: 100%;
@@ -50,4 +56,18 @@ export const UserAvatar = styled(UserAvatarUI)`
   max-width: 250px;
   height: 250px;
   width: 100%;
+`;
+
+export const ChangeField = styled(ChangeFieldUI).attrs({
+  labelStyles: {
+    fontSize: 5,
+    fontFamily: 1,
+  },
+  inputProps: {
+    label: 'Telegram chat id',
+  },
+})``;
+
+export const LogoutBtn = styled(ButtonUI).attrs({ size: 'sm', mt: 10 })`
+  margin-left: auto;
 `;

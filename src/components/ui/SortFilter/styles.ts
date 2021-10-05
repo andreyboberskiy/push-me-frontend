@@ -14,7 +14,7 @@ export const Container = styled(Box).attrs({ px: 4, py: 4 })<any>`
   transition: background-color 0.3s linear;
 
   &:hover {
-    background-color: ${theme.colors.gray1};
+    background-color: ${theme.colors.grey1};
   }
 `;
 
@@ -43,7 +43,7 @@ export const Name = styled(Text).attrs({
 export const ArrowDown = styled<any>(ArrowDownIcon).attrs<{
   $active: boolean;
 }>((props) => ({
-  htmlColor: props.$active ? theme.colors.black : theme.colors.gray3,
+  htmlColor: props.$active ? theme.colors.black : theme.colors.grey3,
   fontSize: 'inherit',
 }))``;
 

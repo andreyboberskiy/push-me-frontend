@@ -10,9 +10,12 @@ export const initialLoadAction = () => async (dispatch) => {
   dispatch(setUpAuthInterceptorsAction());
 
   if (accessToken) {
-    const { user } = await authService.getUser();
-
-    dispatch(setUserAction(user));
+    try {
+      const { user } = await authService.getUser();
+      dispatch(setUserAction(user));
+    } catch (e) {
+      console.log(e);
+    }
   }
 
   dispatch({ type: APP_INITIAL_LOADED });

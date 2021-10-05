@@ -35,7 +35,7 @@ const SignPage: React.FC<ISignPageProps> = ({
   }, [activeTabFromProps]);
   return (
     <Container as="section">
-      <ContentContainer>
+      <ContentContainer bg="darkBlue" withNavbar>
         <FormContainer>
           <Tabs>
             <TabBtn
@@ -46,12 +46,12 @@ const SignPage: React.FC<ISignPageProps> = ({
               Login
             </TabBtn>
             <TabBtn
-              ml={5}
+              ml={10}
               onClick={() => {
                 setActiveTab('signUp');
               }}
             >
-              SignUp
+              Sign Up
             </TabBtn>
           </Tabs>
           {activeTab === 'signUp' ? <SignUpForm /> : <LoginForm />}

@@ -15,7 +15,7 @@ export const TitleLabel = styled(Text).attrs({
 `;
 
 export const Header = styled(Box).attrs({
-  bg: 'gray2',
+  bg: 'grey2',
 })`
   display: flex;
   justify-content: space-between;
@@ -24,7 +24,7 @@ export const Header = styled(Box).attrs({
   border-top-left-radius: 12px;
   border-top-right-radius: 12px;
 
-  border: 1px solid ${theme.colors.gray1};
+  border: 1px solid ${theme.colors.grey1};
   overflow: hidden;
 `;
 

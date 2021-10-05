@@ -43,9 +43,7 @@ const UnAuthedNavbar = () => {
   const renderUnAuthedPart = () => (
     <LeftMenu>
       <AuthButton onClick={handlePressLogin}>Login</AuthButton>
-      <AuthButton onClick={handlePressSignUp} ml={4}>
-        Sign Up
-      </AuthButton>
+      <AuthButton onClick={handlePressSignUp}>Sign Up</AuthButton>
     </LeftMenu>
   );
 

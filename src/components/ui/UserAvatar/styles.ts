@@ -9,7 +9,7 @@ export const Image = styled(ImageUI)`
   border-radius: 50%;
 `;
 
-export const Container = styled(Box).attrs({ bg: 'gray3' })`
+export const Container = styled(Box).attrs({ bg: 'grey3' })`
   width: 100%;
   border-radius: 50%;
 

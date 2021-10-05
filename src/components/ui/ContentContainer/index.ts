@@ -7,5 +7,5 @@ export const ContentContainer = styled<any>(Box).attrs({ px: 4 })`
   min-width: 1150px;
   width: 100%;
 
-  ${(props) => (props.withNavbar ? 'margin: 150px auto 0;' : 'margin: 0 auto;')}
+  ${(props) => props.withNavbar && 'padding-top: 150px;'}
 `;
