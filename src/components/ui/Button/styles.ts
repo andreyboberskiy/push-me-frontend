@@ -1,12 +1,19 @@
 import styled from 'styled-components';
-import { color, fontSize, shadow, space, variant } from 'styled-system';
+import { color, shadow, space, variant } from 'styled-system';
+import { getThemeColor } from 'styles/theme';
 
-export const ButtonUI = styled('button').attrs<any>({
-  fontFamily: 'Ubuntu',
-  boxShadow: 'button1',
-})<any>`
+export const ButtonUI = styled('button').attrs<any>((props) => ({
+  fontFamily: 0,
+}))<any>`
   ${variant({
     variants: {
+      primary: {
+        borderRadius: 15,
+        bg: 'teal300',
+        borderColor: 'transparent',
+        borderWidth: 0,
+        color: 'white',
+      },
       lightFilled: {
         bg: 'lightBlue',
         borderColor: 'transparent',
@@ -50,8 +57,6 @@ export const ButtonUI = styled('button').attrs<any>({
       },
     },
   })}
-  border-size: 3px;
-  border-style: solid;
   ${variant({
     prop: 'size',
     variants: {
@@ -67,6 +72,10 @@ export const ButtonUI = styled('button').attrs<any>({
         borderRadius: 12,
         fontSize: 4,
       },
+      md: {
+        py: 4,
+        borderRadius: 15,
+      },
       lg: {
         px: 6,
         py: 4,
@@ -80,9 +89,19 @@ export const ButtonUI = styled('button').attrs<any>({
   cursor: pointer;
   display: block;
   align-items: center;
+  border-style: solid;
 
+  transition: background-color 0.2s linear;
+
+  ${(props) => props.fullWidth && 'width: 100%;'}
+
+  ${(props) =>
+    props.variant === 'primary' &&
+    `&:hover{
+    background: ${getThemeColor(props, 'teal200')};
+  }`}
+ 
   ${space};
-  ${fontSize};
   ${color};
   ${shadow}
 `;

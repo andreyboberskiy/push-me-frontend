@@ -1,10 +1,10 @@
 import styled from 'styled-components';
-import { space } from 'styled-system';
 
-import { Box, Text, ContentContainer, Button } from 'components/ui';
-import { ParseTimePickerField as ParseTimePickerFieldUI } from 'components/fields';
+import { Box, Text, Button } from 'components/ui';
+import { ContentContainer } from 'components/common';
+import { ParseTimePickerField as ParseTimePickerFieldUI } from 'components/formControls';
 
-export { TextInputField, ParseField } from 'components/fields';
+export { TextInputField, ParseField } from 'components/formControls';
 export { RowBetween } from 'components/common';
 
 export const Content = styled(ContentContainer).attrs({

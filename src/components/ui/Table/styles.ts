@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import theme from 'styles/theme';
 
 import { Box, Text } from 'components/ui';
+import { color } from 'styled-system';
 
 export { SortFilter as Filter } from 'components/ui';
 
@@ -24,7 +24,7 @@ export const Header = styled(Box).attrs({
   border-top-left-radius: 12px;
   border-top-right-radius: 12px;
 
-  border: 1px solid ${theme.colors.grey1};
+  border: 1px solid ${color('grey1')};
   overflow: hidden;
 `;
 

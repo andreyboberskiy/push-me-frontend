@@ -1,11 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { ThemeProvider } from 'styled-components';
 import { BrowserRouter as Router } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
 
-import theme from 'styles/theme';
 import store from 'store';
 
 import './styles/index.css';
@@ -13,13 +11,11 @@ import './styles/index.css';
 import App from 'App';
 
 ReactDOM.render(
-  <ThemeProvider theme={theme}>
-    <Router>
-      <Provider store={store}>
-        <App />
-      </Provider>
-    </Router>
-  </ThemeProvider>,
+  <Router>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </Router>,
   document.getElementById('root')
 );
 

@@ -1,5 +1,4 @@
-export { Box } from './Box';
-export { ContentContainer } from './ContentContainer';
+export { Box } from 'components/ui/Box';
 export { Image } from './Image';
 export { Button } from 'components/ui/Button';
 export { Text } from './Text';

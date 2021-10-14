@@ -4,7 +4,7 @@ import map from 'lodash/map';
 
 import { FormByTextQuery } from 'modules/createTemplate/CreateTemplatePage/components/FormByTextQuery';
 
-import { IParseFieldState } from 'components/fields/ParseField';
+import { IParseFieldState } from 'components/formControls/ParseField';
 import createTemplateService from 'modules/createTemplate/service';
 
 import { Content, Title } from './styles';

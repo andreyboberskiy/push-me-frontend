@@ -1,7 +1,6 @@
 import EditIconUI from '@material-ui/icons/Edit';
 import styled from 'styled-components';
-
-import theme from 'styles/theme';
+import { color } from 'styled-system';
 
 import { Box } from 'components/ui/Box';
 import { Text } from 'components/ui/Text';
@@ -22,7 +21,7 @@ export const ModalContainer = styled(Box).attrs({ pb: 5 })``;
 export const SliderContainer = styled(Box).attrs({ mt: 4 })``;
 
 export const EditIcon = styled(EditIconUI).attrs({
-  htmlColor: theme.colors.darkBlue,
+  htmlColor: color('darkBlue'),
 })`
   position: absolute;
   top: 50%;

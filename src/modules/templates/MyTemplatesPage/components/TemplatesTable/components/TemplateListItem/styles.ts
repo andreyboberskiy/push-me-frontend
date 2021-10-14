@@ -1,9 +1,7 @@
-//  , ValueText
-
 import styled from 'styled-components';
-import theme from 'styles/theme';
 
 import { Box, Text } from 'components/ui';
+import { color } from 'styled-system';
 
 export { StatusCircle } from 'components/ui';
 
@@ -15,13 +13,13 @@ export const Container = styled(Box).attrs({ bg: 'grey', py: 4 })`
   flex-direction: row;
   justify-content: space-between;
 
-  border: 1px solid ${theme.colors.grey1};
+  border: 1px solid ${color('grey2')};
   border-top: none;
 
   cursor: pointer;
   transition: background-color 0.3s linear;
   &:hover {
-    background-color: ${theme.colors.grey2};
+    background-color: ${color('grey2')};
   }
 `;
 

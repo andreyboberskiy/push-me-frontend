@@ -1,5 +1,5 @@
 class RequestError extends Error {
-  validation = {};
+  errors = {};
 
   response: any;
 
@@ -12,8 +12,12 @@ class RequestError extends Error {
     });
 
     if (response?.data) {
-      if (response.data.validation) {
-        this.validation = response.data.validation;
+      if (response.data.errors) {
+        this.errors = response.data.errors.reduce((acc, item) => {
+          acc[item.param] = item.msg;
+
+          return acc;
+        }, {});
       }
       if (response.data.message) {
         this.message = response.data.message;
@@ -26,7 +30,7 @@ class RequestError extends Error {
   }
 
   get validationErrors() {
-    return this.validation;
+    return this.errors;
   }
 }
 

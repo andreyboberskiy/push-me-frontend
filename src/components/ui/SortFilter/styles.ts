@@ -1,9 +1,8 @@
 import ArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import styled from 'styled-components';
+import { color } from 'styled-system';
 
-import theme from 'styles/theme';
-
-import { Box } from '../Box';
+import { Box } from 'components/ui/Box';
 import { Text } from '../Text';
 
 export const Container = styled(Box).attrs({ px: 4, py: 4 })<any>`
@@ -14,7 +13,7 @@ export const Container = styled(Box).attrs({ px: 4, py: 4 })<any>`
   transition: background-color 0.3s linear;
 
   &:hover {
-    background-color: ${theme.colors.grey1};
+    background-color: ${color('black1')};
   }
 `;
 
@@ -43,7 +42,7 @@ export const Name = styled(Text).attrs({
 export const ArrowDown = styled<any>(ArrowDownIcon).attrs<{
   $active: boolean;
 }>((props) => ({
-  htmlColor: props.$active ? theme.colors.black : theme.colors.grey3,
+  htmlColor: props.$active ? color('black') : color('grey3'),
   fontSize: 'inherit',
 }))``;
 

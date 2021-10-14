@@ -5,13 +5,13 @@ import { Box, Text, Image } from 'components/ui';
 import mainLogo from 'assets/images/common/mainLogo.png';
 
 // types
-import { IBoxProps } from '../../components/ui/Box';
+import { IBoxProps } from 'components/ui/Box';
 
 interface IContainer extends IBoxProps {
   showShadow?: boolean;
 }
 
-export { ContentContainer } from 'components/ui';
+export { ContentContainer } from 'components/common';
 
 export const Container = styled(Box).attrs({ bg: 'darkBlue' })<IContainer>`
   position: fixed;

@@ -1,64 +1,4 @@
 /*------------FONTS-------------*/
-@font-face {
-  font-family: 'Round';
-  src: url('../assets/fonts/MPLUSRounded1c-ExtraBold.ttf');
-  font-weight: 800;
-}
-@font-face {
-  font-family: 'Round';
-  src: url('../assets/fonts/MPLUSRounded1c-Black.ttf');
-  font-weight: 900;
-}
-@font-face {
-  font-family: 'Round';
-  src: url('../assets/fonts/MPLUSRounded1c-Bold.ttf');
-  font-weight: 700;
-}
-@font-face {
-  font-family: 'Round';
-  src: url('../assets/fonts/MPLUSRounded1c-Light.ttf');
-  font-weight: 300;
-}
-@font-face {
-  font-family: 'Round';
-  src: url('../assets/fonts/MPLUSRounded1c-Medium.ttf');
-  font-weight: 500;
-}
-@font-face {
-  font-family: 'Round';
-  src: url('../assets/fonts/MPLUSRounded1c-Regular.ttf');
-  font-weight: 400;
-}
-@font-face {
-  font-family: 'Round';
-  src: url('../assets/fonts/MPLUSRounded1c-Thin.ttf');
-  font-weight: 200;
-}
-@font-face {
-  font-family: 'Varela';
-  src: url('../assets/fonts/VarelaRound-Regular.otf');
-  font-weight: 400;
-}
-@font-face {
-  font-family: 'Ubuntu';
-  src: url('../assets/fonts/Ubuntu-Regular.ttf');
-  font-weight: 400;
-}
-@font-face {
-  font-family: 'Ubuntu';
-  src: url('../assets/fonts/Ubuntu-Bold.ttf');
-  font-weight: 700;
-}
-@font-face {
-  font-family: 'Ubuntu';
-  src: url('../assets/fonts/Ubuntu-Medium.ttf');
-  font-weight: 500;
-}
-@font-face {
-  font-family: 'Ubuntu';
-  src: url('../assets/fonts/Ubuntu-Light.ttf');
-  font-weight: 300;
-}
 
 /*------------NORMALIZE-------------*/
 
@@ -69,15 +9,19 @@
 body,
 html {
   height: 100%;
-  color: #ffffff;
   margin: 0;
   padding: 0;
 }
 
 body {
-  background-color: #ffffff;
-  color: #151515;
-  font-family: 'Ubuntu', sans-serif;
+  background-color: #f7fafc;
+  color: #2d3748;
+  font-family: Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+
+  transition: all 0.2s linear;
 }
 
 #root {

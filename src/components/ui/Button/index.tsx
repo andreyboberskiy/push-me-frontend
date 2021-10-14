@@ -4,7 +4,8 @@ import { ColorProps, FontSizeProps, SpaceProps } from 'styled-system';
 import { ButtonUI } from './styles';
 
 // Interface
-interface IButtonProps extends SpaceProps, FontSizeProps, ColorProps {
+export interface IButtonProps extends SpaceProps, FontSizeProps, ColorProps {
+  type?: string;
   disabled?: boolean;
   variant?:
     | 'lightFilled'
@@ -14,13 +15,14 @@ interface IButtonProps extends SpaceProps, FontSizeProps, ColorProps {
     | 'errorFilled'
     | 'errorOutlined'
     | 'green';
-  size?: 'xs' | 'sm' | 'lg';
+  size?: 'xs' | 'sm' | 'lg' | 'md';
   onClick?: MouseEventHandler | undefined;
+  fullWidth?: boolean;
 }
 
 export const Button: React.FC<IButtonProps> = ({
   children,
-  variant = 'lightFilled',
+  variant = 'primary',
   size = 'sm',
   disabled,
   ...props

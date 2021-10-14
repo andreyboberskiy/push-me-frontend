@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import { Box, Button } from 'components/ui';
 
-import { TextInputField as TextInputFieldUI } from 'components/fields';
+import { TextInputField as TextInputFieldUI } from 'components/formControls';
 
 export const TextInputField = styled(TextInputFieldUI)`
   & + & {

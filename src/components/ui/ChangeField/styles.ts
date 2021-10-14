@@ -4,12 +4,12 @@ import { Text } from 'components/ui/Text';
 import { Button } from 'components/ui/Button';
 import { Row } from 'components/common';
 
-import { TextInputField as TextInputFieldUI } from 'components/fields';
+import { TextInputField as TextInputFieldUI } from 'components/formControls';
 
 export {
   TextInputField as TextInputFieldUI,
   FormSubmitButton,
-} from 'components/fields';
+} from 'components/formControls';
 
 export const TextInputField = styled(TextInputFieldUI).attrs({ mr: 4 })``;
 

@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 import Modal from '@material-ui/core/Modal';
 import Close from '@material-ui/icons/CloseRounded';
+import { color } from 'styled-system';
 
 import { modalSize } from 'styles/variants';
 
 import { Box } from 'components/ui/Box';
-import theme from 'styles/theme';
 
 export const ModalUI = styled(Modal)``;
 
@@ -47,6 +47,6 @@ export const CloseButton = styled<any>(Box).attrs({
 `;
 
 export const CloseIcon = styled(Close).attrs({
-  htmlColor: theme.colors.lightBlue,
+  htmlColor: color('lightBlue'),
   fontSize: 'medium',
 })``;

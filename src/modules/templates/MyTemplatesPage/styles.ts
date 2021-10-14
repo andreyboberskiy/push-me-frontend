@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
-import { Box, ContentContainer } from 'components/ui';
+import { Box } from 'components/ui';
+import { ContentContainer } from 'components/common';
 
 export { TemplatesTable } from 'modules/templates/MyTemplatesPage/components/TemplatesTable';
 

@@ -3,72 +3,128 @@ import { TextField } from '@material-ui/core';
 import { space } from 'styled-system';
 
 import { Box } from 'components/ui';
-import theme from 'styles/theme';
+import { getThemeColor, getThemeFontFamily } from 'styles/theme';
 
 export const Container = styled(Box)`
   width: 100%;
 `;
 
-function getStringStyle({ color }) {
+function getStringStyle({ color: defColor, focusedColor }) {
   return `
       .Mui-focused{
         .MuiOutlinedInput-root {
-          color: ${color};
+          color: ${defColor};
           fieldset {
-            border: 3px solid ${color} !important;
+            border: 1px solid ${focusedColor} !important;
            }
          }
           fieldset {
-              border: 3px solid ${color} !important;
+              border: 1px solid ${focusedColor} !important;
             }
           &:hover {
             fieldset {
-              border: 3px solid ${color} !important;
+              border: 1px solid ${focusedColor} !important;
             }
           }
       }
       .MuiInputBase-root:hover {
-        border-color: ${color};
+        border-color: ${defColor};
+      }
+      .MuiInputBase-root.Mui-focused {
+        box-shadow: ${focusedColor} 0 0 3px 1px;
       }
       .MuiOutlinedInput-root {
-        color: ${color};
+        color: ${defColor};
         fieldset {
-           border: 3px solid ${color}; 
+           transition: all .2s linear;
+
+           border: 1px solid ${defColor}; 
            &:hover{
-           color${color};
+           color${defColor};
          }
         }
         &:hover fieldset {
-          border-color: ${color};
+          border-color: ${defColor};
         }
-      }`;
+      }
+      
+     .MuiFormLabel-root {
+  
+      &.Mui-focused {
+        color: ${focusedColor};
+      }
+    }`;
 }
 
-function getStyleByState(state) {
-  switch (state) {
+function getStyleByState(props) {
+  let localState = null;
+  if (props.error?.length) {
+    localState = 'invalid';
+  }
+  switch (props.state || localState) {
     case 'valid': {
-      return getStringStyle({ color: theme.colors.green });
+      return getStringStyle({
+        color: getThemeColor(props, 'green'),
+        focusedColor: getThemeColor(props, 'green'),
+      });
     }
     case 'invalid': {
-      return getStringStyle({ color: theme.colors.red });
+      return getStringStyle({
+        color: getThemeColor(props, 'red400'),
+        focusedColor: getThemeColor(props, 'red600'),
+      });
     }
     default: {
-      return getStringStyle({ color: theme.colors.lightBlue });
+      return getStringStyle({
+        color: getThemeColor(props, 'gray200'),
+        focusedColor: getThemeColor(props, 'blue500'),
+      });
     }
   }
 }
 
-export const TextInputUI = styled<any>(TextField).attrs({})`
-  ${(props) => getStyleByState(props.state)}
+export const TextInputUI = styled<any>(TextField)`
+  ${(props) => getStyleByState(props)}
 
-  width: inherit;
+  width: 100%;
 
   .MuiInputBase-root {
-    border-radius: 14px;
-    font-size: ${theme.fontSizes[4]}px;
+    border-radius: 15px;
+    font-size: 14px;
+    color: ${(props) => getThemeColor(props, 'gray800')};
+
+    input {
+      border-radius: 15px;
+      transition: all 0.2s linear;
+    }
+    &.Mui-focused input {
+      transition: all 0.2s linear;
+    }
+
+    legend span {
+      padding: 0 10px;
+      display: none;
+    }
   }
+  .MuiFormLabel-root {
+    transform: translate(14px, 14px) scale(1);
+
+    color: ${(props) => getThemeColor(props, 'gray400')};
+    font-size: 18px;
+
+    &.MuiInputLabel-shrink {
+      transform: translate(5px, -20px) scale(0.7);
+      transform-origin: top left;
+    }
+  }
+
   .MuiOutlinedInput-input {
-    padding: 16px 24px;
+    padding: 16px;
+  }
+  .MuiFormHelperText-root.Mui-error {
+    color: ${(props) => getThemeColor(props, 'red400')};
+    font-family: ${(props) => getThemeFontFamily(props, 0)};
+    margin: 5px 0 0 5px;
   }
 
   ${space}

@@ -22,13 +22,13 @@ const UnAuthedNavbar = () => {
   );
 
   const handlePressLogin = useCallback(() => {
-    history.push(routesByName.sign, { activeTab: 'login' });
+    history.push(routesByName.signIn);
   }, [history]);
   const handlePressLogo = useCallback(() => {
     history.push(routesByName.homePage);
   }, [history]);
   const handlePressSignUp = useCallback(() => {
-    history.push(routesByName.sign, { activeTab: 'signUp' });
+    history.push(routesByName.signUp);
   }, [history]);
   const handlePressTemplates = useCallback(() => {
     history.push(routesByName.myTemplatesPage);

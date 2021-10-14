@@ -1,6 +1,7 @@
 export default {
   homePage: '/home',
-  sign: '/sign',
+  signUp: '/sign-up',
+  signIn: '/sign-in',
   profilePage: '/profile',
   myTemplatesPage: '/my-templates',
   createTemplate: '/create-templates',

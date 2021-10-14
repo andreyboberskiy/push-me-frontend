@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import { Box, Button } from 'components/ui';
 
-export { ContentContainer } from 'components/ui';
+export { ContentContainer } from 'components/common';
 export { LoginForm } from './components/LoginForm';
 export { SignUpForm } from './components/SignUpForm';
 

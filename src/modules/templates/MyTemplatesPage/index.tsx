@@ -43,8 +43,6 @@ const MyTemplatesPage = () => {
     [templateListIds, allTemplatesMap]
   );
 
-  console.log({ allTemplatesMap, templateListIds, userTemplatesList });
-
   return (
     <Container>
       <Content>

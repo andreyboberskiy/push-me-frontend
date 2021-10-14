@@ -9,7 +9,7 @@ import {
 } from 'components/ui';
 import { Row } from 'components/common';
 
-export { ContentContainer } from 'components/ui';
+export { ContentContainer } from 'components/common';
 
 export const InfoRow = styled(Row)`
   &:not(:first-child) {

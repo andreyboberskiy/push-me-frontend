@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { Box } from '../Box';
+import { Box } from 'components/ui/Box';
 
 export const Circle = styled<any>(Box).attrs((props) => ({
   bg: props.active ? 'green' : 'red',

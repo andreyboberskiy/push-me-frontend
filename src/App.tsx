@@ -1,6 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+
+import { ThemeProvider } from 'styled-components';
+import { darkTheme, lightTheme } from 'styles/theme';
 
 import routesByName from 'constants/routesByName';
 
@@ -12,10 +15,10 @@ import Toast from 'libs/toast';
 import ProfilePage from 'modules/profile/ProfilePage';
 import HomePage from 'modules/HomePage';
 import UnAuthedNavbar from 'modules/Navbar';
-import SignPage from 'modules/auth/SignPage';
 import MyTemplatesPage from 'modules/templates/MyTemplatesPage';
 import CreateTemplatePage from 'modules/createTemplate/CreateTemplatePage';
 import TemplatePage from 'modules/templates/TemplatePage';
+import SignUpPage from 'modules/auth/SignUpPage';
 
 import UIComponentsPage from 'components/UIComponentsPage';
 
@@ -36,12 +39,14 @@ function App() {
 
   return appLoaded ? (
     <>
-      <UnAuthedNavbar />
+      {
+        // <UnAuthedNavbar />
+      }
       <Switch>
         <Route path="/UI" component={UIComponentsPage} />
 
         <Route path={routesByName.homePage} component={HomePage} />
-        <Route path={routesByName.sign} component={SignPage} />
+        <Route path={routesByName.signUp} component={SignUpPage} />
         <AuthedRoutes>
           <Route path={routesByName.profilePage} component={ProfilePage} />
           <Route
@@ -62,4 +67,14 @@ function App() {
   );
 }
 
-export default App;
+const AppWrapper = (props) => {
+  const [theme, setTheme] = useState('light');
+
+  return (
+    <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
+      <App {...props} />
+    </ThemeProvider>
+  );
+};
+
+export default AppWrapper;
