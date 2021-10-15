@@ -29,6 +29,5 @@ export async function validate(values) {
       .required('Email is required'),
   });
 
-  const errors = await yupValidate(schema, values);
-  return errors;
+  return yupValidate(schema)(values);
 }

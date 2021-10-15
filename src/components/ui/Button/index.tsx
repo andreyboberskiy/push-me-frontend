@@ -7,6 +7,7 @@ import { ButtonUI } from './styles';
 export interface IButtonProps extends SpaceProps, FontSizeProps, ColorProps {
   type?: string;
   disabled?: boolean;
+  loading?: boolean;
   variant?:
     | 'lightFilled'
     | 'lightOutlined'

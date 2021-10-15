@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { ReactComponent as Sprite } from 'assets/sprite.svg';
+
 import { ThemeProvider } from 'styled-components';
 import { darkTheme, lightTheme } from 'styles/theme';
 
@@ -14,7 +16,6 @@ import Toast from 'libs/toast';
 
 import ProfilePage from 'modules/profile/ProfilePage';
 import HomePage from 'modules/HomePage';
-import UnAuthedNavbar from 'modules/Navbar';
 import MyTemplatesPage from 'modules/templates/MyTemplatesPage';
 import CreateTemplatePage from 'modules/createTemplate/CreateTemplatePage';
 import TemplatePage from 'modules/templates/TemplatePage';
@@ -72,6 +73,7 @@ const AppWrapper = (props) => {
 
   return (
     <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
+      <Sprite />
       <App {...props} />
     </ThemeProvider>
   );

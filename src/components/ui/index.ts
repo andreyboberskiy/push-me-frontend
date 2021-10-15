@@ -14,3 +14,4 @@ export { PageTitle } from './PageTitle';
 export { Switcher } from './Switcher';
 export { UserAvatar } from './UserAvatar';
 export { ChangeField } from './ChangeField';
+export { SpriteIcon } from './SpriteIcon';

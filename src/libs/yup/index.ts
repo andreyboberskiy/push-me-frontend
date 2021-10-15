@@ -7,12 +7,14 @@ const setInError = (errors, innerError) => {
 
 const emptyObj = Object.create(null);
 
-export const yupValidate = async (schema, values) => {
-  try {
-    await schema.validate(values, { abortEarly: false });
-  } catch (err) {
-    return err.inner.reduce(setInError, emptyObj);
-  }
+export const yupValidate = (schema) => {
+  return async function validate(values) {
+    try {
+      await schema.validate(values, { abortEarly: false });
+    } catch (err) {
+      return err.inner.reduce(setInError, emptyObj);
+    }
+  };
 };
 
 export default yup;

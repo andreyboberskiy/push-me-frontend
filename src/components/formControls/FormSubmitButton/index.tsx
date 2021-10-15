@@ -7,11 +7,16 @@ import { IButtonProps } from 'components/ui/Button';
 
 interface IProps extends IButtonProps {}
 
-export const FormSubmitButton: React.FC<IProps> = (props) => {
+export const FormSubmitButton: React.FC<IProps> = ({ loading, ...props }) => {
   return (
     <FormSpy>
-      {({ valid, submitting }) => (
-        <Button type="submit" disabled={!valid || submitting} {...props}>
+      {({ submitting, validating }) => (
+        <Button
+          type="submit"
+          disabled={validating || submitting}
+          loading={validating || submitting || loading}
+          {...props}
+        >
           {props.children || 'Submit'}
         </Button>
       )}

@@ -3,26 +3,10 @@ import { FieldRenderProps } from 'react-final-form';
 
 import { TextInput } from 'components/ui';
 
+import FormFieldWrapper from '../FormFieldWrapper';
+
 interface IProps extends FieldRenderProps<string, HTMLElement> {}
 
-export const TextInputField: React.FC<IProps> = ({
-  input: { value, onChange, ...inputProps },
-  meta,
-  ...props
-}) => {
-  const hasError = useMemo(
-    () => meta.visited && (meta.error || meta.submitError),
-    [meta]
-  );
-
-  return (
-    <TextInput
-      value={value}
-      onChange={onChange}
-      error={hasError}
-      helperText={hasError ? meta.error || meta.submitError : ''}
-      {...props}
-      {...inputProps}
-    />
-  );
+export const TextInputField: React.FC<IProps> = (props) => {
+  return <FormFieldWrapper {...props} component={TextInput} />;
 };

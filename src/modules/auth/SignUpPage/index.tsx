@@ -16,6 +16,7 @@ import {
   FormContainer,
   SignUpForm,
 } from './styles';
+import { FormApi } from 'final-form';
 
 const initialValues = {
   name: '',
@@ -26,13 +27,13 @@ const initialValues = {
 };
 
 const SignUpPage = () => {
-  const handleSubmit = useCallback(async (values) => {
+  const handleSubmit = useCallback(async (values, form: FormApi) => {
     try {
       await authService.signUp(values);
       successToast('Account have been created! Please, sign in.');
     } catch (e) {
       errorToast(e.generalError);
-      return e.validationErrors;
+      return { ...e.validationErrors };
     }
   }, []);
   return (
