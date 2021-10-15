@@ -2,6 +2,7 @@ export default {
   homePage: '/home',
   signUp: '/sign-up',
   signIn: '/sign-in',
+  dashboard: '/dashboard',
   profilePage: '/profile',
   myTemplatesPage: '/my-templates',
   createTemplate: '/create-templates',

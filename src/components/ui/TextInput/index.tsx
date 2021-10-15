@@ -13,6 +13,7 @@ export interface ITextInputProps
   className?: string;
   endIcon?: { name: string; onClick: () => void };
   state?: 'valid' | 'invalid' | 'default';
+  layoutBg?: string;
 }
 
 export const TextInput: React.FC<ITextInputProps> = ({
@@ -20,16 +21,17 @@ export const TextInput: React.FC<ITextInputProps> = ({
   variant,
   endIcon,
   InputProps,
+  layoutBg = 'white',
   ...props
 }) => {
   const [stylesAttrs, otherProps] = useStyleProperties(props);
-
   const state = props.error ? 'invalid' : props.state || 'default';
   return (
     <Container className={className} {...stylesAttrs}>
       <TextInputUI
         state={state}
         variant={variant || 'outlined'}
+        layoutBg={layoutBg}
         InputProps={{
           endAdornment: (
             <InputAdornment position="end">

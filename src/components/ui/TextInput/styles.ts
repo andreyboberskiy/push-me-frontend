@@ -92,7 +92,7 @@ function getStyleByState(props) {
     default: {
       return getStringStyle({
         color: getThemeColor(props, 'gray200'),
-        focusedColor: getThemeColor(props, 'blue500'),
+        focusedColor: getThemeColor(props, 'teal500'),
       });
     }
   }
@@ -126,12 +126,12 @@ export const TextInputUI = styled<any>(TextField)`
     transform: translate(14px, 16px) scale(1);
 
     &.Mui-focused {
-      background: #fff;
+      background: ${(props) => getThemeColor(props, props.layoutBg)};
       padding: 0 5px;
     }
     &.MuiInputLabel-shrink {
-      transform: translate(10px, -7px) scale(0.7);
-      background: #fff;
+      transform: translate(15px, -7px) scale(0.7);
+      background: ${(props) => getThemeColor(props, props.layoutBg)};
       padding: 0 5px;
     }
   }

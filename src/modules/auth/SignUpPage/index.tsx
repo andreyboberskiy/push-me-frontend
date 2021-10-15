@@ -1,9 +1,13 @@
 import { useCallback } from 'react';
 import { Form } from 'react-final-form';
+import { useHistory } from 'react-router-dom';
 
 import { errorToast, successToast } from 'libs/toast/functions';
+
 import authService from '../service';
 import { validate } from './SignUpForm/validation';
+
+import routesByName from 'constants/routesByName';
 
 import {
   ContentContainer,
@@ -16,6 +20,8 @@ import {
   FormContainer,
   SignUpForm,
 } from './styles';
+
+// Interface
 import { FormApi } from 'final-form';
 
 const initialValues = {
@@ -27,15 +33,21 @@ const initialValues = {
 };
 
 const SignUpPage = () => {
-  const handleSubmit = useCallback(async (values, form: FormApi) => {
-    try {
-      await authService.signUp(values);
-      successToast('Account have been created! Please, sign in.');
-    } catch (e) {
-      errorToast(e.generalError);
-      return { ...e.validationErrors };
-    }
-  }, []);
+  const history = useHistory();
+
+  const handleSubmit = useCallback(
+    async (values, form: FormApi) => {
+      try {
+        await authService.signUp(values);
+        successToast('Account have been created! Please, sign in.');
+        history.push(routesByName.signIn);
+      } catch (e) {
+        errorToast(e.generalError);
+        return { ...e.validationErrors };
+      }
+    },
+    [history]
+  );
   return (
     <ContentContainer>
       <Background>

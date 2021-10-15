@@ -21,7 +21,7 @@ const AuthedRoutes: React.FC<IAuthedRoutesProps> = ({ children }) => {
 
   _useEffect(() => {
     if (!authed) {
-      history.replace(routesByName.homePage);
+      history.replace(routesByName.signUp);
     }
   }, [authed]);
 

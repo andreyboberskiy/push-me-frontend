@@ -7,11 +7,11 @@ const apiPrefix = '/api';
 const userPrefix = '/user';
 
 // types
-type TLogInResponse = {
+interface ILogInResponse {
   accessToken: string;
   refreshToken: string;
   user: any;
-};
+}
 type IRefreshTokenResponse = {
   accessToken: string;
   refreshToken: string;
@@ -31,8 +31,15 @@ export const clearAuthTokens = () => {
 };
 
 const authService = {
-  logIn(payload): Promise<TLogInResponse> {
-    return BaseAxiosInstance.post(`${apiPrefix}/auth/sign-in`, payload);
+  logIn(payload): Promise<ILogInResponse> {
+    return BaseAxiosInstance.post<ILogInResponse, ILogInResponse>(
+      `${apiPrefix}/auth/sign-in`,
+      payload
+    ).then((response) => {
+      setAccessToken(response.accessToken);
+      setRefreshToken(response.refreshToken);
+      return response;
+    });
   },
   signUp(payload) {
     return BaseAxiosInstance.post(`${apiPrefix}/auth/sign-up`, payload);

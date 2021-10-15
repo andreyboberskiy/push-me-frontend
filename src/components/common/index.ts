@@ -29,9 +29,6 @@ export const ColumnHalf = styled(Column)`
 
 export const ContentContainer = styled<any>(Box).attrs({ px: 4 })`
   margin: 0 auto;
-  max-width: 1660px;
-  min-width: 1150px;
+  max-width: 1440px;
   width: 100%;
-
-  ${(props) => props.withNavbar && 'padding-top: 150px;'}
 `;

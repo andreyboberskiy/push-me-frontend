@@ -20,6 +20,7 @@ import MyTemplatesPage from 'modules/templates/MyTemplatesPage';
 import CreateTemplatePage from 'modules/createTemplate/CreateTemplatePage';
 import TemplatePage from 'modules/templates/TemplatePage';
 import SignUpPage from 'modules/auth/SignUpPage';
+import SignInPage from 'modules/auth/SignInPage';
 
 import UIComponentsPage from 'components/UIComponentsPage';
 
@@ -48,6 +49,7 @@ function App() {
 
         <Route path={routesByName.homePage} component={HomePage} />
         <Route path={routesByName.signUp} component={SignUpPage} />
+        <Route path={routesByName.signIn} component={SignInPage} />
         <AuthedRoutes>
           <Route path={routesByName.profilePage} component={ProfilePage} />
           <Route

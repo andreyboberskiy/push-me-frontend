@@ -10,10 +10,14 @@ interface IProps extends IButtonProps {}
 export const FormSubmitButton: React.FC<IProps> = ({ loading, ...props }) => {
   return (
     <FormSpy>
-      {({ submitting, validating }) => (
+      {({ submitting, validating, dirtySinceLastSubmit, hasSubmitErrors }) => (
         <Button
           type="submit"
-          disabled={validating || submitting}
+          disabled={
+            validating ||
+            submitting ||
+            (hasSubmitErrors && !dirtySinceLastSubmit)
+          }
           loading={validating || submitting || loading}
           {...props}
         >

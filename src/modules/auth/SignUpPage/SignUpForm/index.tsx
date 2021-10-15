@@ -1,5 +1,9 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { Field, FormRenderProps } from 'react-final-form';
+import { useHistory } from 'react-router-dom';
+
+import useFlagManager from 'hooks/useFlagManager';
+import routesByName from 'constants/routesByName';
 
 import {
   Container,
@@ -10,10 +14,14 @@ import {
   SignInPressedText,
   Row,
 } from './styles';
-import useFlagManager from 'hooks/useFlagManager';
 
 export const SignUpForm: React.FC<FormRenderProps> = ({ handleSubmit }) => {
+  const history = useHistory();
   const showPass = useFlagManager(false);
+
+  const onOpenSignIn = useCallback(() => {
+    history.push(routesByName.signIn);
+  }, [history]);
   return (
     <Container>
       <form noValidate onSubmit={handleSubmit}>
@@ -46,7 +54,7 @@ export const SignUpForm: React.FC<FormRenderProps> = ({ handleSubmit }) => {
         </SubmitButton>
         <Row mt={6}>
           <HaveAccountText>Already have an account?</HaveAccountText>
-          <SignInPressedText>Sign In</SignInPressedText>
+          <SignInPressedText onClick={onOpenSignIn}>Sign In</SignInPressedText>
         </Row>
       </form>
     </Container>

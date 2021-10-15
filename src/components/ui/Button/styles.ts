@@ -4,6 +4,7 @@ import { getThemeColor } from 'styles/theme';
 
 export const ButtonUI = styled('button').attrs<any>((props) => ({
   fontFamily: 0,
+  borderWidth: 0,
 }))<any>`
   ${variant({
     variants: {
@@ -11,7 +12,6 @@ export const ButtonUI = styled('button').attrs<any>((props) => ({
         borderRadius: 15,
         bg: 'teal300',
         borderColor: 'transparent',
-        borderWidth: 0,
         color: 'white',
       },
       lightFilled: {
@@ -50,8 +50,8 @@ export const ButtonUI = styled('button').attrs<any>((props) => ({
         color: 'white',
       },
       disabled: {
-        bg: 'grey',
-        borderColor: 'grey4',
+        bg: 'gray200',
+        borderColor: 'gray400',
         color: 'grey5',
         opacity: '0.3',
       },
@@ -89,7 +89,7 @@ export const ButtonUI = styled('button').attrs<any>((props) => ({
   cursor: pointer;
   display: block;
   align-items: center;
-  border-style: solid;
+  border: none;
 
   transition: background-color 0.2s linear;
 
