@@ -19,6 +19,9 @@ class RequestError extends Error {
           return acc;
         }, {});
       }
+      if (response.data.validation) {
+        this.errors = { ...this.errors, ...response.data.validation };
+      }
       if (response.data.message) {
         this.message = response.data.message;
       }

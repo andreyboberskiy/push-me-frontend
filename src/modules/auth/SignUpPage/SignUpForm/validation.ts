@@ -1,28 +1,34 @@
-import { checkMinMaxLength, pushError } from 'utils/validation';
+import yup, { yupValidate } from 'libs/yup';
 
-export function validate(values) {
-  const name = checkMinMaxLength(values.name, 3, 18);
-  const surname = checkMinMaxLength(values.surname, 3, 18);
-  const password = checkMinMaxLength(values.password, 8, 30);
-  let email = checkMinMaxLength(values.email, 3, 30);
-  let confirmPassword = '';
+export async function validate(values) {
+  const schema = yup.object().shape({
+    name: yup
+      .string()
+      .min(3, 'Name must contain at least 3 characters')
+      .max(20, 'Name must contain a maximum of 20 characters')
+      .required('Name is required'),
+    surname: yup
+      .string()
+      .min(3, 'Surname must contain at least 3 characters')
+      .max(30, 'Surname must contain a maximum of 30 characters')
+      .required('Surname is required'),
+    password: yup
+      .string()
+      .required('Please enter your password')
+      .matches(
+        /^.*(?=.{8,})((?=.*[!@#$%^&*()\-_=+{};:,<.>]){1})(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/,
+        'Password must contain at least 8 characters, one uppercase, one number and one special case character'
+      ),
+    confirmPassword: yup
+      .string()
+      .required('Please confirm your password')
+      .oneOf([yup.ref('password'), null], "Passwords don't match"),
+    email: yup
+      .string()
+      .email('Email is not valid')
+      .required('Email is required'),
+  });
 
-  const emailRegExp =
-    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
-  if (values.email && !emailRegExp.test(values.email.toLowerCase())) {
-    email = 'Email is not valid';
-  }
-
-  if (values.password !== values.confirmPassword) {
-    confirmPassword = 'Password mismatch';
-  }
-
-  return pushError(
-    { error: name, field: 'name' },
-    { error: surname, field: 'surname' },
-    { error: password, field: 'password' },
-    { error: email, field: 'email' },
-    { error: confirmPassword, field: 'confirmPassword' }
-  );
+  const errors = await yupValidate(schema, values);
+  return errors;
 }

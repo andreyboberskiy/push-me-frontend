@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import { Form } from 'react-final-form';
 
-import { errorToast } from 'libs/toast/functions';
+import { errorToast, successToast } from 'libs/toast/functions';
 import authService from '../service';
 import { validate } from './SignUpForm/validation';
 
@@ -29,9 +29,9 @@ const SignUpPage = () => {
   const handleSubmit = useCallback(async (values) => {
     try {
       await authService.signUp(values);
+      successToast('Account have been created! Please, sign in.');
     } catch (e) {
       errorToast(e.generalError);
-      console.log(e.validationErrors, 'kek');
       return e.validationErrors;
     }
   }, []);

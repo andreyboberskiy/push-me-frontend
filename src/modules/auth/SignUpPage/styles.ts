@@ -21,7 +21,7 @@ export const Background = styled(Box).attrs({
   px: 6,
   py: 4,
 })`
-  position: fixed;
+  position: absolute;
 
   top: 0;
   left: 0;
@@ -43,7 +43,10 @@ export const BottomBanner = styled(Box)`
   min-height: 40vh;
 `;
 
-export const Column = styled(Box)``;
+export const Column = styled(Box)`
+  max-width: 450px;
+  width: 100%;
+`;
 
 export const FormContainer = styled(Box).attrs({
   bg: 'white',
@@ -51,8 +54,6 @@ export const FormContainer = styled(Box).attrs({
   px: 12,
   mt: 16,
 })`
-  max-width: 450px;
-  width: 100%;
   border-radius: 15px;
 
   box-shadow: 0 7px 23px rgba(0, 0, 0, 0.05);
@@ -70,6 +71,7 @@ export const WelcomeText = styled(Text).attrs({
   fontSize: 16,
   mt: 3,
 })`
+  text-align: center;
   line-height: 24px;
   letter-spacing: 1.1px;
 `;

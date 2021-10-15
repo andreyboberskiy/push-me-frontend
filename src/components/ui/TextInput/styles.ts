@@ -103,17 +103,18 @@ export const TextInputUI = styled<any>(TextField)`
 
     legend span {
       padding: 0 10px;
-      display: none;
+      //display: none;
     }
   }
   .MuiFormLabel-root {
-    transform: translate(14px, 14px) scale(1);
+    transform: translate(14px, 16px) scale(1);
 
     color: ${(props) => getThemeColor(props, 'gray400')};
     font-size: 18px;
 
     &.MuiInputLabel-shrink {
-      transform: translate(5px, -20px) scale(0.7);
+      //transform: translate(5px, -20px) scale(0.7);
+      transform: translate(5px, -5px) scale(0.7);
       transform-origin: top left;
     }
   }

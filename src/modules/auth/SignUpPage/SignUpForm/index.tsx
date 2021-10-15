@@ -14,20 +14,20 @@ export const SignUpForm: React.FC<FormRenderProps> = ({ handleSubmit }) => {
   return (
     <Container>
       <Field name="name" component={TextInputField} label="Name" />
-      <Field name="surname" component={TextInputField} mt={6} label="Surname" />
-      <Field name="email" component={TextInputField} mt={6} label="Email" />
+      <Field name="surname" component={TextInputField} mt={7} label="Surname" />
+      <Field name="email" component={TextInputField} mt={7} label="Email" />
       <Field
         name="password"
         component={TextInputField}
         type="password"
-        mt={6}
+        mt={7}
         label="Password"
       />
       <Field
         name="confirmPassword"
         component={TextInputField}
         type="password"
-        mt={6}
+        mt={7}
         label="Confirm password"
       />
       <SubmitButton size="md" mt={9} onClick={handleSubmit} fullWidth>
