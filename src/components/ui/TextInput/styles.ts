@@ -31,14 +31,14 @@ function getStringStyle({ color: defColor, focusedColor }) {
         border-color: ${defColor};
       }
       .MuiInputBase-root.Mui-focused {
-        box-shadow: ${focusedColor} 0 0 3px 1px;
+        filter: drop-shadow(0 0 3px ${focusedColor});
       }
       .MuiOutlinedInput-root {
         color: ${defColor};
         fieldset {
            transition: all .2s linear;
 
-           border: 1px solid ${defColor}; 
+           border: 1px solid ${defColor};
            &:hover{
            color${defColor};
          }
@@ -47,9 +47,9 @@ function getStringStyle({ color: defColor, focusedColor }) {
           border-color: ${defColor};
         }
       }
-      
+
      .MuiFormLabel-root {
-  
+
       &.Mui-focused {
         color: ${focusedColor};
       }
@@ -99,6 +99,10 @@ export const TextInputUI = styled<any>(TextField)`
     }
     &.Mui-focused input {
       transition: all 0.2s linear;
+    }
+
+    fieldset {
+      padding: 0;
     }
 
     legend span {
