@@ -2,6 +2,8 @@ import styled from 'styled-components';
 
 import { Box } from 'components/ui';
 
+export { NavLink } from './NavLink';
+
 export const Row = styled(Box)`
   display: flex;
   align-items: center;
@@ -27,8 +29,11 @@ export const ColumnHalf = styled(Column)`
   width: 49%;
 `;
 
-export const ContentContainer = styled<any>(Box).attrs({ px: 4 })`
+export const UnAuthContentContainer = styled<any>(Box).attrs({ px: 4 })`
   margin: 0 auto;
   max-width: 1440px;
+  width: 100%;
+`;
+export const AuthContentContainer = styled<any>(Box).attrs({ px: 4, py: 6 })`
   width: 100%;
 `;

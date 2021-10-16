@@ -15,3 +15,6 @@ export { Switcher } from './Switcher';
 export { UserAvatar } from './UserAvatar';
 export { ChangeField } from './ChangeField';
 export { SpriteIcon } from './SpriteIcon';
+export { Logo } from './Logo';
+export { Card } from './Card';
+export { TabButton } from './TabButton';

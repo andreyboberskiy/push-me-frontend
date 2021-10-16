@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import {
   Container,
-  ContentContainer,
+  UnAuthContentContainer,
   FormContainer,
   SignUpForm,
   LoginForm,
@@ -35,7 +35,7 @@ const SignPage: React.FC<ISignPageProps> = ({
   }, [activeTabFromProps]);
   return (
     <Container as="section">
-      <ContentContainer bg="darkBlue" withNavbar>
+      <UnAuthContentContainer bg="darkBlue" withNavbar>
         <FormContainer>
           <Tabs>
             <TabBtn
@@ -56,7 +56,7 @@ const SignPage: React.FC<ISignPageProps> = ({
           </Tabs>
           {activeTab === 'signUp' ? <SignUpForm /> : <LoginForm />}
         </FormContainer>
-      </ContentContainer>
+      </UnAuthContentContainer>
     </Container>
   );
 };

@@ -3,8 +3,11 @@ export default {
   signUp: '/sign-up',
   signIn: '/sign-in',
   dashboard: '/dashboard',
-  profilePage: '/profile',
-  myTemplatesPage: '/my-templates',
+  profile: '/profile',
+  billing: '/billing',
+  settings: '/setting',
+  myTemplates: '/my-templates',
+  findTemplates: '/find-templates',
   createTemplate: '/create-templates',
   template: (id: number | string = ':id') => `/template/${id}`,
 };

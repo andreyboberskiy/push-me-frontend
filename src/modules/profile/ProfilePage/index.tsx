@@ -2,7 +2,7 @@ import useTypedSelector from 'hooks/useTypedSelector';
 import { getUserSelector } from 'modules/auth/store/selectors';
 
 import {
-  ContentContainer,
+  UnAuthContentContainer,
   RowBetween,
   UserAvatar,
   UserInfo,
@@ -48,7 +48,7 @@ const ProfilePage = () => {
   }, [dispatch, history]);
 
   return user ? (
-    <ContentContainer withNavbar>
+    <UnAuthContentContainer withNavbar>
       <Container>
         <RowBetween>
           <UserAvatar user={user} />
@@ -93,7 +93,7 @@ const ProfilePage = () => {
           <SettingsContainer />
         </RowBetween>
       </Container>
-    </ContentContainer>
+    </UnAuthContentContainer>
   ) : null;
 };
 

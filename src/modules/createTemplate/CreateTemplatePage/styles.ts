@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 
 import { Box, Text, Button } from 'components/ui';
-import { ContentContainer } from 'components/common';
+import { UnAuthContentContainer } from 'components/common';
 import { ParseTimePickerField as ParseTimePickerFieldUI } from 'components/formControls';
 
 export { TextInputField, ParseField } from 'components/formControls';
 export { RowBetween } from 'components/common';
 
-export const Content = styled(ContentContainer).attrs({
+export const Content = styled(UnAuthContentContainer).attrs({
   withNavbar: true,
 })``;
 

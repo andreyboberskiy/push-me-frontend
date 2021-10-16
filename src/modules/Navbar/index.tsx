@@ -10,7 +10,7 @@ import {
   LeftMenu,
   Logo,
   NavBar,
-  ContentContainer,
+  UnAuthContentContainer,
   Container,
   RightAuthMenu,
 } from './styles';
@@ -31,13 +31,13 @@ const UnAuthedNavbar = () => {
     history.push(routesByName.signUp);
   }, [history]);
   const handlePressTemplates = useCallback(() => {
-    history.push(routesByName.myTemplatesPage);
+    history.push(routesByName.myTemplates);
   }, [history]);
   const handlePressCreateTemplate = useCallback(() => {
     history.push(routesByName.createTemplate);
   }, [history]);
   const handlePushProfile = useCallback(() => {
-    history.push(routesByName.profilePage);
+    history.push(routesByName.profile);
   }, [history]);
 
   const renderUnAuthedPart = () => (
@@ -59,12 +59,12 @@ const UnAuthedNavbar = () => {
 
   return (
     <Container showShadow>
-      <ContentContainer>
+      <UnAuthContentContainer>
         <NavBar as="nav">
           <Logo onClick={handlePressLogo} />
           {authed ? renderAuthedPart() : renderUnAuthedPart()}
         </NavBar>
-      </ContentContainer>
+      </UnAuthContentContainer>
     </Container>
   );
 };

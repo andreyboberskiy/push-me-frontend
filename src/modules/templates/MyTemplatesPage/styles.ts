@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 
 import { Box } from 'components/ui';
-import { ContentContainer } from 'components/common';
+import { UnAuthContentContainer } from 'components/common';
 
 export { TemplatesTable } from 'modules/templates/MyTemplatesPage/components/TemplatesTable';
 
 export { PageTitle as Title } from 'components/ui';
-export const Content = styled(ContentContainer).attrs({
+export const Content = styled(UnAuthContentContainer).attrs({
   withNavbar: true,
 })``;
 

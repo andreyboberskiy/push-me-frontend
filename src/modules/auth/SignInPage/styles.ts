@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import bgImage from 'assets/images/sign-in/bg.png';
 
-import { ContentContainer as ContentContainerUI } from 'components/common';
+import { UnAuthContentContainer as ContentContainerUI } from 'components/common';
 import { Box, Image, Text } from 'components/ui';
 
 export { SignInForm } from './SignInForm';

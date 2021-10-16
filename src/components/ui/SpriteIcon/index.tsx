@@ -1,4 +1,5 @@
 import React, { useMemo } from 'react';
+import { getThemeColor } from 'styles/theme';
 
 interface ISizeConfig {
   lg: number;

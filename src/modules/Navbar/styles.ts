@@ -11,7 +11,7 @@ interface IContainer extends IBoxProps {
   showShadow?: boolean;
 }
 
-export { ContentContainer } from 'components/common';
+export { UnAuthContentContainer } from 'components/common';
 
 export const Container = styled(Box).attrs({ bg: 'darkBlue' })<IContainer>`
   position: fixed;

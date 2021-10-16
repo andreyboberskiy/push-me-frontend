@@ -22,9 +22,12 @@ import TemplatePage from 'modules/templates/TemplatePage';
 import SignUpPage from 'modules/auth/SignUpPage';
 import SignInPage from 'modules/auth/SignInPage';
 
+import Sidebar from 'modules/Sidebar';
+
 import UIComponentsPage from 'components/UIComponentsPage';
 
 import { IReducerStore } from 'store/reducers';
+import { AuthContentContainer } from 'components/common';
 
 function App() {
   const dispatch = useDispatch();
@@ -51,16 +54,21 @@ function App() {
         <Route path={routesByName.signUp} component={SignUpPage} />
         <Route path={routesByName.signIn} component={SignInPage} />
         <AuthedRoutes>
-          <Route path={routesByName.profilePage} component={ProfilePage} />
-          <Route
-            path={routesByName.myTemplatesPage}
-            component={MyTemplatesPage}
-          />
-          <Route
-            path={routesByName.createTemplate}
-            component={CreateTemplatePage}
-          />
-          <Route path={routesByName.template()} component={TemplatePage} />
+          <AuthContentContainer>
+            <Sidebar />
+            {
+              // <Route path={routesByName.profilePage} component={ProfilePage} />
+              // <Route
+              // path={routesByName.myTemplatesPage}
+              // component={MyTemplatesPage}
+              // />
+            }
+            <Route
+              path={routesByName.createTemplate}
+              component={CreateTemplatePage}
+            />
+            <Route path={routesByName.template()} component={TemplatePage} />
+          </AuthContentContainer>
         </AuthedRoutes>
       </Switch>
       <Toast />

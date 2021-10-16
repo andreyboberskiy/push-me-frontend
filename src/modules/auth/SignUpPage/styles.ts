@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import greenBg from 'assets/images/sign-up/top-banner.png';
 
 import { Box, Image, Text } from 'components/ui';
-import { ContentContainer as ContentContainerUI } from 'components/common';
+import { UnAuthContentContainer as ContentContainerUI } from 'components/common';
 
 export { SignUpForm } from './SignUpForm';
 

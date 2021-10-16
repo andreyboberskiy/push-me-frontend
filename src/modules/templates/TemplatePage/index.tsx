@@ -11,7 +11,7 @@ import { getTemplatesMapSelector } from 'modules/templates/store/selectors';
 import { loadTemplateAction } from 'modules/templates/store/actions';
 
 import {
-  ContentContainer,
+  UnAuthContentContainer,
   PageTitle,
   Template,
   RowBetween,
@@ -41,7 +41,7 @@ export const TemplatePage = () => {
   const template = templatesMap[id];
 
   return (
-    <ContentContainer withNavbar>
+    <UnAuthContentContainer withNavbar>
       {!loadingTemplate && template ? (
         <>
           <RowBetween>
@@ -58,7 +58,7 @@ export const TemplatePage = () => {
       ) : (
         'Loading...'
       )}
-    </ContentContainer>
+    </UnAuthContentContainer>
   );
 };
 

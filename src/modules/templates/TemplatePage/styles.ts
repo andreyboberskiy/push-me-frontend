@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Box, Text } from 'components/ui';
 
 export { PageTitle, StatusCircle } from 'components/ui';
-export { RowBetween, ContentContainer } from 'components/common';
+export { RowBetween, UnAuthContentContainer } from 'components/common';
 
 export { Template } from './components/Template';
 

@@ -36,8 +36,6 @@ export const LoginForm = memo(() => {
         dispatch(setUserAction(user));
         authService.setAccessToken(accessToken);
         authService.setRefreshToken(refreshToken);
-
-        history.push(routesByName.myTemplatesPage);
       } catch (e) {
         return e;
       }
