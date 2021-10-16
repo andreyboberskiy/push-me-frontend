@@ -12,7 +12,7 @@ export const Notifications = () => {
     <>
       <Container ref={iconRef} onClick={popover.turnIn}>
         <Badge badgeContent={100} size={18} max={99}>
-          <Icon name="bell" size="md" />
+          <Icon name="bell" />
         </Badge>
       </Container>
       <Popover

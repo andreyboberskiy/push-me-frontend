@@ -10,7 +10,7 @@ export const Container = styled(Box).attrs({ mr: 6 })`
 `;
 
 export const Icon = styled<any>(SpriteIcon).attrs({
-  size: 'md',
+  size: 'lg',
   color: 'gray500',
 })`
   ${color}

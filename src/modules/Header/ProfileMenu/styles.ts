@@ -16,12 +16,22 @@ export const UserName = styled(Text).attrs({ ml: 3, color: 'gray600' })`
   font-size: 18px;
 `;
 
+export const MenuIcon = styled(SpriteIcon).attrs({
+  mr: 3,
+  color: 'teal300',
+})`
+  position: absolute;
+  left: 16px;
+  ${space}
+  ${color}
+`;
+
 export const ArrowDown = styled(SpriteIcon).attrs({
   ml: 2,
   mt: 1,
   color: 'gray600',
   name: 'chevron-down',
-  size: 'xs',
+  size: 'sm',
 })`
   ${space}
   ${color}
@@ -33,6 +43,8 @@ export const MenuListItem = styled(Text).attrs({ py: 4, color: 'gray600' })`
   cursor: pointer;
   font-size: 14px;
   font-weight: 600;
+
+  position: relative;
 
   transition: background-color 0.2s linear;
   &:hover {

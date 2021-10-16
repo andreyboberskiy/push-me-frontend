@@ -1,9 +1,13 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useCallback, useRef } from 'react';
+import { useHistory } from 'react-router-dom';
 
-import { getUserSelector } from 'modules/auth/store/selectors';
 import useFlagManager from 'hooks/useFlagManager';
 import authService from 'modules/auth/service';
+import { setUserAction } from 'modules/auth/store/actions';
+import { getUserSelector } from 'modules/auth/store/selectors';
+
+import routesByName from 'constants/routesByName';
 
 import {
   Container,
@@ -12,10 +16,8 @@ import {
   ArrowDown,
   Popover,
   MenuListItem,
+  MenuIcon,
 } from './styles';
-import { setUserAction } from 'modules/auth/store/actions';
-import routesByName from 'constants/routesByName';
-import { useHistory } from 'react-router-dom';
 
 export const ProfileMenu = () => {
   const dispatch = useDispatch();
@@ -45,10 +47,22 @@ export const ProfileMenu = () => {
         open={popover.state}
         onClose={popover.turnOff}
       >
-        <MenuListItem>Profile</MenuListItem>
-        <MenuListItem>Settings</MenuListItem>
-        <MenuListItem>FAQ</MenuListItem>
-        <MenuListItem onClick={onSignOut}>Sign out</MenuListItem>
+        <MenuListItem>
+          <MenuIcon name="user" />
+          Profile
+        </MenuListItem>
+        <MenuListItem>
+          <MenuIcon name="settings" />
+          Settings
+        </MenuListItem>
+        <MenuListItem>
+          <MenuIcon name="question" />
+          FAQ
+        </MenuListItem>
+        <MenuListItem onClick={onSignOut}>
+          <MenuIcon name="sign-out" />
+          Sign out
+        </MenuListItem>
       </Popover>
     </>
   );

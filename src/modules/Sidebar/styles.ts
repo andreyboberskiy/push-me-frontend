@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 
-import { Box } from 'components/ui';
+import { Box, TabButton as TabButtonUI } from 'components/ui';
 
-export { Logo, TabButton } from 'components/ui';
+export { Logo } from 'components/ui';
 export { NavLink, Column } from 'components/common';
 
+export const TabButton = styled(TabButtonUI).attrs({ mt: 3 })``;
 export const Container = styled(Box).attrs({ px: 4 })`
   display: flex;
   flex-direction: column;

@@ -8,3 +8,5 @@ export const Container = styled(Box).attrs({
 })`
   width: 100%;
 `;
+
+export const BottomContainer = styled(Box).attrs({ mt: 4 })``;
