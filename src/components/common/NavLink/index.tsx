@@ -1,5 +1,5 @@
 import React, { memo, ReactElement, useCallback } from 'react';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useHistory, useRouteMatch } from 'react-router-dom';
 
 interface IProps {
   to: string;
@@ -8,9 +8,8 @@ interface IProps {
 
 export const NavLink = memo<IProps>(({ to, children, ...props }) => {
   const history = useHistory();
-  const { pathname } = useLocation();
 
-  const active = pathname.includes(to);
+  const active = useRouteMatch(to);
 
   const handlePush = useCallback(() => {
     history.push(to);

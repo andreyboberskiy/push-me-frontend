@@ -23,7 +23,7 @@ export const Container = styled(Box)`
   position: relative;
 `;
 
-export const RightIcon = styled<any>(SpriteIcon)`
+export const Icon = styled<any>(SpriteIcon)`
   ${(props) =>
     `color: ${getThemeColor(props, getIconColorByState(props.state))}`};
   cursor: pointer;
@@ -33,6 +33,10 @@ function getStringStyle({ color: defColor, focusedColor }) {
   return `
       .MuiInputBase-root.Mui-focused {
         box-shadow: ${focusedColor} 0 0 3px 1px;
+        
+        svg {
+          color: ${focusedColor};
+        }
       }
       .Mui-focused{
         .MuiOutlinedInput-root {
@@ -109,6 +113,9 @@ export const TextInputUI = styled<any>(TextField)`
     font-size: 14px;
     color: ${(props) => getThemeColor(props, 'gray800')};
 
+    svg {
+      transition: color 0.2s linear;
+    }
     input {
       border-radius: 15px;
       padding: 16px;

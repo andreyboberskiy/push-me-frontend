@@ -18,3 +18,6 @@ export { SpriteIcon } from './SpriteIcon';
 export { Logo } from './Logo';
 export { Card } from './Card';
 export { TabButton } from './TabButton';
+export { SearchInput } from './SearchInput';
+export { Popover } from './Popover';
+export { Badge } from './Badge';

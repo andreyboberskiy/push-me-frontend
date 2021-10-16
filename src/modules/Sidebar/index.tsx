@@ -20,22 +20,22 @@ const Sidebar = memo(() => {
       </LogoContainer>
       <Delimiter />
       <Column>
-        <NavLink to={routesByName.dashboard}>
+        <NavLink to={routesByName.dashboard.route}>
           <TabButton name="home">Dashboard</TabButton>
         </NavLink>
-        <NavLink to={routesByName.myTemplates}>
+        <NavLink to={routesByName.myTemplates.route}>
           <TabButton name="table-list">My templates</TabButton>
         </NavLink>
-        <NavLink to={routesByName.findTemplates}>
+        <NavLink to={routesByName.findTemplates.route}>
           <TabButton name="search-plus">Find templates</TabButton>
         </NavLink>
-        <NavLink to={routesByName.profile}>
+        <NavLink to={routesByName.profile.route}>
           <TabButton name="user">Profile</TabButton>
         </NavLink>
-        <NavLink to={routesByName.billing}>
+        <NavLink to={routesByName.billing.route}>
           <TabButton name="credit-card">Billing</TabButton>
         </NavLink>
-        <NavLink to={routesByName.settings}>
+        <NavLink to={routesByName.settings.route}>
           <TabButton name="settings">Settings</TabButton>
         </NavLink>
       </Column>

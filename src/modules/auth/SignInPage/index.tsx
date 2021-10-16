@@ -39,7 +39,7 @@ const SignInPage = () => {
       try {
         const { user } = await authService.logIn(values);
         dispatch(setUserAction(user));
-        history.push(routesByName.dashboard);
+        history.push(routesByName.dashboard.route);
       } catch (e) {
         errorToast(e.generalError);
         return { ...e.validationErrors };

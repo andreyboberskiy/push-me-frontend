@@ -45,9 +45,7 @@ const TemplateListItem: React.FC<ITemplateListItemProps> = ({
     [dateCreated, selectorsData, id, enabled, title, url, parseTime]
   );
 
-  const pushToTemplatePage = useCallback(() => {
-    history.push(routesByName.template(id));
-  }, [id, history]);
+  const pushToTemplatePage = useCallback(() => {}, [id, history]);
 
   return (
     <Container onClick={pushToTemplatePage}>

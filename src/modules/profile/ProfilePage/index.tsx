@@ -44,7 +44,7 @@ const ProfilePage = () => {
   const handleLogout = useCallback(() => {
     dispatch(logOutAction());
 
-    history.replace(routesByName.homePage);
+    history.replace(routesByName.homePage.route);
   }, [dispatch, history]);
 
   return user ? (

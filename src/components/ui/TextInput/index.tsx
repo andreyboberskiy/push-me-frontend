@@ -1,10 +1,10 @@
 import React from 'react';
 import { OutlinedTextFieldProps } from '@material-ui/core/TextField/TextField';
+import { InputAdornment } from '@material-ui/core';
 
 import useStyleProperties from 'hooks/useStyleProperties';
 
-import { Container, TextInputUI, RightIcon } from './styles';
-import { InputAdornment } from '@material-ui/core';
+import { Container, TextInputUI, Icon } from './styles';
 
 // Type
 export interface ITextInputProps
@@ -12,6 +12,7 @@ export interface ITextInputProps
   variant?: 'filled' | 'standard';
   className?: string;
   endIcon?: { name: string; onClick: () => void };
+  startIcon?: { name: string; onClick: () => void };
   state?: 'valid' | 'invalid' | 'default';
   layoutBg?: string;
 }
@@ -20,6 +21,7 @@ export const TextInput: React.FC<ITextInputProps> = ({
   className,
   variant,
   endIcon,
+  startIcon,
   InputProps,
   layoutBg = 'white',
   ...props
@@ -33,13 +35,19 @@ export const TextInput: React.FC<ITextInputProps> = ({
         variant={variant || 'outlined'}
         layoutBg={layoutBg}
         InputProps={{
-          endAdornment: (
+          endAdornment: endIcon ? (
             <InputAdornment position="end">
-              <RightIcon {...endIcon} state={state} />
+              <Icon {...endIcon} state={state} />
             </InputAdornment>
-          ),
+          ) : undefined,
+          startAdornment: startIcon ? (
+            <InputAdornment position="start">
+              <Icon {...startIcon} state={state} />
+            </InputAdornment>
+          ) : undefined,
           ...InputProps,
         }}
+        label=" "
         {...otherProps}
       />
     </Container>

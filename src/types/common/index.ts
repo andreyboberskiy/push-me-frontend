@@ -10,5 +10,5 @@ export interface IUser {
   email: string;
   dateCreated: string;
   telegramChatId: number;
-  image: string | null;
+  avatar: string | null;
 }

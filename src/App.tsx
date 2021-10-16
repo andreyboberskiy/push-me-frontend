@@ -1,33 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-
-import { ReactComponent as Sprite } from 'assets/sprite.svg';
-
 import { ThemeProvider } from 'styled-components';
 import { darkTheme, lightTheme } from 'styles/theme';
 
-import routesByName from 'constants/routesByName';
-
 import AuthedRoutes from 'hocs/AuthedRoutes';
+import { ReactComponent as Sprite } from 'assets/sprite.svg';
+import routesByName from 'constants/routesByName';
 import { initialLoadAction } from 'modules/app/store/actions';
 
 import Toast from 'libs/toast';
 
-import ProfilePage from 'modules/profile/ProfilePage';
 import HomePage from 'modules/HomePage';
-import MyTemplatesPage from 'modules/templates/MyTemplatesPage';
-import CreateTemplatePage from 'modules/createTemplate/CreateTemplatePage';
 import TemplatePage from 'modules/templates/TemplatePage';
 import SignUpPage from 'modules/auth/SignUpPage';
 import SignInPage from 'modules/auth/SignInPage';
-
 import Sidebar from 'modules/Sidebar';
 
-import UIComponentsPage from 'components/UIComponentsPage';
+import { AuthContentContainer } from 'components/common';
 
 import { IReducerStore } from 'store/reducers';
-import { AuthContentContainer } from 'components/common';
+import MainArea from 'modules/MainArea';
 
 function App() {
   const dispatch = useDispatch();
@@ -38,36 +31,19 @@ function App() {
 
   useEffect(() => {
     dispatch(initialLoadAction());
-
     // eslint-disable-next-line
   }, []);
 
   return appLoaded ? (
     <>
-      {
-        // <UnAuthedNavbar />
-      }
       <Switch>
-        <Route path="/UI" component={UIComponentsPage} />
-
-        <Route path={routesByName.homePage} component={HomePage} />
+        <Route path={routesByName.homePage.route} component={HomePage} />
         <Route path={routesByName.signUp} component={SignUpPage} />
         <Route path={routesByName.signIn} component={SignInPage} />
         <AuthedRoutes>
           <AuthContentContainer>
             <Sidebar />
-            {
-              // <Route path={routesByName.profilePage} component={ProfilePage} />
-              // <Route
-              // path={routesByName.myTemplatesPage}
-              // component={MyTemplatesPage}
-              // />
-            }
-            <Route
-              path={routesByName.createTemplate}
-              component={CreateTemplatePage}
-            />
-            <Route path={routesByName.template()} component={TemplatePage} />
+            <MainArea />
           </AuthContentContainer>
         </AuthedRoutes>
       </Switch>

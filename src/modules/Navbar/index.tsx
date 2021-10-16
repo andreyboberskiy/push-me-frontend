@@ -25,19 +25,17 @@ const UnAuthedNavbar = () => {
     history.push(routesByName.signIn);
   }, [history]);
   const handlePressLogo = useCallback(() => {
-    history.push(routesByName.homePage);
+    history.push(routesByName.homePage.route);
   }, [history]);
   const handlePressSignUp = useCallback(() => {
     history.push(routesByName.signUp);
   }, [history]);
   const handlePressTemplates = useCallback(() => {
-    history.push(routesByName.myTemplates);
+    history.push(routesByName.myTemplates.route);
   }, [history]);
-  const handlePressCreateTemplate = useCallback(() => {
-    history.push(routesByName.createTemplate);
-  }, [history]);
+  const handlePressCreateTemplate = useCallback(() => {}, [history]);
   const handlePushProfile = useCallback(() => {
-    history.push(routesByName.profile);
+    history.push(routesByName.profile.route);
   }, [history]);
 
   const renderUnAuthedPart = () => (

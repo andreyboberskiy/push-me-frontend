@@ -35,5 +35,7 @@ export const UnAuthContentContainer = styled<any>(Box).attrs({ px: 4 })`
   width: 100%;
 `;
 export const AuthContentContainer = styled<any>(Box).attrs({ px: 4, py: 6 })`
+  display: flex;
+  align-items: flex-start;
   width: 100%;
 `;
