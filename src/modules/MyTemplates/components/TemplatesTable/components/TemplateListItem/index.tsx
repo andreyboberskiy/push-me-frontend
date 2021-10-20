@@ -6,14 +6,14 @@ import { useHistory } from 'react-router-dom';
 
 import { parseTimeToText } from 'utils/parseTimeToText';
 
-import routesByName from 'constants/routesByName';
-
 import {
   Container,
   ValueContainer,
   ValueText,
   StatusCircle,
-} from 'modules/templates/MyTemplatesPage/components/TemplatesTable/components/TemplateListItem/styles';
+  Delimiter,
+  Column,
+} from './styles';
 
 // Interfaces
 import { ITemplate } from 'types/templates';
@@ -28,6 +28,7 @@ const TemplateListItem: React.FC<ITemplateListItemProps> = ({
   tableConfig,
 }) => {
   const history = useHistory();
+
   const { id, title, enabled, parseTime, url, dateCreated, selectorsData } =
     template;
   const transformedTemplateToStrings = useMemo(
@@ -48,21 +49,24 @@ const TemplateListItem: React.FC<ITemplateListItemProps> = ({
   const pushToTemplatePage = useCallback(() => {}, [id, history]);
 
   return (
-    <Container onClick={pushToTemplatePage}>
-      {map(tableConfig, (item) => {
-        const value = get(transformedTemplateToStrings, item.field, '');
+    <Column>
+      <Delimiter />
+      <Container onClick={pushToTemplatePage}>
+        {map(tableConfig, (item) => {
+          const value = get(transformedTemplateToStrings, item.field, '');
 
-        return (
-          <ValueContainer key={item.field} width={item.width}>
-            {typeof value === 'boolean' ? (
-              <StatusCircle active={value} size={16} />
-            ) : (
-              <ValueText>{value}</ValueText>
-            )}
-          </ValueContainer>
-        );
-      })}
-    </Container>
+          return (
+            <ValueContainer key={item.field} width={item.width}>
+              {typeof value === 'boolean' ? (
+                <StatusCircle active={value} size={16} />
+              ) : (
+                <ValueText>{value}</ValueText>
+              )}
+            </ValueContainer>
+          );
+        })}
+      </Container>
+    </Column>
   );
 };
 

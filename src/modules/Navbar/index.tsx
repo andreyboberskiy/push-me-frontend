@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import routesByName from 'constants/routesByName';
-import { IReducerStore } from 'store/reducers';
+import { RootReducer } from 'store/reducers';
 
 import {
   AuthButton,
@@ -17,7 +17,7 @@ import {
 
 const UnAuthedNavbar = () => {
   const history = useHistory();
-  const authed = useSelector<IReducerStore, boolean>(
+  const authed = useSelector<RootReducer, boolean>(
     (state) => state.auth.authed
   );
 

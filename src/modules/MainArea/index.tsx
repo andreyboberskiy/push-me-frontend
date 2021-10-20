@@ -2,6 +2,7 @@ import Header from 'modules/Header';
 import { Route, Switch } from 'react-router-dom';
 
 import Dashboard from 'modules/Dashboard';
+import MyTemplates from 'modules/MyTemplates';
 
 import routesByName from 'constants/routesByName';
 
@@ -14,6 +15,10 @@ const MainArea = () => {
       <BottomContainer>
         <Switch>
           <Route path={routesByName.dashboard.route} component={Dashboard} />
+          <Route
+            path={routesByName.myTemplates.route}
+            component={MyTemplates}
+          />
         </Switch>
       </BottomContainer>
     </Container>

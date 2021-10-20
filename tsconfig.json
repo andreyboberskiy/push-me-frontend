@@ -30,7 +30,6 @@
     "css.d.ts",
   ],
   "exclude": [
-    "node_modules",
-    "src/**/*.ts"
+    "node_modules"
   ]
 }

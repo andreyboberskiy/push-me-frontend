@@ -1,3 +1,8 @@
+export interface IRequestError extends Error {
+  generalError: string;
+  validationErrors: { [key: string]: string };
+}
+
 class RequestError extends Error {
   errors = {};
 

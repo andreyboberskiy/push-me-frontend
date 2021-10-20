@@ -12,20 +12,19 @@ import { initialLoadAction } from 'modules/app/store/actions';
 import Toast from 'libs/toast';
 
 import HomePage from 'modules/HomePage';
-import TemplatePage from 'modules/templates/TemplatePage';
 import SignUpPage from 'modules/auth/SignUpPage';
 import SignInPage from 'modules/auth/SignInPage';
 import Sidebar from 'modules/Sidebar';
 
 import { AuthContentContainer } from 'components/common';
 
-import { IReducerStore } from 'store/reducers';
+import { RootReducer } from 'store/reducers';
 import MainArea from 'modules/MainArea';
 
 function App() {
   const dispatch = useDispatch();
 
-  const appLoaded = useSelector<IReducerStore, boolean>(
+  const appLoaded = useSelector<RootReducer, boolean>(
     (state) => state.app.loaded
   );
 

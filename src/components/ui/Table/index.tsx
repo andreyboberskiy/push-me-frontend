@@ -1,14 +1,7 @@
-import React, { ReactElement, useCallback, useState } from 'react';
+import React, { ReactElement, useCallback, useEffect, useState } from 'react';
 import map from 'lodash/map';
 
-import {
-  TitleLabel,
-  Header,
-  Filter,
-  Container,
-  MainContainer,
-  ItemsContainer,
-} from './styles';
+import { Header, Filter, Container, Skeleton, ItemsContainer } from './styles';
 
 // Interfaces
 interface IConfigItem {
@@ -18,16 +11,18 @@ interface IConfigItem {
 }
 
 interface ITableProps {
+  loading?: boolean;
   list: any[];
-  label?: string;
   config: IConfigItem[];
   renderItem: (listItem: any, config: IConfigItem[], key: any) => ReactElement;
 }
 
+const skeletonArray = new Array(10);
+
 export const Table: React.FC<ITableProps> = ({
   list,
-  label,
   config,
+  loading,
   renderItem: RenderComponent,
 }) => {
   const [sortedList, updateList] = useState<any[]>(list);
@@ -37,27 +32,35 @@ export const Table: React.FC<ITableProps> = ({
     setFilteredBy(byField);
     updateList(newList);
   }, []);
+
+  useEffect(() => {
+    if (sortedList.length === 0) {
+      updateList(list);
+    }
+  }, [list]);
+
   return (
-    <MainContainer>
-      {label && <TitleLabel>{label}</TitleLabel>}
-      <Container>
-        <Header>
-          {map(config, (filter) => (
-            <Filter
-              key={filter.field}
-              onFilter={handleFilter}
-              list={sortedList}
-              active={filteredBy === filter.field}
-              {...filter}
-            />
-          ))}
-        </Header>
+    <Container>
+      <Header>
+        {map(config, (filter) => (
+          <Filter
+            key={filter.field}
+            onFilter={handleFilter}
+            list={sortedList}
+            active={filteredBy === filter.field}
+            {...filter}
+          />
+        ))}
+      </Header>
+      {loading ? (
+        map(skeletonArray, () => <Skeleton />)
+      ) : (
         <ItemsContainer>
           {map(sortedList, (item) => (
             <RenderComponent key={item.id} item={item} config={config} />
           ))}
         </ItemsContainer>
-      </Container>
-    </MainContainer>
+      )}
+    </Container>
   );
 };

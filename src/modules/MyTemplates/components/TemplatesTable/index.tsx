@@ -1,21 +1,18 @@
 import React, { useMemo } from 'react';
 
-import {
-  Table,
-  TemplateListItem,
-} from 'modules/templates/MyTemplatesPage/components/TemplatesTable/styles';
+import { Table, TemplateListItem } from './styles';
 
 // Interfaces
 import { ITemplate } from 'types/templates';
 
 interface ITemplatesTableProps {
   templates: ITemplate[];
-  totalTemplatesLength: number;
+  loading: boolean;
 }
 
 const TemplatesTable: React.FC<ITemplatesTableProps> = ({
   templates,
-  totalTemplatesLength,
+  loading,
 }) => {
   const tableConfig = useMemo(
     () => [
@@ -54,15 +51,11 @@ const TemplatesTable: React.FC<ITemplatesTableProps> = ({
     []
   );
 
-  const label = useMemo(() => {
-    return `Showed ${templates.length} templates of ${totalTemplatesLength}`;
-  }, [templates, totalTemplatesLength]);
-
   return (
     <Table
-      label={label}
       config={tableConfig}
       list={templates}
+      loading={loading}
       renderItem={({ item, config }) => {
         return <TemplateListItem template={item} tableConfig={config} />;
       }}

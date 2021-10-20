@@ -1,21 +1,24 @@
 import { AuthedAxiosInstance } from 'libs/axios/instances';
+import { apiPrefix } from 'services';
 
 import { ITemplate } from 'types/templates';
-
-const apiPrefix = '/api';
-const templatesPrefix = '/templates';
+import { ISearchParams } from 'modules/MyTemplates/store/reducer';
 
 interface IGetMyTemplatesListResponse {
   list: ITemplate[];
 }
 
+const templatesPrefix = '/templates';
+
 export const templateServices = {
   getTemplate: (id: number): Promise<{ template: ITemplate }> => {
     return AuthedAxiosInstance.get(`${apiPrefix}${templatesPrefix}/${id}`);
   },
-  getMyTemplatesList(payload): Promise<IGetMyTemplatesListResponse> {
+  getMyTemplatesList(
+    payload: ISearchParams
+  ): Promise<IGetMyTemplatesListResponse> {
     return AuthedAxiosInstance.post(
-      `${apiPrefix}${templatesPrefix}/list`,
+      `${apiPrefix}${templatesPrefix}/my-list`,
       payload
     );
   },

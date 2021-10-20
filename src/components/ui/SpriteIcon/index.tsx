@@ -4,17 +4,19 @@ interface ISizeConfig {
   lg: number;
   md: number;
   sm: number;
+  xs: number;
 }
 
 const sizeConfig: ISizeConfig = {
-  lg: 28,
+  lg: 24,
   md: 16,
   sm: 12,
+  xs: 8,
 };
 
 export interface ISpriteIconProps {
   name: string;
-  size?: 'md' | 'lg' | 'sm';
+  size?: 'md' | 'lg' | 'sm' | 'xs';
 }
 
 export const SpriteIcon: React.FC<ISpriteIconProps> = ({

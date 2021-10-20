@@ -1,3 +1,3 @@
-import { IReducerStore } from 'store/reducers';
+import { RootReducer } from 'store/reducers';
 
-export const getUserSelector = (state: IReducerStore) => state.auth.user;
+export const getUserSelector = (state: RootReducer) => state.auth.user;

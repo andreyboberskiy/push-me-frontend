@@ -9,6 +9,9 @@ export const TabButton = styled(TabButtonUI).attrs({
 })`
   width: 23%;
 
+  justify-content: space-between;
+  flex-direction: row-reverse;
+
   transition: all 0.2s linear;
   &:hover {
     transform: translateY(-2px);

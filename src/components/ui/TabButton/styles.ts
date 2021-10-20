@@ -1,10 +1,11 @@
 import styled from 'styled-components';
+import { color, variant } from 'styled-system';
+
+import { SpriteIcon as SpriteIconUI } from 'components/ui/SpriteIcon';
 
 import { Box } from 'components/ui/Box';
-import { SpriteIcon as SpriteIconUI } from 'components/ui/SpriteIcon';
 import { Text } from 'components/ui/Text';
 import { Card } from 'components/ui/Card';
-import { color, variant } from 'styled-system';
 
 export const Container = styled<any>(Card).attrs((props) => ({
   bg: props.active ? 'white' : 'transparent',
@@ -12,6 +13,8 @@ export const Container = styled<any>(Card).attrs((props) => ({
   display: flex;
   align-items: center;
   cursor: pointer;
+
+  transition: background-color 0.2s ease-in-out;
 
   ${variant({
     prop: 'size',
@@ -40,7 +43,7 @@ export const IconContainer = styled<any>(Box).attrs((props) => ({
     variants: {
       sm: { width: 15, height: 15, borderRadius: 8 },
       md: { width: 30, height: 30, borderRadius: 12 },
-      lg: { width: 45, height: 45, borderRadius: 15 },
+      lg: { width: 40, height: 40, borderRadius: 15 },
     },
   })}
 

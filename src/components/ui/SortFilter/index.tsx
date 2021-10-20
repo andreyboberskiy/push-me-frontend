@@ -77,7 +77,7 @@ export const SortFilter: React.FC<ISortFilterProps> = ({
     <Container onClick={handleSort} {...props}>
       <InnerContainer>
         <Name>{name}</Name>
-        <ArrowContainer>
+        <ArrowContainer active={active}>
           <ArrowUp $active={active && sorted === 'up'} />
           <ArrowDown $active={active && sorted === 'down'} />
         </ArrowContainer>
