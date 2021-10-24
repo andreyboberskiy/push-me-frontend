@@ -160,7 +160,9 @@ const modalSizes = {
     'border-radius': '28px',
   },
 };
-const shadows = {};
+const shadows = {
+  1: `${colors.gray300} 0 5px 10px;`,
+};
 
 const theme = {
   shadows,

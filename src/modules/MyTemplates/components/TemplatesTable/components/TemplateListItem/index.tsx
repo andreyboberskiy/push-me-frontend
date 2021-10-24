@@ -30,11 +30,11 @@ const TemplateListItem: React.FC<ITemplateListItemProps> = ({
 }) => {
   const history = useHistory();
 
-  const { id, title, enabled, parseTime, url, dateCreated, selectorsData } =
+  const { id, title, working, parseTime, url, dateCreated, selectorsData } =
     template;
   const transformedTemplateToStrings = useMemo(
     () => ({
-      enabled,
+      working,
       id,
       title,
       url,
@@ -44,7 +44,7 @@ const TemplateListItem: React.FC<ITemplateListItemProps> = ({
         selectors: selectorsData.selectors.map((item) => item.title).join(', '),
       },
     }),
-    [dateCreated, selectorsData, id, enabled, title, url, parseTime]
+    [dateCreated, selectorsData, id, working, title, url, parseTime]
   );
 
   const pushToTemplatePage = useCallback(() => {

@@ -12,6 +12,7 @@ export interface ISelectorsDataEmpty {
 export interface ITemplate {
   id: number;
   title: string;
+  working: boolean;
   enabled: boolean;
   parseTime: IParseTimeValue;
   url: string;

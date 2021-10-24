@@ -13,6 +13,6 @@ interface IImageProps {
 
 export const Image = memo<IImageProps>(({ src, imgStyles, ...props }) => (
   <Wrapper {...props}>
-    <Img src={src} style={imgStyles} />
+    <Img src={src} {...imgStyles} />
   </Wrapper>
 ));

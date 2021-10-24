@@ -51,7 +51,6 @@ const ProfilePage = () => {
     <UnAuthContentContainer withNavbar>
       <Container>
         <RowBetween>
-          <UserAvatar user={user} />
           <UserInfo>
             <InfoRow>
               <UserInfoLabel>Id</UserInfoLabel>

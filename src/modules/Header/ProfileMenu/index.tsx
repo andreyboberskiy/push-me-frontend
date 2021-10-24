@@ -11,7 +11,7 @@ import routesByName from 'constants/routesByName';
 
 import {
   Container,
-  UserAvatar,
+  Avatar,
   UserName,
   ArrowDown,
   Popover,
@@ -38,7 +38,7 @@ export const ProfileMenu = () => {
   return (
     <>
       <Container ref={anchorRef} onClick={popover.turnIn}>
-        <UserAvatar user={user} size={30} />
+        <Avatar placeholder={`${user?.name[0]}${user?.surname[0]}`} size={30} />
         <UserName>{user?.name || ''}</UserName>
         <ArrowDown />
       </Container>

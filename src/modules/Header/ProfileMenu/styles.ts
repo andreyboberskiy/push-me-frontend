@@ -4,7 +4,7 @@ import { color, space } from 'styled-system';
 import { Box, SpriteIcon, Text, Popover as PopoverUI } from 'components/ui';
 import { getThemeColor } from 'styles/theme';
 
-export { UserAvatar } from 'components/ui';
+export { Avatar } from 'components/ui';
 
 export const Container = styled(Box).attrs({ ml: 5 })`
   display: flex;

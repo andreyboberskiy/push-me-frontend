@@ -1,10 +1,12 @@
 import styled from 'styled-components';
 
-import { Box, Text } from 'components/ui';
+import { Box, Text, StatusCircle as StatusCircleUI } from 'components/ui';
 import { Column as ColumnUI } from 'components/common';
 import { getThemeColor } from 'styles/theme';
 
-export { StatusCircle } from 'components/ui';
+export const StatusCircle = styled(StatusCircleUI)`
+  margin: 0 auto;
+`;
 
 export const Column = styled(ColumnUI)`
   max-width: 100%;

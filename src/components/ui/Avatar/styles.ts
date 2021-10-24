@@ -10,6 +10,20 @@ export const Image = styled(ImageUI)<{ size: number }>`
   border-radius: 50%;
 `;
 
+export const Overlay = styled(Box).attrs({ bg: 'black', py: 1 })<{
+  size: number;
+}>`
+  height: 100%;
+  width: 100%;
+  opacity: 0.3;
+
+  transition: all 0.2s linear;
+  transform: translateY(100%);
+  position: absolute;
+`;
+
+export const OverlayText = styled(Text).attrs({ color: 'white' })``;
+
 export const Container = styled(Box).attrs({ bg: 'gray200' })<{ size: number }>`
   ${(props) => `width: ${props.size}px; height: ${props.size}px;`}
   border-radius: 50%;
@@ -18,6 +32,15 @@ export const Container = styled(Box).attrs({ bg: 'gray200' })<{ size: number }>`
   align-items: center;
   justify-content: center;
   cursor: pointer;
+
+  position: relative;
+  overflow: hidden;
+
+  &:hover {
+    .${Overlay.styledComponentId} {
+      transform: translateY(60%);
+    }
+  }
 `;
 
 export const Placeholder = styled(Text).attrs({

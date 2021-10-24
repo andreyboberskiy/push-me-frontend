@@ -14,7 +14,7 @@ export const SwitcherUI = styled((props) => (
       transform: 'translateX(16px)',
       color: '#fff',
       '& + .MuiSwitch-track': {
-        backgroundColor: '#65C466',
+        backgroundColor: '#38A169',
         opacity: 1,
         border: 0,
       },
@@ -23,7 +23,7 @@ export const SwitcherUI = styled((props) => (
       },
     },
     '&.Mui-focusVisible .MuiSwitch-thumb': {
-      color: '#33cf4d',
+      color: '#38A169',
       border: '6px solid #fff',
     },
     '&.Mui-disabled .MuiSwitch-thumb': {

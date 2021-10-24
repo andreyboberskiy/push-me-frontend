@@ -11,6 +11,7 @@ interface IStatusCircleProps {
 export const StatusCircle: React.FC<IStatusCircleProps> = ({
   active,
   size,
+  ...props
 }) => {
-  return <Circle active={active} size={size} />;
+  return <Circle active={active} size={size} {...props} />;
 };

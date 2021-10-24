@@ -11,7 +11,7 @@ export { StatusCircle } from './StatusCircle';
 export { Table } from './Table';
 export { PageTitle } from './PageTitle';
 export { Switcher } from './Switcher';
-export { UserAvatar } from './UserAvatar';
+export { Avatar } from './Avatar';
 export { ChangeField } from './ChangeField';
 export { SpriteIcon } from './SpriteIcon';
 export { Logo } from './Logo';

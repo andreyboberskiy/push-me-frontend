@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import {
   Box,
   Text,
-  UserAvatar as UserAvatarUI,
+  Avatar as UserAvatarUI,
   ChangeField as ChangeFieldUI,
   Button as ButtonUI,
 } from 'components/ui';
