@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { ThemeProvider } from 'styled-components';
-import { darkTheme, lightTheme } from 'styles/theme';
+
+import theme, { getTheme } from 'styles/theme';
 
 import AuthedRoutes from 'hocs/AuthedRoutes';
 import { ReactComponent as Sprite } from 'assets/sprite.svg';
@@ -54,10 +55,10 @@ function App() {
 }
 
 const AppWrapper = (props) => {
-  const [theme, setTheme] = useState('light');
+  const [themeVersion, setThemeVersion] = useState<'light' | 'dark'>('light');
 
   return (
-    <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
+    <ThemeProvider theme={getTheme(themeVersion)}>
       <Sprite />
       <App {...props} />
     </ThemeProvider>

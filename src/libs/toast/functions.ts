@@ -6,12 +6,3 @@ export const errorToast = (message) => {
 export const successToast = (message) => {
   toast.success(message);
 };
-
-export const safely = async (fn) => {
-  try {
-    await fn();
-  } catch (e) {
-    console.dir(e.generalError);
-    errorToast(e.generalError);
-  }
-};

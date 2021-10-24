@@ -13,8 +13,6 @@ import { getMyTemplateListAction } from 'modules/MyTemplates/store/actions';
 
 import { Container, TemplatesTable } from './styles';
 
-const totalTemplatesLength = 100;
-
 const MyTemplates = () => {
   const dispatch = useDispatch();
 
@@ -28,7 +26,6 @@ const MyTemplates = () => {
     }
   }, []);
 
-  console.log({ templatesList });
   return (
     <Container>
       <TemplatesTable templates={templatesList} loading={listLoading} />

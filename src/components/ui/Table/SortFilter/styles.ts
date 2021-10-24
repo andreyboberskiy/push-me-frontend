@@ -5,7 +5,7 @@ import { getThemeColor } from 'styles/theme';
 
 import { Box } from 'components/ui/Box';
 
-import { Text } from '../Text';
+import { Text } from 'components/ui/Text';
 
 export const InnerContainer = styled(Box)`
   margin: 0 auto;

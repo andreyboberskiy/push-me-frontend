@@ -4,7 +4,7 @@ import { getThemeColor } from 'styles/theme';
 
 export const Badge = styled(BadgeUI)<{ size?: number }>`
   .MuiBadge-badge {
-    background-color: ${(props) => getThemeColor(props, 'red500')};
+    background-color: ${(p) => p.theme.getColor('red500', 'teal300')};
     color: ${(props) => getThemeColor(props, 'white')};
     font-family: Helvetica, sans-serif;
     padding: 0 5px;
@@ -12,8 +12,7 @@ export const Badge = styled(BadgeUI)<{ size?: number }>`
     min-width: ${props.size || 15}px;
     height: ${props.size || 15}px;
     font-size: ${(props.size || 15) * 0.7}px;
-    line-height: ${(props.size || 15) * 1}px;
-
+    line-height: ${props.size || 15}px;
   `}
   }
 `;

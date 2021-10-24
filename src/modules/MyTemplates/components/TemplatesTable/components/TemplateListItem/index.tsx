@@ -17,6 +17,7 @@ import {
 
 // Interfaces
 import { ITemplate } from 'types/templates';
+import routesByName from 'constants/routesByName';
 
 interface ITemplateListItemProps {
   template: ITemplate;
@@ -46,7 +47,9 @@ const TemplateListItem: React.FC<ITemplateListItemProps> = ({
     [dateCreated, selectorsData, id, enabled, title, url, parseTime]
   );
 
-  const pushToTemplatePage = useCallback(() => {}, [id, history]);
+  const pushToTemplatePage = useCallback(() => {
+    history.push(routesByName.templateDetails.route(id));
+  }, [id, history]);
 
   return (
     <Column>

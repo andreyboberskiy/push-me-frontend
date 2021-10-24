@@ -7,7 +7,7 @@ import {
   ArrowUp,
   ArrowDown,
   InnerContainer,
-} from './styles';
+} from 'components/ui/Table/SortFilter/styles';
 
 // Interface
 type TSortType = 'date';

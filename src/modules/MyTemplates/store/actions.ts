@@ -13,6 +13,7 @@ import {
 import { ITemplate } from 'types/templates';
 import { ISearchParams } from './reducer';
 import { errorToast } from 'libs/toast/functions';
+import { updateTemplatesLibrary } from 'store/libraries/actions';
 
 export const setTemplateListAction = (list: ITemplate[]) => {
   return {
@@ -46,6 +47,7 @@ export const getMyTemplateListAction =
         const { list } = await templateServices.getMyTemplatesList(
           searchParams
         );
+        dispatch(updateTemplatesLibrary(list));
         if (resetList) {
           dispatch(setTemplateListAction(list));
         } else {

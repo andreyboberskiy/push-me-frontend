@@ -1,7 +1,13 @@
 import React, { ReactElement, useCallback, useEffect, useState } from 'react';
 import map from 'lodash/map';
 
-import { Header, Filter, Container, Skeleton, ItemsContainer } from './styles';
+import {
+  Header,
+  Filter,
+  Container,
+  ItemsContainer,
+  LoaderSkeleton,
+} from 'components/ui/Table/styles';
 
 // Interfaces
 interface IConfigItem {
@@ -17,7 +23,7 @@ interface ITableProps {
   renderItem: (listItem: any, config: IConfigItem[], key: any) => ReactElement;
 }
 
-const skeletonArray = new Array(10);
+const skeletonArray = new Array(20);
 
 export const Table: React.FC<ITableProps> = ({
   list,
@@ -52,15 +58,13 @@ export const Table: React.FC<ITableProps> = ({
           />
         ))}
       </Header>
-      {loading ? (
-        map(skeletonArray, () => <Skeleton />)
-      ) : (
-        <ItemsContainer>
-          {map(sortedList, (item) => (
-            <RenderComponent key={item.id} item={item} config={config} />
-          ))}
-        </ItemsContainer>
-      )}
+      <ItemsContainer>
+        {loading
+          ? map(skeletonArray, () => <LoaderSkeleton />)
+          : map(sortedList, (item) => (
+              <RenderComponent key={item.id} item={item} config={config} />
+            ))}
+      </ItemsContainer>
     </Container>
   );
 };

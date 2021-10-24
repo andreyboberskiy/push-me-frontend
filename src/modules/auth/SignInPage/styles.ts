@@ -32,7 +32,7 @@ export const WelcomeBackTitle = styled(Text).attrs({
 `;
 
 export const WelcomeBackSubtitle = styled(Text).attrs({
-  fontSize: 14,
+  fontSize: 4,
   color: 'gray400',
   mt: 2,
 })`

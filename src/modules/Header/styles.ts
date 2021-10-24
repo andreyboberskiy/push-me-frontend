@@ -7,7 +7,7 @@ export { HeaderSearchInput } from './HeaderSearchInput';
 export { Notifications } from './Notifications';
 export { ProfileMenu } from './ProfileMenu';
 
-export const Container = styled(Box).attrs({ pr: 6 })`
+export const Container = styled(Box).attrs({ pr: 6, pt: 6, pl: 2 })`
   display: flex;
   align-items: center;
   width: 100%;

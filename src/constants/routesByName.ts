@@ -7,5 +7,9 @@ export default {
   billing: { route: '/billing', breadCrumb: 'Billing' },
   settings: { route: '/settings', breadCrumb: 'Settings' },
   myTemplates: { route: '/my-templates', breadCrumb: 'My templates' },
+  templateDetails: {
+    route: (id: number | string = ':id') => `/my-templates/${id}`,
+    breadCrumb: 'inject',
+  },
   findTemplates: { route: '/find-templates', breadCrumb: 'Find templates' },
 };

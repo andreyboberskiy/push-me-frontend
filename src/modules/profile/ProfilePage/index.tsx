@@ -24,7 +24,7 @@ import { useDispatch } from 'react-redux';
 import { logOutAction, setUserAction } from 'modules/auth/store/actions';
 import routesByName from 'constants/routesByName';
 import { useHistory } from 'react-router-dom';
-import { safely } from 'libs/toast/functions';
+import { safely } from 'libs/axios/utils';
 
 const ProfilePage = () => {
   const dispatch = useDispatch();

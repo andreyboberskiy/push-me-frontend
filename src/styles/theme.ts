@@ -22,32 +22,6 @@ const space = {
 };
 
 const colors = {
-  darkBlue: '#263FB9',
-  lightBlue: '#3B60FF',
-  red: '#E04D4D',
-
-  darkGrey: '#dedede',
-  grey: '#f6f6f6',
-  green: '#1BA078',
-  grey1: '#dedede',
-  grey2: '#e9e9e9',
-  grey3: '#8f8f91',
-  grey4: '#626266',
-  grey5: '#2a2a2f',
-
-  blue1: '#4f44e0',
-  blue2: '#463dbb',
-  blue3: '#322e6f',
-  green1: '#219464',
-  green2: '#217d57',
-  green3: '#204e3e',
-  red1: '#e34f2f',
-  red2: '#bc452d',
-  red3: '#6d3228',
-  orange1: '#df7800',
-  orange2: '#b96607',
-  orange3: '#6c4316',
-
   // new
   black: '#000',
   white: '#fff',
@@ -163,7 +137,9 @@ const colors = {
   red900: '#63171B',
 };
 const fonts = ['Helvetica, sans-serif', 'Roboto, sans-serif'];
-const fontSizes = [8, 12, 14, 16, 20, 24, 28, 32, 40, 48, 64];
+const fontSizes = [
+  6, 8, 12, 14, 16, 18, 20, 22, 24, 28, 32, 36, 40, 48, 56, 64,
+];
 const modalSizes = {
   sm: {
     'max-width': '700px',
@@ -184,55 +160,14 @@ const modalSizes = {
     'border-radius': '28px',
   },
 };
-const shadows = {
-  1: `4px 4px 18px 1px rgba(34, 60, 80, 0.2)`,
-  button1: `4px 6px 20px 1px rgba(34, 60, 80, 0.2)`,
-};
+const shadows = {};
 
-export const lightTheme = {
+const theme = {
   shadows,
   modalSizes,
   fontSizes,
   fonts,
   colors,
-  space,
-};
-
-const darkColors = {
-  darkBlue: '#263FB9',
-  lightBlue: '#3B60FF',
-  red: '#E04D4D',
-  white: '#ffffff',
-  black: '#151515',
-  darkGrey: '#dedede',
-  grey: '#f6f6f6',
-  green: '#1BA078',
-  grey1: '#dedede',
-  grey2: '#e9e9e9',
-  grey3: '#8f8f91',
-  grey4: '#626266',
-  grey5: '#2a2a2f',
-
-  blue1: '#4f44e0',
-  blue2: '#463dbb',
-  blue3: '#322e6f',
-  green1: '#219464',
-  green2: '#217d57',
-  green3: '#204e3e',
-  red1: '#e34f2f',
-  red2: '#bc452d',
-  red3: '#6d3228',
-  orange1: '#df7800',
-  orange2: '#b96607',
-  orange3: '#6c4316',
-};
-
-export const darkTheme = {
-  shadows,
-  modalSizes,
-  fontSizes,
-  fonts,
-  colors: darkColors,
   space,
 };
 
@@ -248,3 +183,11 @@ export function getThemeFontSize(props, fontSize: number): number {
 export function getThemeSpace(props, spaceIndex: number): number {
   return props.theme.space[spaceIndex];
 }
+
+const getColor = (themeVersion) => (lightColor, darkColor) =>
+  themeVersion === 'light' ? theme.colors[lightColor] : theme.colors[darkColor];
+
+export const getTheme = (themeVersion) => {
+  return { ...theme, getColor: getColor(themeVersion) };
+};
+export default theme;
