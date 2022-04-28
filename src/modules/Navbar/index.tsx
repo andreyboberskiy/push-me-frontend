@@ -3,46 +3,45 @@ import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import routesByName from 'constants/routesByName';
-import { IReducerStore } from 'store/reducers';
+import { RootReducer } from 'store/reducers';
 
 import {
   AuthButton,
   LeftMenu,
   Logo,
   NavBar,
-  ContentContainer,
+  UnAuthContentContainer,
   Container,
   RightAuthMenu,
 } from './styles';
 
 const UnAuthedNavbar = () => {
   const history = useHistory();
-  const authed = useSelector<IReducerStore, boolean>(
+  const authed = useSelector<RootReducer, boolean>(
     (state) => state.auth.authed
   );
 
   const handlePressLogin = useCallback(() => {
-    history.push(routesByName.sign, { activeTab: 'login' });
+    history.push(routesByName.signIn);
   }, [history]);
   const handlePressLogo = useCallback(() => {
-    history.push(routesByName.homePage);
+    history.push(routesByName.homePage.route);
   }, [history]);
   const handlePressSignUp = useCallback(() => {
-    history.push(routesByName.sign, { activeTab: 'signUp' });
+    history.push(routesByName.signUp);
   }, [history]);
   const handlePressTemplates = useCallback(() => {
-    history.push(routesByName.templatesPage);
+    history.push(routesByName.myTemplates.route);
   }, [history]);
-  const handlePressCreateTemplate = useCallback(() => {
-    history.push(routesByName.createTemplate);
+  const handlePressCreateTemplate = useCallback(() => {}, [history]);
+  const handlePushProfile = useCallback(() => {
+    history.push(routesByName.profile.route);
   }, [history]);
 
   const renderUnAuthedPart = () => (
     <LeftMenu>
       <AuthButton onClick={handlePressLogin}>Login</AuthButton>
-      <AuthButton onClick={handlePressSignUp} ml={4}>
-        Sign Up
-      </AuthButton>
+      <AuthButton onClick={handlePressSignUp}>Sign Up</AuthButton>
     </LeftMenu>
   );
 
@@ -52,18 +51,18 @@ const UnAuthedNavbar = () => {
       <AuthButton onClick={handlePressCreateTemplate}>
         Create Template
       </AuthButton>
-      <AuthButton onClick={() => {}}>Profile</AuthButton>
+      <AuthButton onClick={handlePushProfile}>Profile</AuthButton>
     </RightAuthMenu>
   );
 
   return (
     <Container showShadow>
-      <ContentContainer>
+      <UnAuthContentContainer>
         <NavBar as="nav">
           <Logo onClick={handlePressLogo} />
           {authed ? renderAuthedPart() : renderUnAuthedPart()}
         </NavBar>
-      </ContentContainer>
+      </UnAuthContentContainer>
     </Container>
   );
 };

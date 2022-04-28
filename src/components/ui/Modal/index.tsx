@@ -1,26 +1,45 @@
-import React, { memo, ReactNode } from 'react';
+import React, { memo } from 'react';
+import Backdrop from '@material-ui/core/Backdrop/Backdrop';
+import Fade from '@material-ui/core/Fade/Fade';
 
-import { Backdrop, Content, CloseButton } from './styles';
+import {
+  ModalUI,
+  Content,
+  ContentContainer,
+  CloseButton,
+  CloseIcon,
+} from './styles';
 
-export interface IModalProps {
+import { ModalProps } from '@material-ui/core/Modal/Modal';
+
+export interface IModalProps extends Omit<ModalProps, 'open'> {
   size?: 'sm' | 'md' | 'lg';
-  onClose: () => void;
   isOpen: boolean;
-  children: ReactNode | ReactNode[] | Element | Element[];
 }
 
 const Modal = memo<IModalProps>(
   ({ isOpen, onClose, children, size = 'md', ...props }) => {
     return (
-      isOpen && (
-        <>
-          <Backdrop onClick={onClose} />
-          <Content size={size} {...props}>
-            <CloseButton onClick={onClose} />
-            {children}
-          </Content>
-        </>
-      )
+      <ModalUI
+        open={isOpen}
+        onClose={onClose}
+        BackdropComponent={Backdrop}
+        closeAfterTransition
+        BackdropProps={{
+          timeout: 300,
+        }}
+      >
+        <Fade in={isOpen}>
+          <ContentContainer size={size} {...props}>
+            <Content>
+              <CloseButton onClick={onClose}>
+                <CloseIcon />
+              </CloseButton>
+              {children}
+            </Content>
+          </ContentContainer>
+        </Fade>
+      </ModalUI>
     );
   }
 );

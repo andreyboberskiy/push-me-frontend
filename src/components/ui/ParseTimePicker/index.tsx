@@ -1,9 +1,10 @@
-import React, { useMemo } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import map from 'lodash/map';
 
 import useFlagManager from 'hooks/useFlagManager';
+import useStyleProperties from 'hooks/useStyleProperties';
 
-import useOtherStyleProperties from 'hooks/useOtherStyleProperties';
+import { parseTimeToText } from 'utils/parseTimeToText';
 
 import {
   Container,
@@ -14,7 +15,6 @@ import {
   Slider,
   ModalTitle,
   SliderContainer,
-  SliderText,
 } from './styles';
 
 // Interface
@@ -27,27 +27,24 @@ export interface IParseTimeValue {
   h: number;
   d: number;
 }
-interface IParseTimePickerProps extends ITextInputProps {
+interface IParseTimePickerProps extends Omit<ITextInputProps, 'onChange'> {
+  onChange: (value: IParseTimeValue) => void;
   value: IParseTimeValue;
 }
 
-const parseTimeToText = (time: IParseTimeValue) => {
-  let text = '';
-
-  if (time.s) {
-    text += `Seconds: ${time.s}; `;
+const getSliderMaxValue = (dateKey: string): number => {
+  switch (dateKey) {
+    case 's':
+      return 59;
+    case 'm':
+      return 59;
+    case 'h':
+      return 24;
+    case 'd':
+      return 30;
+    default:
+      return 59;
   }
-  if (time.m) {
-    text += `Minutes: ${time.m}; `;
-  }
-  if (time.h) {
-    text += `Hours: ${time.h}; `;
-  }
-  if (time.d) {
-    text += `Days: ${time.d}; `;
-  }
-
-  return text;
 };
 
 const getNameByDateKey = (dateKey: string): string => {
@@ -65,6 +62,8 @@ const getNameByDateKey = (dateKey: string): string => {
   }
 };
 
+const dateKeys = ['s', 'm', 'h', 'd'];
+
 export const ParseTimePicker: React.FC<IParseTimePickerProps> = ({
   onChange,
   value,
@@ -72,26 +71,51 @@ export const ParseTimePicker: React.FC<IParseTimePickerProps> = ({
 }) => {
   const modalController = useFlagManager(false);
 
-  const [styleProps, otherProps] = useOtherStyleProperties(props);
+  const [localValues, setLocalValues] = useState(value);
+
+  const [styleProps, otherProps] = useStyleProperties(props);
 
   const textValue = useMemo(() => {
-    return parseTimeToText({ s: 15, m: 20, h: 0, d: 0 });
+    return parseTimeToText(value);
   }, [value]);
+
+  const handleChangeLocal = useCallback(
+    (sliderValue: number | number[], key: string) => {
+      setLocalValues({ ...value, [key]: sliderValue });
+    },
+    [value]
+  );
+  const handleChange = useCallback(
+    (sliderValue: number | number[], key: string) => {
+      onChange({ ...value, [key]: sliderValue });
+    },
+    [onChange, value]
+  );
 
   return (
     <>
-      <Container {...styleProps}>
-        <TextInput {...otherProps} value={textValue} onClick={() => {}} />
+      <Container {...styleProps} onClick={modalController.turnIn}>
+        <TextInput {...otherProps} value={textValue} />
         <EditIcon onClick={modalController.turnIn} />
       </Container>
       <Modal isOpen={modalController.state} onClose={modalController.turnOff}>
         <ModalContainer>
           <ModalTitle>Choose how often wa should check updates</ModalTitle>
 
-          {map(['s', 'm', 'h', 'd'], (dateKey) => (
-            <SliderContainer>
-              <SliderText>Enter {getNameByDateKey(dateKey)}</SliderText>
-              <Slider value={value[dateKey]} />
+          {map(dateKeys, (dateKey) => (
+            <SliderContainer key={dateKey}>
+              <Slider
+                disabled={dateKeys.some(
+                  (key) => localValues[key] > 0 && key !== dateKey
+                )}
+                value={localValues[dateKey]}
+                min={0}
+                max={getSliderMaxValue(dateKey)}
+                valueLabelDisplay="on"
+                label={`Enter ${getNameByDateKey(dateKey)}`}
+                onChange={(_, val: number) => handleChangeLocal(val, dateKey)}
+                onChangeCommitted={(_, valCom) => handleChange(valCom, dateKey)}
+              />
             </SliderContainer>
           ))}
         </ModalContainer>

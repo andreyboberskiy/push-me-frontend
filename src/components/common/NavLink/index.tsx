@@ -1,0 +1,26 @@
+import React, { memo, ReactElement, useCallback } from 'react';
+import { useHistory, useRouteMatch } from 'react-router-dom';
+
+interface IProps {
+  to: string;
+  children: ReactElement | ReactElement[];
+}
+
+export const NavLink = memo<IProps>(({ to, children, ...props }) => {
+  const history = useHistory();
+
+  const active = useRouteMatch(to);
+
+  const handlePush = useCallback(() => {
+    history.push(to);
+  }, [history, to]);
+
+  const childrenWithProps = React.Children.map(children, (child) => {
+    if (React.isValidElement(child)) {
+      return React.cloneElement(child, { ...props, active });
+    }
+    return child;
+  });
+
+  return <div onClick={handlePush}>{childrenWithProps}</div>;
+});

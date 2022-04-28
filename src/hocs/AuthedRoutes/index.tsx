@@ -1,8 +1,11 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useHistory } from 'react-router-dom';
-import routesByName from 'constants/routesByName';
 import { useSelector } from 'react-redux';
-import { IReducerStore } from 'store/reducers';
+
+import { RootReducer } from 'store/reducers';
+import routesByName from 'constants/routesByName';
+
+import _useEffect from 'hooks/_useEffect';
 
 // Interface
 interface IAuthedRoutesProps {
@@ -12,13 +15,13 @@ interface IAuthedRoutesProps {
 const AuthedRoutes: React.FC<IAuthedRoutesProps> = ({ children }) => {
   const history = useHistory();
 
-  const authed = useSelector<IReducerStore, boolean>(
+  const authed = useSelector<RootReducer, boolean>(
     (state) => state.auth.authed
   );
 
-  useEffect(() => {
+  _useEffect(() => {
     if (!authed) {
-      history.replace(routesByName.homePage);
+      history.replace(routesByName.signUp);
     }
   }, [authed]);
 

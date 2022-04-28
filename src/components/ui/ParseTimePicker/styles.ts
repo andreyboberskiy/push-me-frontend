@@ -3,26 +3,31 @@ import styled from 'styled-components';
 import { color } from 'styled-system';
 
 import { Box } from 'components/ui/Box';
-import { Modal as ModalUI } from 'components/ui/Modal';
 import { Text } from 'components/ui/Text';
+import { TextInput as TextInputUI } from 'components/ui/TextInput';
+import { Modal as ModalUI } from 'components/ui/Modal';
 
-export { TextInput } from 'components/ui/TextInput';
 export { Slider } from 'components/ui/Slider';
 
+export const TextInput = styled(TextInputUI)`
+  pointer-events: none;
+`;
 export const Container = styled(Box)`
+  cursor: pointer;
   position: relative;
 `;
-export const ModalContainer = styled(Box)``;
+export const ModalContainer = styled(Box).attrs({ pb: 5 })``;
 
 export const SliderContainer = styled(Box).attrs({ mt: 4 })``;
 
-export const EditIcon = styled(EditIconUI).attrs<any>({ color: 'darkBlue' })`
+export const EditIcon = styled(EditIconUI).attrs({
+  htmlColor: color('darkBlue'),
+})`
   position: absolute;
   top: 50%;
   transform: translate(-50%, -50%);
   right: 10px;
   cursor: pointer;
-  ${color}
 `;
 
 export const Modal = styled(ModalUI).attrs({ size: 'sm' })`
@@ -30,5 +35,4 @@ export const Modal = styled(ModalUI).attrs({ size: 'sm' })`
   min-height: 200px;
 `;
 
-export const ModalTitle = styled(Text)``;
-export const SliderText = styled(Text)``;
+export const ModalTitle = styled(Text).attrs({ pb: 8, fontSize: 4 })``;

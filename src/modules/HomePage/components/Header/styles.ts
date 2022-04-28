@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 
-import { Box, Image, Button, Text, ContentContainer } from 'components/ui';
+import { Box, Image, Text } from 'components/ui';
+import { UnAuthContentContainer } from 'components/common';
 
 // @ts-ignore
 import secondaryLogo from 'assets/images/common/secondaryLogo.png';
 
-export const Container = styled(ContentContainer)`
+export const Container = styled(UnAuthContentContainer)`
   display: flex;
   flex-direction: column;
   justify-content: space-between;

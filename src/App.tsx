@@ -1,56 +1,68 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { ThemeProvider } from 'styled-components';
 
-import routesByName from 'constants/routesByName';
+import theme, { getTheme } from 'styles/theme';
 
 import AuthedRoutes from 'hocs/AuthedRoutes';
-import { IReducerStore } from 'store/reducers';
+import { ReactComponent as Sprite } from 'assets/sprite.svg';
+import routesByName from 'constants/routesByName';
 import { initialLoadAction } from 'modules/app/store/actions';
 
-import ProfilePage from 'modules/ProfilePage';
-import HomePage from 'modules/HomePage';
-import UnAuthedNavbar from 'modules/Navbar';
-import SignPage from 'modules/auth/SignPage';
-import TemplatesPage from 'modules/templates/TemplatesPage';
-import CreateTemplatePage from 'modules/templates/CreateTemplatePage';
+import Toast from 'libs/toast';
 
-import UIComponentsPage from 'components/UIComponentsPage';
+import HomePage from 'modules/HomePage';
+import SignUpPage from 'modules/auth/SignUpPage';
+import SignInPage from 'modules/auth/SignInPage';
+import Sidebar from 'modules/Sidebar';
+
+import { AuthContentContainer } from 'components/common';
+
+import { RootReducer } from 'store/reducers';
+import MainArea from 'modules/MainArea';
 
 function App() {
   const dispatch = useDispatch();
 
-  const appLoaded = useSelector<IReducerStore, boolean>(
+  const appLoaded = useSelector<RootReducer, boolean>(
     (state) => state.app.loaded
   );
 
   useEffect(() => {
     dispatch(initialLoadAction());
-
     // eslint-disable-next-line
   }, []);
 
   return appLoaded ? (
     <>
-      <UnAuthedNavbar />
       <Switch>
-        <Route path="/UI" component={UIComponentsPage} />
-
-        <Route path={routesByName.homePage} component={HomePage} />
-        <Route path={routesByName.sign} component={SignPage} />
+        <Route path={routesByName.homePage.route} component={HomePage} />
+        <Route path={routesByName.signUp} component={SignUpPage} />
+        <Route path={routesByName.signIn} component={SignInPage} />
         <AuthedRoutes>
-          <Route path={routesByName.profilePage} component={ProfilePage} />
-          <Route path={routesByName.templatesPage} component={TemplatesPage} />
-          <Route
-            path={routesByName.createTemplate}
-            component={CreateTemplatePage}
-          />
+          <AuthContentContainer>
+            <Sidebar />
+            <MainArea />
+          </AuthContentContainer>
         </AuthedRoutes>
       </Switch>
+      <Toast />
     </>
   ) : (
     <div>Loading...</div>
   );
 }
 
-export default App;
+const AppWrapper = (props) => {
+  const [themeVersion, setThemeVersion] = useState<'light' | 'dark'>('light');
+
+  return (
+    <ThemeProvider theme={getTheme(themeVersion)}>
+      <Sprite />
+      <App {...props} />
+    </ThemeProvider>
+  );
+};
+
+export default AppWrapper;

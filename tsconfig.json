@@ -7,7 +7,7 @@
       "esnext",
       "es6"
     ],
-    "baseUrl": "src",
+    "baseUrl": "src/",
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -21,7 +21,8 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "sourceMap": true
+    "sourceMap": true,
+    "downlevelIteration": true
   },
   "compileOnSave": true,
   "include": [
@@ -29,7 +30,6 @@
     "css.d.ts",
   ],
   "exclude": [
-    "node_modules",
-    "src/**/*.ts"
+    "node_modules"
   ]
 }

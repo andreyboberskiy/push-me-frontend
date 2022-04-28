@@ -1,76 +1,92 @@
-import { BaseAxiosInstance } from 'libs/axios/instances';
+import { AuthedAxiosInstance, BaseAxiosInstance } from 'libs/axios/instances';
 
 import localStorageKeys from 'constants/localStorageKeys';
+import { IUser } from 'types/common';
 
 const apiPrefix = '/api';
+const userPrefix = '/user';
 
 // types
-type TLogInResponse = {
+interface ILogInResponse {
   accessToken: string;
   refreshToken: string;
   user: any;
-};
-type TRefreshTokenResponse = {
+}
+type IRefreshTokenResponse = {
   accessToken: string;
   refreshToken: string;
 };
 
+export const setRefreshToken = (token) => {
+  localStorage.setItem(localStorageKeys.refreshToken, token);
+};
+
+export const setAccessToken = (token) => {
+  localStorage.setItem(localStorageKeys.accessToken, `Bearer ${token}`);
+};
+
+export const clearAuthTokens = () => {
+  localStorage.removeItem(localStorageKeys.accessToken);
+  localStorage.removeItem(localStorageKeys.refreshToken);
+};
+
 const authService = {
-  logIn(payload): Promise<TLogInResponse> {
-    return BaseAxiosInstance.post(`${apiPrefix}/auth/sign-in`, payload).then(
-      ({ data }) => data
-    );
+  logIn(payload): Promise<ILogInResponse> {
+    return BaseAxiosInstance.post<ILogInResponse, ILogInResponse>(
+      `${apiPrefix}/auth/sign-in`,
+      payload
+    ).then((response) => {
+      setAccessToken(response.accessToken);
+      setRefreshToken(response.refreshToken);
+      return response;
+    });
   },
   signUp(payload) {
     return BaseAxiosInstance.post(`${apiPrefix}/auth/sign-up`, payload);
   },
   getAccessToken() {
     const token = localStorage.getItem(localStorageKeys.accessToken);
-    return JSON.parse(token);
-  },
-
-  setAccessToken(token) {
-    localStorage.setItem(
-      localStorageKeys.accessToken,
-      JSON.stringify(`Bearer ${token}`)
-    );
-  },
-
-  clearAuthTokens() {
-    localStorage.removeItem(localStorageKeys.accessToken);
-    localStorage.removeItem(localStorageKeys.refreshToken);
+    return token;
   },
 
   async refreshToken() {
     const refreshTokenKey = this.getRefreshToken();
 
-    const res = await BaseAxiosInstance.post<TRefreshTokenResponse>(
+    const res: IRefreshTokenResponse = await BaseAxiosInstance.post(
       `${apiPrefix}/auth/refresh-token`,
       {
         refreshToken: refreshTokenKey,
       }
     );
 
-    this.setRefreshToken(res.data.refreshToken);
-    this.setAccessToken(res.data.accessToken);
+    setRefreshToken(res.refreshToken);
+    setAccessToken(res.accessToken);
   },
 
   getRefreshToken() {
     const token = localStorage.getItem(localStorageKeys.refreshToken);
-    return JSON.parse(token);
+    return token;
   },
 
-  setRefreshToken(token) {
-    localStorage.setItem(localStorageKeys.refreshToken, JSON.stringify(token));
+  getUser(): Promise<{ user: IUser }> {
+    return AuthedAxiosInstance.get(`${apiPrefix}/${userPrefix}`);
   },
 
-  getUser() {
-    return new Promise((res) => {
-      setTimeout(() => {
-        res({ email: 'kek@gmail.com', id: '23232' });
-      }, 200);
-    });
+  addTelegramId(id): Promise<{ user: IUser }> {
+    return AuthedAxiosInstance.put(
+      `${apiPrefix}/${userPrefix}/add-telegram-id`,
+      {
+        id,
+      }
+    );
   },
+
+  logout() {
+    clearAuthTokens();
+  },
+  clearAuthTokens,
+  setAccessToken,
+  setRefreshToken,
 };
 
 export default authService;
